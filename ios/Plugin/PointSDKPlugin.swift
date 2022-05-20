@@ -9,7 +9,8 @@ import Capacitor
 public class PointSDKPlugin: CAPPlugin {
     private let implementation = PointSDK()
 
-    @objc func echo(_ call: CAPPluginCall) {
+    @objc
+    func echo(_ call: CAPPluginCall) {
         let value = call.getString("value") ?? ""
         call.resolve([
             "value": implementation.echo(value)

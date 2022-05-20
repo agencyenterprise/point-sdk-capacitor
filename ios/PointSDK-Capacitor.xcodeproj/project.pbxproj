@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		03FC29A292ACC40490383A1F /* Pods_Plugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2A61DA5A1F2DD4F959604D /* Pods_Plugin.framework */; };
+		049DE1E635ACAB63ADCEA98A /* Pods_PointSDK_Capacitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B283E7F6C9434C2FCB752E08 /* Pods_PointSDK_Capacitor.framework */; };
 		2F98D68224C9AAE500613A4C /* PointSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F98D68124C9AAE400613A4C /* PointSDK.swift */; };
 		50ADFF99201F53D600D50D53 /* PointSDKPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ADFF8B201F53D600D50D53 /* PointSDKPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50ADFFA42020D75100D50D53 /* Capacitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50ADFFA52020D75100D50D53 /* Capacitor.framework */; };
@@ -17,16 +17,18 @@
 
 /* Begin PBXFileReference section */
 		2F98D68124C9AAE400613A4C /* PointSDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointSDK.swift; sourceTree = "<group>"; };
-		3B2A61DA5A1F2DD4F959604D /* Pods_Plugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Plugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		50ADFF88201F53D600D50D53 /* Plugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Plugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		50ADFF88201F53D600D50D53 /* PointSDK_Capacitor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PointSDK_Capacitor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50ADFF8B201F53D600D50D53 /* PointSDKPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PointSDKPlugin.h; sourceTree = "<group>"; };
 		50ADFF8C201F53D600D50D53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50ADFFA52020D75100D50D53 /* Capacitor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Capacitor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50ADFFA72020EE4F00D50D53 /* PointSDKPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PointSDKPlugin.m; sourceTree = "<group>"; };
 		50E1A94720377CB70090CE1A /* PointSDKPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointSDKPlugin.swift; sourceTree = "<group>"; };
 		5E23F77F099397094342571A /* Pods-Plugin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plugin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Plugin/Pods-Plugin.debug.xcconfig"; sourceTree = "<group>"; };
+		8F67B04B56662B9B06A63B7D /* Pods-PointSDK-Capacitor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PointSDK-Capacitor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PointSDK-Capacitor/Pods-PointSDK-Capacitor.debug.xcconfig"; sourceTree = "<group>"; };
 		91781294A431A2A7CC6EB714 /* Pods-Plugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plugin.release.xcconfig"; path = "Pods/Target Support Files/Pods-Plugin/Pods-Plugin.release.xcconfig"; sourceTree = "<group>"; };
 		96ED1B6440D6672E406C8D19 /* Pods-PluginTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PluginTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PluginTests/Pods-PluginTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B283E7F6C9434C2FCB752E08 /* Pods_PointSDK_Capacitor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PointSDK_Capacitor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3740CBA68A40F504CA910A1 /* Pods-PointSDK-Capacitor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PointSDK-Capacitor.release.xcconfig"; path = "Pods/Target Support Files/Pods-PointSDK-Capacitor/Pods-PointSDK-Capacitor.release.xcconfig"; sourceTree = "<group>"; };
 		F65BB2953ECE002E1EF3E424 /* Pods-PluginTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PluginTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PluginTests/Pods-PluginTests.release.xcconfig"; sourceTree = "<group>"; };
 		F6753A823D3815DB436415E3 /* Pods_PluginTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PluginTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -37,7 +39,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50ADFFA42020D75100D50D53 /* Capacitor.framework in Frameworks */,
-				03FC29A292ACC40490383A1F /* Pods_Plugin.framework in Frameworks */,
+				049DE1E635ACAB63ADCEA98A /* Pods_PointSDK_Capacitor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,7 +59,7 @@
 		50ADFF89201F53D600D50D53 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				50ADFF88201F53D600D50D53 /* Plugin.framework */,
+				50ADFF88201F53D600D50D53 /* PointSDK_Capacitor.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -81,6 +83,8 @@
 				91781294A431A2A7CC6EB714 /* Pods-Plugin.release.xcconfig */,
 				96ED1B6440D6672E406C8D19 /* Pods-PluginTests.debug.xcconfig */,
 				F65BB2953ECE002E1EF3E424 /* Pods-PluginTests.release.xcconfig */,
+				8F67B04B56662B9B06A63B7D /* Pods-PointSDK-Capacitor.debug.xcconfig */,
+				B3740CBA68A40F504CA910A1 /* Pods-PointSDK-Capacitor.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -89,8 +93,8 @@
 			isa = PBXGroup;
 			children = (
 				50ADFFA52020D75100D50D53 /* Capacitor.framework */,
-				3B2A61DA5A1F2DD4F959604D /* Pods_Plugin.framework */,
 				F6753A823D3815DB436415E3 /* Pods_PluginTests.framework */,
+				B283E7F6C9434C2FCB752E08 /* Pods_PointSDK_Capacitor.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -109,9 +113,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		50ADFF87201F53D600D50D53 /* Plugin */ = {
+		50ADFF87201F53D600D50D53 /* PointSDK-Capacitor */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 50ADFF9C201F53D600D50D53 /* Build configuration list for PBXNativeTarget "Plugin" */;
+			buildConfigurationList = 50ADFF9C201F53D600D50D53 /* Build configuration list for PBXNativeTarget "PointSDK-Capacitor" */;
 			buildPhases = (
 				AB5B3E54B4E897F32C2279DA /* [CP] Check Pods Manifest.lock */,
 				50ADFF83201F53D600D50D53 /* Sources */,
@@ -123,9 +127,9 @@
 			);
 			dependencies = (
 			);
-			name = Plugin;
+			name = "PointSDK-Capacitor";
 			productName = Plugin;
-			productReference = 50ADFF88201F53D600D50D53 /* Plugin.framework */;
+			productReference = 50ADFF88201F53D600D50D53 /* PointSDK_Capacitor.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -145,7 +149,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 50ADFF82201F53D600D50D53 /* Build configuration list for PBXProject "Plugin" */;
+			buildConfigurationList = 50ADFF82201F53D600D50D53 /* Build configuration list for PBXProject "PointSDK-Capacitor" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -158,7 +162,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				50ADFF87201F53D600D50D53 /* Plugin */,
+				50ADFF87201F53D600D50D53 /* PointSDK-Capacitor */,
 			);
 		};
 /* End PBXProject section */
@@ -185,7 +189,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Plugin-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-PointSDK-Capacitor-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -335,7 +339,7 @@
 		};
 		50ADFF9D201F53D600D50D53 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5E23F77F099397094342571A /* Pods-Plugin.debug.xcconfig */;
+			baseConfigurationReference = 8F67B04B56662B9B06A63B7D /* Pods-PointSDK-Capacitor.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -361,7 +365,7 @@
 		};
 		50ADFF9E201F53D600D50D53 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 91781294A431A2A7CC6EB714 /* Pods-Plugin.release.xcconfig */;
+			baseConfigurationReference = B3740CBA68A40F504CA910A1 /* Pods-PointSDK-Capacitor.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -387,7 +391,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		50ADFF82201F53D600D50D53 /* Build configuration list for PBXProject "Plugin" */ = {
+		50ADFF82201F53D600D50D53 /* Build configuration list for PBXProject "PointSDK-Capacitor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				50ADFF9A201F53D600D50D53 /* Debug */,
@@ -396,7 +400,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		50ADFF9C201F53D600D50D53 /* Build configuration list for PBXNativeTarget "Plugin" */ = {
+		50ADFF9C201F53D600D50D53 /* Build configuration list for PBXNativeTarget "PointSDK-Capacitor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				50ADFF9D201F53D600D50D53 /* Debug */,

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "50ADFF87201F53D600D50D53"
-               BuildableName = "Plugin.framework"
-               BlueprintName = "Plugin"
-               ReferencedContainer = "container:Plugin.xcodeproj">
+               BuildableName = "PointSDK_Capacitor.framework"
+               BlueprintName = "PointSDK-Capacitor"
+               ReferencedContainer = "container:PointSDK-Capacitor.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "50ADFF90201F53D600D50D53"
                BuildableName = "PluginTests.xctest"
                BlueprintName = "PluginTests"
-               ReferencedContainer = "container:Plugin.xcodeproj">
+               ReferencedContainer = "container:PointSDK-Capacitor.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -61,9 +61,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "50ADFF87201F53D600D50D53"
-            BuildableName = "Plugin.framework"
-            BlueprintName = "Plugin"
-            ReferencedContainer = "container:Plugin.xcodeproj">
+            BuildableName = "PointSDK_Capacitor.framework"
+            BlueprintName = "PointSDK-Capacitor"
+            ReferencedContainer = "container:PointSDK-Capacitor.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
