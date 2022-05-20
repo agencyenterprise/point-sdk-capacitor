@@ -14,7 +14,3 @@ target 'Plugin' do
   capacitor_pods
   pod 'PointSDK', '~> 0.1.7'
 end
-
-target 'PluginTests' do
-  capacitor_pods
-end
