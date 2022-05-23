@@ -1,11 +1,10 @@
 {
-  "appId": "com.example.plugin",
-  "appName": "example",
-  "bundledWebRuntime": true,
+  "appId": "com.example.app",
+  "appName": "nullstack-capacitor-example",
   "webDir": "www",
-  "plugins": {
-    "SplashScreen": {
-      "launchShowDuration": 0
-    }
+  "bundledWebRuntime": false,
+  "server": {
+    "url": "http://192.168.15.39:3000",
+    "cleartext": true
   }
 }
