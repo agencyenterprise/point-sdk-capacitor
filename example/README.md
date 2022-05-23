@@ -1,7 +1,5 @@
 # Nullstack Capacitor Example
 
-<img src='https://raw.githubusercontent.com/nullstack/nullstack/master/nullstack.png' height='60' alt='Nullstack' />
-
 ## How to run this Project
 
 ### Install the dependencies:
