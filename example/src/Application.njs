@@ -1,14 +1,13 @@
 import Nullstack from 'nullstack';
+import './Application.scss';
 import { registerPlugin } from '@capacitor/core';
-import { PointSDK } from '../../dist/esm';
 
-//const Echo = registerPlugin('Echo');
+const PointSDK = registerPlugin('PointSDK')
 
 class Application extends Nullstack {
 
-  async echoTest() {
-    const { value } = await PointSDK.echo({ value: 'Hello World!' });
-    alert('Response from native:' + value);
+  hydrate() {
+    PointSDK.setup({ client_id: 'clientID', client_secret: 'clientSecret' })
   }
 
   prepare({ page }) {
@@ -20,8 +19,18 @@ class Application extends Nullstack {
       <main>
         <button onclick={this.echoTest}> Click here to native Alert </button>
         <br></br>
+        <button onclick={this.permissionsTest}> Click here to request permissions </button>
       </main>
     )
+  }
+
+  async echoTest() {
+    const { value } = await PointSDK.echo({ value: 'Hello World!' });
+    alert('Response from native:' + value);
+  }
+
+  async permissionsTest() {
+    await PointSDK.requestAuthorizationsIfPossible();
   }
 
 }

@@ -7,7 +7,7 @@
 }
 
 body {
-  background-color: #2d3748;
+  margin-top: 32px;
   color: #fff;
   font-family: 'Roboto', sans-serif;
 }
@@ -15,4 +15,10 @@ body {
 a {
   color: #ddbc72;
   margin-left: .3em;
+}
+
+button {
+  height: 32px;
+  margin: 8px 16px;
+  font-size: large;
 }

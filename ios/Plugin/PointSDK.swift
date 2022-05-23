@@ -5,7 +5,8 @@ import PointSDK
 public class PointSDK: NSObject {
     @objc
     public func echo(_ value: String) -> String {
-        print(value)
-        return value
+        print("PointSDK this is a test")
+        return "PointSDK this is a test"
     }
+
 }
