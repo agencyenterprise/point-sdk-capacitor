@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		049DE1E635ACAB63ADCEA98A /* Pods_PointSDK_Capacitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B283E7F6C9434C2FCB752E08 /* Pods_PointSDK_Capacitor.framework */; };
-		2F98D68224C9AAE500613A4C /* PointSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F98D68124C9AAE400613A4C /* PointSDK.swift */; };
+		0F56B2E3283D3A0900C454AA /* PointSDKPlugin+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F56B2E2283D3A0900C454AA /* PointSDKPlugin+Utils.swift */; };
+		2F98D68224C9AAE500613A4C /* PointSDKPlugin+HealthKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F98D68124C9AAE400613A4C /* PointSDKPlugin+HealthKit.swift */; };
 		50ADFF99201F53D600D50D53 /* PointSDKPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ADFF8B201F53D600D50D53 /* PointSDKPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50ADFFA42020D75100D50D53 /* Capacitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50ADFFA52020D75100D50D53 /* Capacitor.framework */; };
 		50ADFFA82020EE4F00D50D53 /* PointSDKPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 50ADFFA72020EE4F00D50D53 /* PointSDKPlugin.m */; };
@@ -16,7 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2F98D68124C9AAE400613A4C /* PointSDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointSDK.swift; sourceTree = "<group>"; };
+		0F56B2E2283D3A0900C454AA /* PointSDKPlugin+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PointSDKPlugin+Utils.swift"; sourceTree = "<group>"; };
+		2F98D68124C9AAE400613A4C /* PointSDKPlugin+HealthKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PointSDKPlugin+HealthKit.swift"; sourceTree = "<group>"; };
 		50ADFF88201F53D600D50D53 /* PointSDK_Capacitor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PointSDK_Capacitor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50ADFF8B201F53D600D50D53 /* PointSDKPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PointSDKPlugin.h; sourceTree = "<group>"; };
 		50ADFF8C201F53D600D50D53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -68,7 +70,8 @@
 			isa = PBXGroup;
 			children = (
 				50E1A94720377CB70090CE1A /* PointSDKPlugin.swift */,
-				2F98D68124C9AAE400613A4C /* PointSDK.swift */,
+				0F56B2E2283D3A0900C454AA /* PointSDKPlugin+Utils.swift */,
+				2F98D68124C9AAE400613A4C /* PointSDKPlugin+HealthKit.swift */,
 				50ADFF8B201F53D600D50D53 /* PointSDKPlugin.h */,
 				50ADFFA72020EE4F00D50D53 /* PointSDKPlugin.m */,
 				50ADFF8C201F53D600D50D53 /* Info.plist */,
@@ -204,8 +207,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				50E1A94820377CB70090CE1A /* PointSDKPlugin.swift in Sources */,
-				2F98D68224C9AAE500613A4C /* PointSDK.swift in Sources */,
+				2F98D68224C9AAE500613A4C /* PointSDKPlugin+HealthKit.swift in Sources */,
 				50ADFFA82020EE4F00D50D53 /* PointSDKPlugin.m in Sources */,
+				0F56B2E3283D3A0900C454AA /* PointSDKPlugin+Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

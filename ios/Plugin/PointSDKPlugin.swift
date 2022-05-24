@@ -8,29 +8,43 @@ import PointSDK
  */
 @objc(PointSDKPlugin)
 public class PointSDKPlugin: CAPPlugin {
-    private let implementation = PointSDK()
-
-    @objc
-    func echo(_ call: CAPPluginCall) {
-        let value = call.getString("value") ?? ""
-        call.resolve([
-            "value": implementation.echo(value)
-        ])
-    }
     
     @objc
     public func setup(_ call: CAPPluginCall) {
-        Point.setup(clientId: call.getString("client_id")!, clientSecret: call.getString("client_secret")!, queryTypes: Set(HealthQueryType.allCases))
+        Point.verbose = call.getBool("verbose", false)
+        Point.setup(
+            clientId: call.getString("client_id")!,
+            clientSecret: call.getString("client_secret")!,
+            queryTypes: Set(HealthQueryType.allCases),
+            environment: environmentsMapping(type: call.getString("api_environment", "production"))
+        )
+        
+        call.resolve()
     }
     
     @objc
-    public func requestAuthorizationsIfPossible(_ call: CAPPluginCall) {
+    public func setUserToken(_ call: CAPPluginCall) {
         Task {
+            guard !Task.isCancelled else { return }
+            
             do {
-                try await Point.healthKit?.requestAuthorizationsIfPossible()
+                try await Point.setUserToken(accessToken: call.getString("user_token")!, shouldSyncData: call.getBool("should_sync_data", true))
                 call.resolve()
             } catch {
-                print(error)
+                call.reject(error.localizedDescription)
+            }
+        }
+    }
+    
+    @objc
+    public func logout(_ call: CAPPluginCall) {
+        Task {
+            guard !Task.isCancelled else { return }
+            
+            do {
+                try await Point.logout()
+                call.resolve()
+            } catch {
                 call.reject(error.localizedDescription)
             }
         }
