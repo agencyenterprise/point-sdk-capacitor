@@ -26,6 +26,8 @@ public extension PointSDKPlugin {
     @objc
     func setupAllBackgroundQueries(_ call: CAPPluginCall) {
         Task {
+            guard !Task.isCancelled else { return }
+            
             await Point.healthKit?.setupAllBackgroundQueries()
             call.resolve()
         }
@@ -34,6 +36,8 @@ public extension PointSDKPlugin {
     @objc
     func enableAllBackgroundDelivery(_ call: CAPPluginCall) {
         Task {
+            guard !Task.isCancelled else { return }
+            
             do {
                 try await Point.healthKit?.enableAllBackgroundDelivery()
             } catch {
@@ -45,6 +49,8 @@ public extension PointSDKPlugin {
     @objc
     func enableBackgroundDeliveryForType(_ call: CAPPluginCall) {
         Task {
+            guard !Task.isCancelled else { return }
+            
             do {
                 guard let queryType = queryTypeMapping(type: call.getString(queryTypeParam)) else {
                     call.reject(wrongQueryTypeMsg)
@@ -62,6 +68,8 @@ public extension PointSDKPlugin {
     @objc
     func disableAllBackgroundDelivery(_ call: CAPPluginCall) {
         Task {
+            guard !Task.isCancelled else { return }
+            
             do {
                 try await Point.healthKit?.disableAllBackgroundDelivery()
                 call.resolve()
@@ -74,6 +82,8 @@ public extension PointSDKPlugin {
     @objc
     func disableBackgroundDeliveryForType(_ call: CAPPluginCall) {
         Task {
+            guard !Task.isCancelled else { return }
+            
             do {
                 guard let queryType = queryTypeMapping(type: call.getString(queryTypeParam)) else {
                     call.reject(wrongQueryTypeMsg)
@@ -93,6 +103,8 @@ public extension PointSDKPlugin {
     @objc
     func enableAllForegroundListeners(_ call: CAPPluginCall) {
         Task {
+            guard !Task.isCancelled else { return }
+            
             do {
                 try await Point.healthKit?.enableAllForegroundListeners()
                 call.resolve()
@@ -105,6 +117,8 @@ public extension PointSDKPlugin {
     @objc
     func enableForegroundListenerForType(_ call: CAPPluginCall) {
         Task {
+            guard !Task.isCancelled else { return }
+            
             do {
                 guard let queryType = queryTypeMapping(type: call.getString(queryTypeParam)) else {
                     call.reject(wrongQueryTypeMsg)
@@ -128,6 +142,8 @@ public extension PointSDKPlugin {
     @objc
     func stopForegroundListenerForType(_ call: CAPPluginCall) {
         Task {
+            guard !Task.isCancelled else { return }
+            
             guard let queryType = queryTypeMapping(type: call.getString(queryTypeParam)) else {
                 call.reject(wrongQueryTypeMsg)
                 return
@@ -143,6 +159,8 @@ public extension PointSDKPlugin {
     @objc
     func syncAllHistoricalData(_ call: CAPPluginCall) {
         Task {
+            guard !Task.isCancelled else { return }
+            
             do {
                 try await Point.healthKit?.syncAllHistoricalData()
                 call.resolve()
@@ -155,6 +173,8 @@ public extension PointSDKPlugin {
     @objc
     func syncHistoricalDataForType(_ call: CAPPluginCall) {
         Task {
+            guard !Task.isCancelled else { return }
+            
             do {
                 guard let queryType = queryTypeMapping(type: call.getString(queryTypeParam)) else {
                     call.reject(wrongQueryTypeMsg)
@@ -175,6 +195,8 @@ public extension PointSDKPlugin {
     @objc
     func syncAllLatestData(_ call: CAPPluginCall) {
         Task {
+            guard !Task.isCancelled else { return }
+            
             do {
                 try await Point.healthKit?.syncAllLatestData()
                 call.resolve()
@@ -187,6 +209,8 @@ public extension PointSDKPlugin {
     @objc
     func syncLatestDataForType(_ call: CAPPluginCall) {
         Task {
+            guard !Task.isCancelled else { return }
+            
             do {
                 guard let queryType = queryTypeMapping(type: call.getString(queryTypeParam)) else {
                     call.reject(wrongQueryTypeMsg)
@@ -207,6 +231,8 @@ public extension PointSDKPlugin {
     @objc
     func sync(_ call: CAPPluginCall) {
         Task {
+            guard !Task.isCancelled else { return }
+            
             do {
                 guard let queryType = queryTypeMapping(type: call.getString(queryTypeParam)) else {
                     call.reject(wrongQueryTypeMsg)
