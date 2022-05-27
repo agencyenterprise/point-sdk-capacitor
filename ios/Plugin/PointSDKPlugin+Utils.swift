@@ -50,8 +50,8 @@ extension PointSDKPlugin {
         }
       }
 
-      func environmentsMapping(type: String) -> APIEnvironment {
-        switch type {
+      func environmentsMapping(_ env: String?) -> APIEnvironment {
+        switch env {
         case "development":
           return .development
         case "staging":

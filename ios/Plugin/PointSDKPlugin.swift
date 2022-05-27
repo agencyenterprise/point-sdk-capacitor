@@ -12,11 +12,17 @@ public class PointSDKPlugin: CAPPlugin {
     @objc
     public func setup(_ call: CAPPluginCall) {
         Point.verbose = call.getBool("verbose", false)
+        
+        var queryTypes = HealthQueryType.allCases
+        if let queryTypesParam = call.getArray("query_types") {
+            queryTypes = queryTypesParam.compactMap { HealthQueryType(rawValue: $0 as! String) }
+        }
+        
         Point.setup(
             clientId: call.getString("client_id")!,
             clientSecret: call.getString("client_secret")!,
-            queryTypes: Set(HealthQueryType.allCases),
-            environment: environmentsMapping(type: call.getString("api_environment", "production"))
+            queryTypes: Set(queryTypes),
+            environment: environmentsMapping(call.getString("environment"))
         )
         
         call.resolve()
@@ -28,7 +34,10 @@ public class PointSDKPlugin: CAPPlugin {
             guard !Task.isCancelled else { return }
             
             do {
-                try await Point.setUserToken(accessToken: call.getString("user_token")!, shouldSyncData: call.getBool("should_sync_data", true))
+                try await Point.setUserToken(
+                    accessToken: call.getString("user_token")!,
+                    shouldSyncData: call.getBool("should_sync_data", true)
+                )
                 call.resolve()
             } catch {
                 call.reject(error.localizedDescription)

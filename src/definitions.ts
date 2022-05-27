@@ -1,3 +1,3 @@
 export interface PointSDKPlugin {
-  echo(options: { value: string }): Promise<{ value: string }>;
+  //TODO map methods and types
 }

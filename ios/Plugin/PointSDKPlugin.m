@@ -6,6 +6,7 @@
 CAP_PLUGIN(PointSDKPlugin, "PointSDK",
            CAP_PLUGIN_METHOD(setup, CAPPluginReturnNone);
            CAP_PLUGIN_METHOD(requestAuthorizationsIfPossible, CAPPluginReturnNone);
+           CAP_PLUGIN_METHOD(setUserToken, CAPPluginReturnPromise);
            
            // MARK: - Background Listeners
            CAP_PLUGIN_METHOD(setupAllBackgroundQueries, CAPPluginReturnNone);
