@@ -10,15 +10,15 @@ const token =
 class Application extends Nullstack {
   async hydrate() {
     // Setup the SDK as soon as possible, before background queries
-    await this.setupSDK();
+    this.setupSDK();
 
-    //TODO remove this when new SDK version with persisted token is available
+    // TODO remove this when new SDK version with persisted token is available
     await this.setUserToken();
 
     // Apple recommends setting up the background queries as soon as possible, first thing on app launch
     await this.setupBackgroundQueries();
 
-    //enable/disable foreground listeners on app state change
+    // enable/disable foreground listeners on app state change
     App.addListener("appStateChange", ({ isActive }) => {
       if (isActive) {
         this.enableAllForegroundListeners();
@@ -42,13 +42,13 @@ class Application extends Nullstack {
         <button onclick={this.enableBackgroundDelivery}>Enable Background listeners</button>
         <br></br>
         <button onclick={this.setupBackgroundQueries}>Setup Background Queries</button>
-
-        <button onclick={this.setupStepCountBackgroundQuery}>Setup Background for stepCounttt</button>
+        <br></br>
+        <button onclick={this.setupStepCountBackgroundQuery}>Setup Background for stepCount</button>
       </main>
     );
   }
 
-  async setupSDK() {
+  setupSDK() {
     PointSDK.setup({
       client_id: "clientID",
       client_secret: "clientSecret",
