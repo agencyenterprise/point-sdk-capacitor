@@ -13,7 +13,7 @@ class Application extends Nullstack {
       client_id: "clientID",
       client_secret: "clientSecret",
       environment: "development",
-      query_types: ["heartRate", "workout", "basalEnergyBurned"], //only use this param if you want to enable the SDK for specific types, removing this param will enable all types
+      query_types: ["heartRate", "stepCount", "workout", "basalEnergyBurned"], //only use this param if you want to enable the SDK for specific types, removing this will enable all types
       verbose: true,
     });
 
@@ -38,6 +38,8 @@ class Application extends Nullstack {
         <button onclick={this.enableBackgroundDelivery}>Enable Background listeners</button>
         <br></br>
         <button onclick={this.setupBackgroundQueries}>Setup Background Queries</button>
+
+        <button onclick={this.setupStepCountBackgroundQuery}>Enable Background for stepCount</button>
       </main>
     );
   }
@@ -52,6 +54,10 @@ class Application extends Nullstack {
 
   async setupBackgroundQueries() {
     await PointSDK.setupAllBackgroundQueries();
+  }
+
+  async setupStepCountBackgroundQuery() {
+    await PointSDK.setupBackgroundQueryForType({ query_type: "stepCount" });
   }
 
   async setUserToken() {

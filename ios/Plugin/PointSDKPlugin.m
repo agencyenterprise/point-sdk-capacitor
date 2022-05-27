@@ -10,6 +10,7 @@ CAP_PLUGIN(PointSDKPlugin, "PointSDK",
            
            // MARK: - Background Listeners
            CAP_PLUGIN_METHOD(setupAllBackgroundQueries, CAPPluginReturnNone);
+           CAP_PLUGIN_METHOD(setupBackgroundQueryForType, CAPPluginReturnNone);
            CAP_PLUGIN_METHOD(enableAllBackgroundDelivery, CAPPluginReturnNone);
            CAP_PLUGIN_METHOD(enableBackgroundDeliveryForType, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(disableAllBackgroundDelivery, CAPPluginReturnNone);

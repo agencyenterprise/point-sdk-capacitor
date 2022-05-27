@@ -34,6 +34,21 @@ public extension PointSDKPlugin {
     }
     
     @objc
+    func setupBackgroundQueryForType(_ call: CAPPluginCall) {
+        Task {
+            guard !Task.isCancelled else { return }
+            
+            guard let queryType = queryTypeMapping(type: call.getString(queryTypeParam)) else {
+                call.reject(wrongQueryTypeMsg)
+                return
+            }
+            
+            await Point.healthKit?.setupBackgroundQuery(for: queryType)
+            call.resolve()
+        }
+    }
+    
+    @objc
     func enableAllBackgroundDelivery(_ call: CAPPluginCall) {
         Task {
             guard !Task.isCancelled else { return }
