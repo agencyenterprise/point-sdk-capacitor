@@ -15,7 +15,7 @@ public class PointSDKPlugin: CAPPlugin {
         
         var queryTypes = HealthQueryType.allCases
         if let queryTypesParam = call.getArray("query_types") {
-            queryTypes = queryTypesParam.compactMap { HealthQueryType(rawValue: $0 as! String) }
+            queryTypes = queryTypesParam.compactMap { queryTypeMapping(type: $0 as? String) }
         }
         
         Point.setup(
