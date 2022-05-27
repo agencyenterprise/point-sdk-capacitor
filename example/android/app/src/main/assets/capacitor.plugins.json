@@ -1,5 +1,9 @@
 [
 	{
+		"pkg": "@capacitor/app",
+		"classpath": "com.capacitorjs.plugins.app.AppPlugin"
+	},
+	{
 		"pkg": "point-sdk-capacitor",
 		"classpath": "co.areyouonpoint.sdk.capacitor.PointSDKPlugin"
 	}

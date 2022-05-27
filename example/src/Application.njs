@@ -1,5 +1,6 @@
 import Nullstack from "nullstack";
 import "./Application.scss";
+import { App } from "@capacitor/app";
 import { registerPlugin } from "@capacitor/core";
 
 const PointSDK = registerPlugin("PointSDK");
@@ -9,19 +10,22 @@ const token =
 class Application extends Nullstack {
   async hydrate() {
     // Setup the SDK as soon as possible, before background queries
-    PointSDK.setup({
-      client_id: "clientID",
-      client_secret: "clientSecret",
-      environment: "development",
-      query_types: ["heartRate", "stepCount", "workout", "basalEnergyBurned"], //only use this param if you want to enable the SDK for specific types, removing this will enable all types
-      verbose: true,
-    });
+    await this.setupSDK();
 
     //TODO remove this when new SDK version with persisted token is available
     await this.setUserToken();
 
     // Apple recommends setting up the background queries as soon as possible, first thing on app launch
     await this.setupBackgroundQueries();
+
+    //enable/disable foreground listeners on app state change
+    App.addListener("appStateChange", ({ isActive }) => {
+      if (isActive) {
+        this.enableAllForegroundListeners();
+      } else {
+        this.stopAllForegroundListeners();
+      }
+    });
   }
 
   prepare({ page }) {
@@ -39,9 +43,19 @@ class Application extends Nullstack {
         <br></br>
         <button onclick={this.setupBackgroundQueries}>Setup Background Queries</button>
 
-        <button onclick={this.setupStepCountBackgroundQuery}>Enable Background for stepCount</button>
+        <button onclick={this.setupStepCountBackgroundQuery}>Setup Background for stepCounttt</button>
       </main>
     );
+  }
+
+  async setupSDK() {
+    PointSDK.setup({
+      client_id: "clientID",
+      client_secret: "clientSecret",
+      environment: "development",
+      query_types: ["heartRate", "stepCount", "workout", "basalEnergyBurned"], //only use this param if you want to enable the SDK for specific types, removing this will enable all types
+      verbose: true,
+    });
   }
 
   async requestPermissions() {
@@ -58,6 +72,14 @@ class Application extends Nullstack {
 
   async setupStepCountBackgroundQuery() {
     await PointSDK.setupBackgroundQueryForType({ query_type: "stepCount" });
+  }
+
+  async enableAllForegroundListeners() {
+    await PointSDK.enableAllForegroundListeners();
+  }
+
+  async stopAllForegroundListeners() {
+    await PointSDK.stopAllForegroundListeners();
   }
 
   async setUserToken() {
