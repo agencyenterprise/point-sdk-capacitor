@@ -44,6 +44,10 @@ class Application extends Nullstack {
         <button onclick={this.setupBackgroundQueries}>Setup Background Queries</button>
         <br></br>
         <button onclick={this.setupStepCountBackgroundQuery}>Setup Background for stepCount</button>
+        <br></br>
+        <button onclick={this.enableAllForegroundListeners}>Enable foreground listeners</button>
+        <br></br>
+        <button onclick={this.stopAllForegroundListeners}>Stop foreground listeners</button>
       </main>
     );
   }
