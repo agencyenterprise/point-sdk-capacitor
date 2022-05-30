@@ -5,7 +5,7 @@ import { registerPlugin } from "@capacitor/core";
 
 const PointSDK = registerPlugin("PointSDK");
 const token =
-  "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwiaXNzIjoiaHR0cHM6Ly9wb2ludC1hcHAtZGV2LnVzLmF1dGgwLmNvbS8ifQ..JjNHDvYhd2-1Fq2B.Z8Q7wpzUYKRR-TvK5abL7o0QnuWlvSlbQ8wGBVJsAlMMfzmrqW4KHG5qRqPgtz3MlBakTqPr3lYcxW9QHq5hIP0WHXoQyzin4bUAQcQEPgMZqhKAxcZpFac9yiyAGFsqduIGnFUM63PGye_G267vi0ANes7_Gci5-sdfepiRZzjoHs21YRx0Mf6lpV6PHQNbkSry4oeXfR_8BAj7oDE_4aPdjtaW3ZYqLRukrdF4cdUSZJaneHKkyRLph_hF6oB7MLpRIAKXLC2iBYjNvm2dCrTqRzL3qblRPVSm5EAiHP0fhdwgi4FYQmO-LeCxEcC9on_wEsP4javj6qgso7zoCjst3uCMYOscVy69RTAQWlt4bBy7.2EOqlYBrIO1pVW-1X-uLUg";
+  "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwiaXNzIjoiaHR0cHM6Ly9wb2ludC1hcHAtZGV2LnVzLmF1dGgwLmNvbS8ifQ..Vt5Vgi8vdJF00Mqj.SlqihYSJ_pWvCX8AmOXgd8PCCuM0oO1mKX_xe-nDen4PsLJMIpQ5_hpgnxvMAwkHO0sdQl673eKlPj7DZnFhfu3xLAaIU05l7PPnU5Hag9KdK6cl6sxRON31t7cplXKvdu62boTx0Nv_9TB3cUiy-9gjVno30sQ1o-CBPizf3jEmWHI8IrOGIjrR47sggjwwhc-ajJ_RWeNVBbQ7BCWUiRV73-r5J77lDlMJYThJKJbUp3c5exGei_BFxICsCHOANhA3rBNuF5I6pV9a9UaPwB1W5mQpnDTHdoNmNc2mhCESvH25Vh2PVJuKFsNNocpU8cElvV3V9A3Tebp_J9DZiNyS28S906xjcT6_e8rciwRKdJao.tVcCRbMv2zvF6bgIBcX5jA";
 
 class Application extends Nullstack {
   async hydrate() {
@@ -48,6 +48,7 @@ class Application extends Nullstack {
         <button onclick={this.enableAllForegroundListeners}>Enable foreground listeners</button>
         <br></br>
         <button onclick={this.stopAllForegroundListeners}>Stop foreground listeners</button>
+        <button onclick={this.getUserData}>Get user data</button>
       </main>
     );
   }
@@ -90,6 +91,11 @@ class Application extends Nullstack {
     await PointSDK.setUserToken({
       user_token: token,
     });
+  }
+
+  async getUserData() {
+    const result = await PointSDK.getUserData();
+    alert(JSON.stringify(result, null, 2));
   }
 }
 

@@ -28,4 +28,7 @@ CAP_PLUGIN(PointSDKPlugin, "PointSDK",
            CAP_PLUGIN_METHOD(syncAllLatestData, CAPPluginReturnNone);
            CAP_PLUGIN_METHOD(syncLatestDataForType, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(sync, CAPPluginReturnPromise);
+           
+           // MARK: - API
+           CAP_PLUGIN_METHOD(getUserData, CAPPluginReturnPromise);
 )
