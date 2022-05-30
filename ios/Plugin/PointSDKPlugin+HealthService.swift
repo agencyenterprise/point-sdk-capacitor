@@ -53,7 +53,7 @@ public extension PointSDKPlugin {
             }
         }
     }
-    
+
     func getDailyHistory(_ call: CAPPluginCall) {
         Task {
             do {
@@ -66,6 +66,34 @@ public extension PointSDKPlugin {
                     ]
                 }
                 call.resolve(["daily_history": dailyHistory])
+            } catch {
+                call.reject(error.localizedDescription)
+            }
+        }
+    }
+
+    func getHealthMetrics(_ call: CAPPluginCall) {
+        Task {
+            do {
+                let date = call.getString("date")
+                let workoutId = call.getInt("workoutId")
+                let filter = call.getArray("filter") as? [String]
+                
+                var healthMetrics = HealthMetric.HealthMetricType.allCases
+
+                if let filter = filter {
+                    healthMetrics = filter.compactMap { HealthMetric.HealthMetricType(rawValue: $0) }
+                }
+
+                let data = try await healthService.getHealthMetrics(
+                    filter: Set(healthMetrics),
+                    workoutId: workoutId,
+                    date: date?.fromIsoStringToDate()
+                )
+
+                call.resolve([
+                    "health_metrics": data.map { metricMapping(metric: $0) }
+                ])
             } catch {
                 call.reject(error.localizedDescription)
             }
