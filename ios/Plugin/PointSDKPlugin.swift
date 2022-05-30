@@ -9,6 +9,9 @@ import PointSDK
 @objc(PointSDKPlugin)
 public class PointSDKPlugin: CAPPlugin {
     
+    var healthKit: HealthKitManager? { Point.healthKit }
+    var healthService: HealthDataService { Point.healthDataService }
+    
     @objc
     public func setup(_ call: CAPPluginCall) {
         Point.verbose = call.getBool("verbose", false)

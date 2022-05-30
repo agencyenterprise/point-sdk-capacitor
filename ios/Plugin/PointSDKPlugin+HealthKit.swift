@@ -13,7 +13,7 @@ public extension PointSDKPlugin {
             guard !Task.isCancelled else { return }
             
             do {
-                try await Point.healthKit?.requestAuthorizationsIfPossible()
+                try await healthKit?.requestAuthorizationsIfPossible()
                 call.resolve()
             } catch {
                 call.reject(error.localizedDescription)
@@ -28,7 +28,7 @@ public extension PointSDKPlugin {
         Task {
             guard !Task.isCancelled else { return }
             
-            await Point.healthKit?.setupAllBackgroundQueries()
+            await healthKit?.setupAllBackgroundQueries()
             call.resolve()
         }
     }
@@ -43,7 +43,7 @@ public extension PointSDKPlugin {
                 return
             }
             
-            await Point.healthKit?.setupBackgroundQuery(for: queryType)
+            await healthKit?.setupBackgroundQuery(for: queryType)
             call.resolve()
         }
     }
@@ -54,7 +54,7 @@ public extension PointSDKPlugin {
             guard !Task.isCancelled else { return }
             
             do {
-                try await Point.healthKit?.enableAllBackgroundDelivery()
+                try await healthKit?.enableAllBackgroundDelivery()
             } catch {
                 call.reject(error.localizedDescription)
             }
@@ -72,7 +72,7 @@ public extension PointSDKPlugin {
                     return
                 }
                 
-                let enabled = try await Point.healthKit?.enableBackgroundDelivery(for: queryType) ?? false
+                let enabled = try await healthKit?.enableBackgroundDelivery(for: queryType) ?? false
                 call.resolve(["enabled": enabled])
             } catch {
                 call.reject(error.localizedDescription)
@@ -86,7 +86,7 @@ public extension PointSDKPlugin {
             guard !Task.isCancelled else { return }
             
             do {
-                try await Point.healthKit?.disableAllBackgroundDelivery()
+                try await healthKit?.disableAllBackgroundDelivery()
                 call.resolve()
             } catch {
                 call.reject(error.localizedDescription)
@@ -105,7 +105,7 @@ public extension PointSDKPlugin {
                     return
                 }
                 
-                try await Point.healthKit?.disableBackgroundDelivery(for: queryType)
+                try await healthKit?.disableBackgroundDelivery(for: queryType)
                 call.resolve()
             } catch {
                 call.reject(error.localizedDescription)
@@ -121,7 +121,7 @@ public extension PointSDKPlugin {
             guard !Task.isCancelled else { return }
             
             do {
-                try await Point.healthKit?.enableAllForegroundListeners()
+                try await healthKit?.enableAllForegroundListeners()
                 call.resolve()
             } catch {
                 call.reject(error.localizedDescription)
@@ -140,7 +140,7 @@ public extension PointSDKPlugin {
                     return
                 }
                 
-                try await Point.healthKit?.listen(type: queryType)
+                try await healthKit?.listen(type: queryType)
                 call.resolve()
             } catch {
                 call.reject(error.localizedDescription)
@@ -150,7 +150,7 @@ public extension PointSDKPlugin {
     
     @objc
     func stopAllForegroundListeners(_ call: CAPPluginCall) {
-        Point.healthKit?.stopAllForegroundListeners()
+        healthKit?.stopAllForegroundListeners()
         call.resolve()
     }
     
@@ -164,7 +164,7 @@ public extension PointSDKPlugin {
                 return
             }
             
-            Point.healthKit?.stopListener(type: queryType)
+            healthKit?.stopListener(type: queryType)
             call.resolve()
         }
     }
@@ -177,7 +177,7 @@ public extension PointSDKPlugin {
             guard !Task.isCancelled else { return }
             
             do {
-                try await Point.healthKit?.syncAllHistoricalData()
+                try await healthKit?.syncAllHistoricalData()
                 call.resolve()
             } catch {
                 call.reject(error.localizedDescription)
@@ -196,7 +196,7 @@ public extension PointSDKPlugin {
                     return
                 }
                 
-                let result = try await Point.healthKit?.syncHistoricalData(sampleType: queryType)
+                let result = try await healthKit?.syncHistoricalData(sampleType: queryType)
                 call.resolve([
                     "successSampleCount": result?.successSampleCount ?? 0,
                     "remainingSampleCount": result?.remainingSampleCount ?? 0
@@ -213,7 +213,7 @@ public extension PointSDKPlugin {
             guard !Task.isCancelled else { return }
             
             do {
-                try await Point.healthKit?.syncAllLatestData()
+                try await healthKit?.syncAllLatestData()
                 call.resolve()
             } catch {
                 call.reject(error.localizedDescription)
@@ -232,7 +232,7 @@ public extension PointSDKPlugin {
                     return
                 }
                 
-                let result = try await Point.healthKit?.syncLatestData(sampleType: queryType)
+                let result = try await healthKit?.syncLatestData(sampleType: queryType)
                 call.resolve([
                     "successSampleCount": result?.successSampleCount ?? 0,
                     "remainingSampleCount": result?.remainingSampleCount ?? 0
