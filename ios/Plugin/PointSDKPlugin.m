@@ -31,4 +31,6 @@ CAP_PLUGIN(PointSDKPlugin, "PointSDK",
            
            // MARK: - API
            CAP_PLUGIN_METHOD(getUserData, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getUserTrends, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getUserWorkouts, CAPPluginReturnPromise);
 )

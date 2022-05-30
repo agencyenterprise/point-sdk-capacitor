@@ -48,7 +48,12 @@ class Application extends Nullstack {
         <button onclick={this.enableAllForegroundListeners}>Enable foreground listeners</button>
         <br></br>
         <button onclick={this.stopAllForegroundListeners}>Stop foreground listeners</button>
+        <br></br>
         <button onclick={this.getUserData}>Get user data</button>
+        <br></br>
+        <button onclick={this.getUserWorkouts}>Get user workouts</button>
+        <br></br>
+        <button onclick={this.getUserTrends}>Get user trends</button>
       </main>
     );
   }
@@ -95,7 +100,23 @@ class Application extends Nullstack {
 
   async getUserData() {
     const result = await PointSDK.getUserData();
-    alert(JSON.stringify(result, null, 2));
+    this.logAndAlert(result);
+  }
+
+  async getUserWorkouts() {
+    const result = await PointSDK.getUserWorkouts({ offset: 1 });
+    this.logAndAlert(result);
+  }
+
+  async getUserTrends() {
+    const result = await PointSDK.getUserTrends();
+    this.logAndAlert(result);
+  }
+
+  logAndAlert(content) {
+    const contentString = JSON.stringify(content, null, 2);
+    console.log(contentString);
+    alert(contentString);
   }
 }
 
