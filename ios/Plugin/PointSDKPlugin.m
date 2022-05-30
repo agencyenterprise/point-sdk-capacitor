@@ -33,4 +33,6 @@ CAP_PLUGIN(PointSDKPlugin, "PointSDK",
            CAP_PLUGIN_METHOD(getUserData, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(getUserTrends, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(getUserWorkouts, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getUserWorkoutById, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getDailyHistory, CAPPluginReturnPromise);
 )

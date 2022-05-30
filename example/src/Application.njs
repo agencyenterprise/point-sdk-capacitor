@@ -54,6 +54,10 @@ class Application extends Nullstack {
         <button onclick={this.getUserWorkouts}>Get user workouts</button>
         <br></br>
         <button onclick={this.getUserTrends}>Get user trends</button>
+        <br></br>
+        <button onclick={this.getUserWorkoutById}>Get workout by id</button>
+        <br></br>
+        <button onclick={this.getUserDailyHistory}>Get daily history</button>
       </main>
     );
   }
@@ -108,8 +112,18 @@ class Application extends Nullstack {
     this.logAndAlert(result);
   }
 
+  async getUserWorkoutById() {
+    const result = await PointSDK.getUserWorkoutById({ workout_id: 5330 });
+    this.logAndAlert(result);
+  }
+
   async getUserTrends() {
     const result = await PointSDK.getUserTrends();
+    this.logAndAlert(result);
+  }
+
+  async getUserDailyHistory() {
+    const result = await PointSDK.getDailyHistory({ offset: 0 });
     this.logAndAlert(result);
   }
 
