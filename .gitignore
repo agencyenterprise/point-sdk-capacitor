@@ -1,8 +1,10 @@
 # node files
 dist
 node_modules
-example/www
 package-lock.json
+example/www/
+example/.prettierrc
+example/.production/
 
 # iOS files
 Pods
