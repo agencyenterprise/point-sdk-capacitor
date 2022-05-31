@@ -19,9 +19,7 @@ public extension PointSDKPlugin {
         Task {
             do {
                 let trends = try await healthService.getUserTrends()
-                call.resolve([
-                    "trends": trends.map { trendMapping(trend: $0) }
-                ])
+                call.resolve(["trends": trends.map { trendMapping(trend: $0) }])
             } catch {
                 call.reject(error.localizedDescription)
             }
@@ -33,9 +31,7 @@ public extension PointSDKPlugin {
             do {
                 let offset = call.getInt("offset") ?? 0
                 let workouts = try await healthService.getUserWorkouts(offset: offset)
-                call.resolve([
-                    "workouts": workouts.map { workoutMapping(workout: $0) }
-                ])
+                call.resolve(["workouts": workouts.map { workoutMapping(workout: $0) }])
             } catch {
                 call.reject(error.localizedDescription)
             }
@@ -48,6 +44,33 @@ public extension PointSDKPlugin {
                 let workoutId = call.getInt("workout_id")!
                 let workout = try await healthService.getWorkout(id: workoutId)
                 call.resolve(workoutMapping(workout: workout))
+            } catch {
+                call.reject(error.localizedDescription)
+            }
+        }
+    }
+
+    func getWorkoutRecommendations(_ call: CAPPluginCall) {
+        Task {
+            do {
+                let finalDate = call.getString("date")!.fromIsoStringToDate()
+                let recommendations = try await healthService.getWorkoutRecommendations(date: finalDate)
+
+                call.resolve([
+                    "recommendations": recommendations.map { workoutRecommendationMapping(recommendation: $0) }
+                ])
+            } catch {
+                call.reject(error.localizedDescription)
+            }
+        }
+    }
+
+    func getUserRecommendations(_ call: CAPPluginCall) {
+        Task {
+            do {
+                let recommendations = try await healthService.getUserRecommendations()
+
+                call.resolve(["recommendations": recommendations.map { userRecommendationMapping(recommendation: $0) }])
             } catch {
                 call.reject(error.localizedDescription)
             }
@@ -78,7 +101,7 @@ public extension PointSDKPlugin {
                 let date = call.getString("date")
                 let workoutId = call.getInt("workoutId")
                 let filter = call.getArray("filter") as? [String]
-                
+
                 var healthMetrics = HealthMetric.HealthMetricType.allCases
 
                 if let filter = filter {
@@ -91,9 +114,66 @@ public extension PointSDKPlugin {
                     date: date?.fromIsoStringToDate()
                 )
 
-                call.resolve([
-                    "health_metrics": data.map { metricMapping(metric: $0) }
-                ])
+                call.resolve(["health_metrics": data.map { metricMapping(metric: $0) }])
+            } catch {
+                call.reject(error.localizedDescription)
+            }
+        }
+    }
+
+    func setUserGoal(_ call: CAPPluginCall) {
+        Task {
+            do {
+                let mappedGoal = goalsMapping(type: call.getString("goal")!)
+                let result = try await healthService.syncUserGoal(goal: mappedGoal)
+                call.resolve(["result": result])
+            } catch {
+                call.reject(error.localizedDescription)
+            }
+        }
+    }
+
+    func setUserSpecificGoal(_ call: CAPPluginCall) {
+        Task {
+            do {
+                let mappedGoal = specificGoalsMapping(type: call.getString("specific_goal")!)
+                let result = try await healthService.syncUserSpecificGoal(specificGoal: mappedGoal)
+                call.resolve(["result": result])
+            } catch {
+                call.reject(error.localizedDescription)
+            }
+        }
+    }
+
+    func rateWorkout(_ call: CAPPluginCall) {
+        Task {
+            do {
+                let workout = try await healthService.getWorkout(id: call.getInt("id")!)
+                let ratings = WorkoutRatings(difficulty: call.getInt("difficulty"), energy: call.getInt("energy"), instructor: call.getInt("instructor"))
+                let newWorkout = try await healthService.rate(workout: workout, ratings: ratings)
+                call.resolve(workoutMapping(workout: newWorkout))
+            } catch {
+                call.reject(error.localizedDescription)
+            }
+        }
+    }
+
+    func saveWorkoutRecommendation(_ call: CAPPluginCall) {
+        Task {
+            do {
+                let result = try await healthService.saveWorkoutRecommendation(id: call.getInt("id")!)
+                call.resolve(["result": result])
+            } catch {
+                call.reject(error.localizedDescription)
+            }
+        }
+    }
+
+    func recommendationSeen(_ call: CAPPluginCall) {
+        Task {
+            do {
+                let result = try await healthService.recommendationSeen(id: call.getInt("id")!)
+                call.resolve(["result": result])
             } catch {
                 call.reject(error.localizedDescription)
             }

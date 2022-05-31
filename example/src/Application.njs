@@ -106,37 +106,35 @@ class Application extends Nullstack {
 
   async getUserData() {
     const result = await PointSDK.getUserData();
-    this.logAndAlert(result);
+    Application.logAndAlert(result);
   }
 
   async getUserWorkouts() {
     const result = await PointSDK.getUserWorkouts({ offset: 1 });
-    this.logAndAlert(result);
+    Application.logAndAlert(result);
   }
 
   async getUserWorkoutById() {
     const result = await PointSDK.getUserWorkoutById({ workout_id: 5330 });
-    const json = JSON.stringify(result, null, 2);
-    console.log(json);
-    alert(json);
+    Application.logAndAlert(result);
   }
 
   async getUserTrends() {
     const result = await PointSDK.getUserTrends();
-    this.logAndAlert(result);
+    Application.logAndAlert(result);
   }
 
   async getUserDailyHistory() {
     const result = await PointSDK.getDailyHistory({ offset: 0 });
-    this.logAndAlert(result);
+    Application.logAndAlert(result);
   }
 
   async getUserHealthMetrics() {
     const result = await PointSDK.getHealthMetrics();
-    this.logAndAlert(result);
+    Application.logAndAlert(result);
   }
 
-  logAndAlert(content) {
+  static logAndAlert(content) {
     const json = JSON.stringify(content, null, 2);
     console.log(json);
     alert(json);
