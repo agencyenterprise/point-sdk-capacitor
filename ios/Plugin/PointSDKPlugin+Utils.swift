@@ -1,7 +1,7 @@
 import Foundation
 import PointSDK
 
-let queryTypeParam =  "query_type"
+let queryTypeParam =  "type"
 let wrongQueryTypeMsg: String = "Invalid query type, review your params and try again!"
 
 extension Date {

@@ -254,10 +254,10 @@ public extension PointSDKPlugin {
                     return
                 }
                 
-                let startDate = call.getDate("start_date", Calendar.current.date(byAdding: .day, value: -1, to: Date())!) // one day ago as default
-                let endDate = call.getDate("end_date", Date()) // current date as default
+                let startDate = call.getDate("startDate", Calendar.current.date(byAdding: .day, value: -1, to: Date())!) // one day ago as default
+                let endDate = call.getDate("endDate", Date()) // current date as default
                 let asc = call.getBool("ascending", true)
-                let avoidDuplicates = call.getBool("avoid_duplicates", true)
+                let avoidDuplicates = call.getBool("avoidDuplicates", true)
                 
                 let result = try await runQuery(sampleType: queryType, startDate: startDate, endDate: endDate, isAscending: asc, avoidDuplicates: avoidDuplicates)
                 call.resolve([

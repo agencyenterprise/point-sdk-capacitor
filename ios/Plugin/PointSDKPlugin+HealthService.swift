@@ -41,7 +41,7 @@ public extension PointSDKPlugin {
     func getUserWorkoutById(_ call: CAPPluginCall) {
         Task {
             do {
-                let workoutId = call.getInt("workout_id")!
+                let workoutId = call.getInt("workoutId")!
                 let workout = try await healthService.getWorkout(id: workoutId)
                 call.resolve(workoutMapping(workout: workout))
             } catch {
@@ -88,7 +88,7 @@ public extension PointSDKPlugin {
                         "metrics": $0.metrics.map { metricMapping(metric: $0) }
                     ]
                 }
-                call.resolve(["daily_history": dailyHistory])
+                call.resolve(["dailyHistory": dailyHistory])
             } catch {
                 call.reject(error.localizedDescription)
             }
@@ -114,7 +114,7 @@ public extension PointSDKPlugin {
                     date: date?.fromIsoStringToDate()
                 )
 
-                call.resolve(["health_metrics": data.map { metricMapping(metric: $0) }])
+                call.resolve(["healthMetrics": data.map { metricMapping(metric: $0) }])
             } catch {
                 call.reject(error.localizedDescription)
             }
@@ -136,7 +136,7 @@ public extension PointSDKPlugin {
     func setUserSpecificGoal(_ call: CAPPluginCall) {
         Task {
             do {
-                let mappedGoal = specificGoalsMapping(type: call.getString("specific_goal")!)
+                let mappedGoal = specificGoalsMapping(type: call.getString("specificGoal")!)
                 let result = try await healthService.syncUserSpecificGoal(specificGoal: mappedGoal)
                 call.resolve(["result": result])
             } catch {

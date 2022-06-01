@@ -17,13 +17,13 @@ public class PointSDKPlugin: CAPPlugin {
         Point.verbose = call.getBool("verbose", false)
         
         var queryTypes = HealthQueryType.allCases
-        if let queryTypesParam = call.getArray("query_types") {
+        if let queryTypesParam = call.getArray("queryTypes") {
             queryTypes = queryTypesParam.compactMap { queryTypeMapping(type: $0 as? String) }
         }
         
         Point.setup(
-            clientId: call.getString("client_id")!,
-            clientSecret: call.getString("client_secret")!,
+            clientId: call.getString("clientId")!,
+            clientSecret: call.getString("clientSecret")!,
             queryTypes: Set(queryTypes),
             environment: environmentsMapping(call.getString("environment"))
         )
@@ -38,8 +38,8 @@ public class PointSDKPlugin: CAPPlugin {
             
             do {
                 try await Point.setUserToken(
-                    accessToken: call.getString("user_token")!,
-                    shouldSyncData: call.getBool("should_sync_data", true)
+                    accessToken: call.getString("userToken")!,
+                    shouldSyncData: call.getBool("shouldSyncData", true)
                 )
                 call.resolve()
             } catch {
