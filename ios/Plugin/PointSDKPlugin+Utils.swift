@@ -1,7 +1,7 @@
 import Foundation
 import PointSDK
 
-let queryTypeParam =  "query_type"
+let queryTypeParam =  "type"
 let wrongQueryTypeMsg: String = "Invalid query type, review your params and try again!"
 
 extension Date {
@@ -192,69 +192,69 @@ extension PointSDKPlugin {
     ) async throws -> SyncResult? {
         switch sampleType {
         case .restingHeartRate:
-            return try await Point.healthKit?.sync(query: .restingHeartRate(
+            return try await healthKit?.sync(query: .restingHeartRate(
                 startDate: startDate,
                 endDate: endDate,
                 isAscending: isAscending
             ))
 
         case .heartRate:
-            return try await Point.healthKit?.sync(query: .heartRate(
+            return try await healthKit?.sync(query: .heartRate(
                 startDate: startDate,
                 endDate: endDate,
                 isAscending: isAscending
             ))
 
         case .activeEnergyBurned:
-            return try await Point.healthKit?.sync(query: .activeEnergyBurned(
+            return try await healthKit?.sync(query: .activeEnergyBurned(
                 startDate: startDate,
                 endDate: endDate,
                 isAscending: isAscending
             ))
 
         case .basalEnergyBurned:
-            return try await Point.healthKit?.sync(query: .basalEnergyBurned(
+            return try await healthKit?.sync(query: .basalEnergyBurned(
                 startDate: startDate,
                 endDate: endDate,
                 isAscending: isAscending
             ))
 
         case .workout:
-            return try await Point.healthKit?.sync(query: .workout(
+            return try await healthKit?.sync(query: .workout(
                 startDate: startDate,
                 endDate: endDate,
                 isAscending: isAscending
             ))
 
         case .heartRateVariabilitySDNN:
-            return try await Point.healthKit?.sync(query: .heartRateVariabilitySDNN(
+            return try await healthKit?.sync(query: .heartRateVariabilitySDNN(
                 startDate: startDate,
                 endDate: endDate,
                 isAscending: isAscending
             ))
 
         case .vo2Max:
-            return try await Point.healthKit?.sync(query: .vo2Max(
+            return try await healthKit?.sync(query: .vo2Max(
                 startDate: startDate,
                 endDate: endDate,
                 isAscending: isAscending
             ))
 
         case .stepCount:
-            return try await Point.healthKit?.sync(query: .stepCount(
+            return try await healthKit?.sync(query: .stepCount(
                 startDate: startDate,
                 endDate: endDate
             ))
 
         case .mindfulSession:
-            return try await Point.healthKit?.sync(query: .mindfulness(
+            return try await healthKit?.sync(query: .mindfulness(
                 startDate: startDate,
                 endDate: endDate,
                 isAscending: isAscending
             ))
 
         case .sleepAnalysis:
-            return try await Point.healthKit?.sync(query: .sleep(
+            return try await healthKit?.sync(query: .sleep(
                 startDate: startDate,
                 endDate: endDate,
                 isAscending: isAscending

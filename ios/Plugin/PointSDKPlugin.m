@@ -6,7 +6,7 @@
 CAP_PLUGIN(PointSDKPlugin, "PointSDK",
            CAP_PLUGIN_METHOD(setup, CAPPluginReturnNone);
            CAP_PLUGIN_METHOD(requestAuthorizationsIfPossible, CAPPluginReturnNone);
-           CAP_PLUGIN_METHOD(setUserToken, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setUserToken, CAPPluginReturnNone);
            
            // MARK: - Background Listeners
            CAP_PLUGIN_METHOD(setupAllBackgroundQueries, CAPPluginReturnNone);
@@ -28,4 +28,19 @@ CAP_PLUGIN(PointSDKPlugin, "PointSDK",
            CAP_PLUGIN_METHOD(syncAllLatestData, CAPPluginReturnNone);
            CAP_PLUGIN_METHOD(syncLatestDataForType, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(sync, CAPPluginReturnPromise);
+           
+           // MARK: - API
+           CAP_PLUGIN_METHOD(getUserData, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getUserTrends, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getUserWorkouts, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getUserWorkoutById, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getWorkoutRecommendations, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getUserRecommendations, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getDailyHistory, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getHealthMetrics, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setUserGoal, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setUserSpecificGoal, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(recommendationSeen, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(saveWorkoutRecommendation, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(rateWorkout, CAPPluginReturnPromise);
 )
