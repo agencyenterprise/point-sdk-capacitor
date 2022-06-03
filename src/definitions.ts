@@ -190,6 +190,12 @@ export enum SpecificGoal {
   MaintainHealth = 'maintainHealth',
 }
 
+export enum PointEnvironment {
+  Development = 'development',
+  Production = 'production',
+  Staging = 'staging',
+}
+
 export type HealthMetricType =
   | 'RestingHR'
   | 'OneMinuteHRR'

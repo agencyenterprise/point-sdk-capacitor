@@ -24,12 +24,9 @@ Once you've completed your onboarding process with us, you'll receive an api key
 
 See [Authenticating Users](docs/AuthenticatingUsers.md) to learn how to link your user accounts with Point Database.
 
-## Install
+## Adding to your project
 
-```bash
-npm install point-sdk-capacitor
-npx cap sync
-```
+See [Getting Started](docs/GettingStarted.md) to learn how to configure you project and start using the SDK.
 
 ## API
 
