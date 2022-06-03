@@ -78,6 +78,12 @@ export interface PointSDKPlugin {
   syncHistoricalDataForType(options: { type: QueryType }): Promise<any>;
   syncAllLatestData(): Promise<any>;
   syncLatestDataForType(options: { type: QueryType }): Promise<any>;
+  sync(options: {
+    startDate?: string;
+    endDate?: string;
+    ascending?: boolean;
+    avoidDuplicates?: boolean;
+  }): Promise<any>;
 
   //API
   getUserData(): Promise<User>;

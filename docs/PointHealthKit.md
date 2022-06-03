@@ -8,8 +8,6 @@ Point Health Kit abstracts the main functionalities from Apple's Health kit in o
 
 All methods are optimized for performance and low battery draining, the SDK has several internal optimizations including a small sqlite database to control and avoid uploading duplicated samples, reducing the network requests and data usage.
 
-> Important: All methods results are discardable and meant to be used for debug/information purposes only, we handle all the data internally so that you dont have to worry about processing or uploading the samples.
-
 > Important: All health kit methods require previous user authorization on the data types. Check the **Permissions** session.
 
 ## Permissions
@@ -106,8 +104,6 @@ You can start all listeners by calling `enableAllForegroundListeners()`. This wi
 To stop all listeners you can call `stopAllForegroundListeners`. To stop a specific listener, you can call `stopListener`
 
 ```typescript
-import { App } from "@capacitor/app";
-
 async handleForegroundListeners() {
     App.addListener("appStateChange", ({ isActive }) => {
       if (isActive) {
@@ -119,6 +115,7 @@ async handleForegroundListeners() {
 }
 ```
 
+> You can import App Listeners by adding `import { App } from "@capacitor/app";` to your file
 > The starting date of the listener query is the date and time you create the listener. It won't listen for past data.
 
 ## Historical Data
@@ -128,28 +125,16 @@ async handleForegroundListeners() {
 Fetches and uploads the user past data for all `HealthQueryType` defined in the SDK setup. This is executed automatically when you set the user token for the first time in a session, so you don't need to call this function manually unless you turned automatic syncing off.
 
 ```typescript
-func syncAllHistoricalData() async {
-    do {
-        guard let healthKitManager = Point.healthKit else { return }
-        let result = try await healthKitManager.syncAllHistoricalData()
-        print("Historical data result: \(result)")
-    } catch {
-        print("Error running historical data: \(error.localizedDescription)")
-    }
+async syncAllHistoricalData() {
+    await PointSDK.syncAllHistoricalData()
 }
 ```
 
 You can also run a manual sync for specific `HealthQueryType`, but we encourage not to do it and let the automated process handle that.
 
 ```typescript
-func syncHistoricalDataForType(type: HealthQueryType) async {
-    do {
-        guard let healthKitManager = Point.healthKit else { return }
-        let result = try await healthKitManager.syncHistoricalData(sampleType: type)
-        print("Historical data result: \(result)")
-    } catch {
-        print("Error running historical data: \(error.localizedDescription)")
-    }
+async syncHistoricalDataForType() {
+    await PointSDK.syncHistoricalDataForType({ type: QueryType.StepCount })
 }
 ```
 
@@ -164,34 +149,20 @@ func syncHistoricalDataForType(type: HealthQueryType) async {
 Fetches and uploads the user latest data for a specific type. This is executed automatically when you setup a foreground listener for this type, so you don't need to call this function manually unless you turned automatic syncing off.
 
 ```typescript
-func getLatestDataForType(type: HealthQueryType) async {
-    do {
-        guard let healthKitManager = Point.healthKit else { return }
-        let result = try await healthKitManager.syncLatestData(sampleType: type)
-        print("Latest data result: \(result)")
-    } catch {
-        print("Error running historical data: \(error.localizedDescription)")
-    }
+async syncLatestDataForType(){
+    await PointSDK.syncLatestDataForType({ type: QueryType.StepCount })
 }
 ```
 
 You can additionally retrieve the latest samples of all `HealthQueryType` you have requested permission.
 
 ```typescript
-func getAllRecentData() async {
-    do {
-        guard let healthKitManager = Point.healthKit else { return }
-        let result = try await healthKitManager.syncAllLatestData()
-        print("Latest data result: \(result)")
-    } catch {
-        print("Error running historical data: \(error.localizedDescription)")
-    }
+async syncAllLatestData() {
+    await PointSDK.syncAllLatestData()
 }
 ```
 
 All latest data queries will query samples from the latest sample date up until now. If the latest sample date is older than six months, then the query will be made from six months up until now.
-
-> Automatic "latest data syncing" is enabled as default. To turn it off for a specific type you must set the type value in `shouldSyncLatestDataBeforeListening` dictionary to `false` before setting up the foreground listener. We strongly recommend to keep it enabled to avoid losing user samples.
 
 > All latest data functions are optimized to handle large amounts of data, using multiple Tasks and uploading data in batches.
 
@@ -200,15 +171,13 @@ All latest data queries will query samples from the latest sample date up until 
 Runs a custom query and sync the result with Point database.
 
 ```typescript
-func syncHeartRate() async -> SyncResult? {
-    guard let healthKitManager = Point.healthKit else { return nil }
-    do {
-        let startDate = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: Date())!
-        return try await healthKitManager.sync(query: .heartRate(startDate: startDate))
-    } catch {
-        print(error.localizedDescription)
-        return nil
-    }
+async syncHeartRate() {
+    await PointSDK.sync({
+        startDate?: string;
+        endDate?: string;
+        ascending?: boolean;
+        avoidDuplicates?: boolean;
+    })
 }
 ```
 
