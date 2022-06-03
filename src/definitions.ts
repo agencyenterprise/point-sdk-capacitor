@@ -1,29 +1,75 @@
 export interface PointSDKPlugin {
+  /**
+   * Before any feature can be used, you must initialize the SDK providing your credentials and every Health Data Type you wish to use. For more information about the supported data types, please refer to ``QueryType``.
+   */
   setup(options: {
     clientId: string;
     clientSecret: string;
     environment: string;
-    queryTypes: string[];
+    queryTypes: QueryType[];
     verbose: boolean;
   }): Promise<void>;
 
+  /**
+   * Request user permissions for all ``QueryType`` defined at SDK setup. It is recommended to do it before setting the user token or attempting to evoke other SDK methods.
+   */
   requestAuthorizationsIfPossible(): Promise<void>;
+
+  /**
+   * Set the user access token. It is recommended to do it as soon as possible, right after having requested user permissions.
+   */
   setUserToken(options: { userToken: string }): Promise<void>;
 
-  // Background Listeners
+  /**
+   * Setup background queries to sync all types defined on SDK setup.
+   */
   setupAllBackgroundQueries(): Promise<any>;
+
+  /**
+   * Setup background delivery query for specific query type.
+   */
   setupBackgroundQueryForType(options: { type: QueryType }): Promise<any>;
+
+  /**
+   * Enables background delivery for all types defined on SDK setup.
+   */
   enableAllBackgroundDelivery(): Promise<any>;
+
+  /**
+   * Disables background delivery for all types.
+   */
   disableAllBackgroundDelivery(): Promise<any>;
+
+  /**
+   * Enables background delivery for specific query type.
+   */
   enableBackgroundDeliveryForType(options: {
     type: QueryType;
   }): Promise<boolean>;
+
+  /**
+   * Disables background delivery for specific query type.
+   */
   disableBackgroundDeliveryForType(options: { type: QueryType }): Promise<any>;
 
-  // Foreground Listeners
+  /**
+   * Start a foreground listeners for all types defined on SDK setup.
+   */
   enableAllForegroundListeners(): Promise<any>;
+
+  /**
+   * Start a foreground listener for specific query type.
+   */
   enableForegroundListenerForType(options: { type: QueryType }): Promise<any>;
+
+  /**
+   * Stops all foreground listeners that are currently active
+   */
   stopAllForegroundListeners(): Promise<any>;
+
+  /**
+   * Stops foreground listener off specific query type.
+   */
   stopForegroundListenerForType(options: { type: QueryType }): Promise<any>;
 
   // Sync

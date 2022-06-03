@@ -4,8 +4,7 @@ import { App } from "@capacitor/app";
 import { PointSDK, QueryType, Goal } from "../../dist/esm";
 
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb24iOiJUZXN0aW5nIE9yZyIsIm9yZ0lkIjozNSwic3ViIjoiNjI4NjkwNmU3NDk0MWUwMDZlNjE3ZGJjIiwiaWF0IjoxNjU0MTA1NDg2LCJleHAiOjE2NTQxOTE4ODZ9.kpxQ6_0mGep7KQR_NJq9RXOSyMaIDr4jIb5smWRupVI";
-
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb24iOiJUZXN0aW5nIE9yZyIsIm9yZ0lkIjozNSwic3ViIjoiNjI4NjkwNmU3NDk0MWUwMDZlNjE3ZGJjIiwiaWF0IjoxNjU0MTc4MzkzLCJleHAiOjE2NTQyNjQ3OTN9.eNho00BVktk1onUUs7KlHJG9Jcifx5ejzEFvF0Byxjw";
 class Application extends Nullstack {
   async hydrate() {
     // Setup the SDK as soon as possible, before background queries
@@ -123,7 +122,7 @@ class Application extends Nullstack {
   }
 
   async getUserWorkoutById() {
-    const result = await PointSDK.getUserWorkoutById({ workoutId: 5330 });
+    const result = await PointSDK.getUserWorkoutById({ workoutId: 5793 });
     Application.logAndAlert(result);
   }
 

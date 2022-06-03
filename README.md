@@ -55,12 +55,14 @@ npx cap sync
 ### setup(...)
 
 ```typescript
-setup(options: { clientId: string; clientSecret: string; environment: string; queryTypes: string[]; verbose: boolean; }) => Promise<void>
+setup(options: { clientId: string; clientSecret: string; environment: string; queryTypes: QueryType[]; verbose: boolean; }) => Promise<void>
 ```
 
-| Param         | Type                                                                                                                  |
-| ------------- | --------------------------------------------------------------------------------------------------------------------- |
-| **`options`** | <code>{ clientId: string; clientSecret: string; environment: string; queryTypes: string[]; verbose: boolean; }</code> |
+Before any feature can be used, you must initialize the SDK providing your credentials and every Health Data Type you wish to use. For more information about the supported data types, please refer to <a href="#querytype">``QueryType``</a>.
+
+| Param         | Type                                                                                                                     |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| **`options`** | <code>{ clientId: string; clientSecret: string; environment: string; queryTypes: QueryType[]; verbose: boolean; }</code> |
 
 --------------------
 
@@ -71,6 +73,8 @@ setup(options: { clientId: string; clientSecret: string; environment: string; qu
 requestAuthorizationsIfPossible() => Promise<void>
 ```
 
+Request user permissions for all <a href="#querytype">``QueryType``</a> defined at SDK setup. It is recommended to do it before setting the user token or attempting to evoke other SDK methods.
+
 --------------------
 
 
@@ -79,6 +83,8 @@ requestAuthorizationsIfPossible() => Promise<void>
 ```typescript
 setUserToken(options: { userToken: string; }) => Promise<void>
 ```
+
+Set the user access token. It is recommended to do it as soon as possible, right after having requested user permissions.
 
 | Param         | Type                                |
 | ------------- | ----------------------------------- |
@@ -93,6 +99,8 @@ setUserToken(options: { userToken: string; }) => Promise<void>
 setupAllBackgroundQueries() => Promise<any>
 ```
 
+Setup background queries to sync all types defined on SDK setup.
+
 **Returns:** <code>Promise&lt;any&gt;</code>
 
 --------------------
@@ -103,6 +111,8 @@ setupAllBackgroundQueries() => Promise<any>
 ```typescript
 setupBackgroundQueryForType(options: { type: QueryType; }) => Promise<any>
 ```
+
+Setup background delivery query for specific query type.
 
 | Param         | Type                                                       |
 | ------------- | ---------------------------------------------------------- |
@@ -119,6 +129,8 @@ setupBackgroundQueryForType(options: { type: QueryType; }) => Promise<any>
 enableAllBackgroundDelivery() => Promise<any>
 ```
 
+Enables background delivery for all types defined on SDK setup.
+
 **Returns:** <code>Promise&lt;any&gt;</code>
 
 --------------------
@@ -130,6 +142,8 @@ enableAllBackgroundDelivery() => Promise<any>
 disableAllBackgroundDelivery() => Promise<any>
 ```
 
+Disables background delivery for all types.
+
 **Returns:** <code>Promise&lt;any&gt;</code>
 
 --------------------
@@ -140,6 +154,8 @@ disableAllBackgroundDelivery() => Promise<any>
 ```typescript
 enableBackgroundDeliveryForType(options: { type: QueryType; }) => Promise<boolean>
 ```
+
+Enables background delivery for specific query type.
 
 | Param         | Type                                                       |
 | ------------- | ---------------------------------------------------------- |
@@ -156,6 +172,8 @@ enableBackgroundDeliveryForType(options: { type: QueryType; }) => Promise<boolea
 disableBackgroundDeliveryForType(options: { type: QueryType; }) => Promise<any>
 ```
 
+Disables background delivery for specific query type.
+
 | Param         | Type                                                       |
 | ------------- | ---------------------------------------------------------- |
 | **`options`** | <code>{ type: <a href="#querytype">QueryType</a>; }</code> |
@@ -171,6 +189,8 @@ disableBackgroundDeliveryForType(options: { type: QueryType; }) => Promise<any>
 enableAllForegroundListeners() => Promise<any>
 ```
 
+Start a foreground listeners for all types defined on SDK setup.
+
 **Returns:** <code>Promise&lt;any&gt;</code>
 
 --------------------
@@ -181,6 +201,8 @@ enableAllForegroundListeners() => Promise<any>
 ```typescript
 enableForegroundListenerForType(options: { type: QueryType; }) => Promise<any>
 ```
+
+Start a foreground listener for specific query type.
 
 | Param         | Type                                                       |
 | ------------- | ---------------------------------------------------------- |
@@ -197,6 +219,8 @@ enableForegroundListenerForType(options: { type: QueryType; }) => Promise<any>
 stopAllForegroundListeners() => Promise<any>
 ```
 
+Stops all foreground listeners that are currently active
+
 **Returns:** <code>Promise&lt;any&gt;</code>
 
 --------------------
@@ -207,6 +231,8 @@ stopAllForegroundListeners() => Promise<any>
 ```typescript
 stopForegroundListenerForType(options: { type: QueryType; }) => Promise<any>
 ```
+
+Stops foreground listener off specific query type.
 
 | Param         | Type                                                       |
 | ------------- | ---------------------------------------------------------- |
