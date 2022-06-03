@@ -90,7 +90,7 @@ async setUserToken() {
 }
 ```
 
-> The setUserToken function automatically triggers a Latest Data sync and also Historical Data sync if it's the first usage during that session. Refer to [Health Kit](PointHealthKit.md) for more information about uploading data.
+> The setUserToken function automatically triggers a Latest Data sync and also Historical Data sync if it's the first usage during that session. Refer to [Point Health Kit](PointHealthKit.md) for more information about uploading data.
 
 > For more details about user authentication, refer to [Authenticating Users](AuthenticatingUsers.md)
 
