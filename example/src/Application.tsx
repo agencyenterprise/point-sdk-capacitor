@@ -1,7 +1,7 @@
 import Nullstack from "nullstack";
 import "./Application.scss";
 import { App } from "@capacitor/app";
-import { PointSDK, QueryType, Goal } from "../../dist/esm";
+import { PointSDK, PointEnvironment, QueryType, Goal } from "../../dist/esm";
 
 const token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb24iOiJUZXN0aW5nIE9yZyIsIm9yZ0lkIjozNSwic3ViIjoiNjI4NjkwNmU3NDk0MWUwMDZlNjE3ZGJjIiwiaWF0IjoxNjU0MTc4MzkzLCJleHAiOjE2NTQyNjQ3OTN9.eNho00BVktk1onUUs7KlHJG9Jcifx5ejzEFvF0Byxjw";
@@ -70,7 +70,7 @@ class Application extends Nullstack {
     PointSDK.setup({
       clientId: "clientID",
       clientSecret: "clientSecret",
-      environment: "development",
+      environment: PointEnvironment.Development,
       queryTypes: [
         //only use this param if you want to enable the SDK for specific types, removing this will enable all types
         QueryType.HeartRate,
@@ -87,16 +87,28 @@ class Application extends Nullstack {
     await PointSDK.requestAuthorizationsIfPossible();
   }
 
-  async enableBackgroundDelivery() {
-    await PointSDK.enableAllBackgroundDelivery();
-  }
-
   async setupBackgroundQueries() {
     await PointSDK.setupAllBackgroundQueries();
   }
 
+  async enableBackgroundDelivery() {
+    await PointSDK.enableAllBackgroundDelivery();
+  }
+
   async setupStepCountBackgroundQuery() {
     await PointSDK.setupBackgroundQueryForType({ type: QueryType.StepCount });
+  }
+
+  async enableStepCountBackgroundDelivery() {
+    await PointSDK.enableBackgroundDeliveryForType({ type: QueryType.StepCount });
+  }
+
+  async disableStepCountBackgroundDelivery() {
+    await PointSDK.disableBackgroundDeliveryForType({ type: QueryType.StepCount });
+  }
+
+  async disableAllBackgroundDelivery() {
+    await PointSDK.disableAllBackgroundDelivery();
   }
 
   async enableAllForegroundListeners() {

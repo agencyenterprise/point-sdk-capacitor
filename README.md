@@ -1,4 +1,4 @@
-# point-sdk-capacitor
+# Point SDK Capacitor
 
 Access comprehensive health and fitness user data collected from across multiple wearable devices.
 
