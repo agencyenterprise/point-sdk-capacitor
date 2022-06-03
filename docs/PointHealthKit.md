@@ -76,7 +76,7 @@ async enableStepCountBackgroundDelivery() {
 
 Stopping a background listener will make any changes made on Apple's Health unnoticeable while the app is not on foreground.
 
-You can stop background delivery for specific type.
+You can stop background delivery for specific type:
 
 ```typescript
 async disableStepCountBackgroundDelivery() {
