@@ -76,7 +76,7 @@ async enableStepCountBackgroundDelivery() {
 
 Stopping a background listener will make any changes made on Apple's Health unnoticeable while the app is not on foreground.
 
-You can stop background delivery for specific type:
+You can stop background delivery for specific type.
 
 ```typescript
 async disableStepCountBackgroundDelivery() {
@@ -84,7 +84,7 @@ async disableStepCountBackgroundDelivery() {
 }
 ```
 
-Or you can stop all background listeners:
+Or you can stop all background listeners.
 
 ```typescript
 async disableAllBackgroundDelivery() {
@@ -98,9 +98,11 @@ async disableAllBackgroundDelivery() {
 
 A foreground listener runs a query that monitors Apple's Health while your app is on foreground. They can be used to automatically get and upload new data from Apple's Health to the Point database as soon as they are available.
 
-You can start all listeners by calling `enableAllForegroundListeners()`. This will start a foreground listeners for each one of the types you have requested to use on the SDK set up. To start a specific listener, you can call `stopForegroundListenerForType`.
+You can start all listeners by calling `enableAllForegroundListeners()`. This will start a foreground listeners for each one of the types you have requested to use on the SDK set up.
+To stop all listeners you can call `stopAllForegroundListeners`.
 
-To stop all listeners you can call `stopAllForegroundListeners`. To stop a specific listener, you can call `stopForegroundListenerForType`.
+To start a specific listener, you can call `stopForegroundListenerForType`.
+To stop a specific listener, you can call `stopForegroundListenerForType`.
 
 ```typescript
 async handleForegroundListeners() {
