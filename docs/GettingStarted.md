@@ -66,9 +66,9 @@ setupSDK() {
 }
 ```
 
-> Important: Sending an empty array of types will disable all data collecting and <doc:PointHealthKit> features.
+> Sending an empty array of types will disable all data collecting and [Point Health Kit](PointHealthKit.md) features.
 
-> Important: Important: Using **verbose: true** will make the SDK print logs in the debug console about internal operations, filters, dates, errors, warnings and much more. This is helpful during development/integration phase, but we recommend turning it off before releasing your app into production.
+> Using **verbose: true** will make the SDK print logs in the debug console about internal operations, filters, dates, errors, warnings and much more. This is helpful during development/integration phase, but we recommend turning it off before releasing your app into production.
 
 ### Requesting User Permissions
 
@@ -90,14 +90,14 @@ async setUserToken() {
 }
 ```
 
-> Note: The setUserToken function automatically triggers a Latest Data sync and also Historical Data sync if it's the first usage during that session. Refer to <doc:PointHealthKit> for more information about uploading data.
+> The setUserToken function automatically triggers a Latest Data sync and also Historical Data sync if it's the first usage during that session. Refer to [Health Kit](PointHealthKit.md) for more information about uploading data.
 
-> Note: For more details about user authentication, refer to [Authenticating Users](AuthenticatingUsers.md)
+> For more details about user authentication, refer to [Authenticating Users](AuthenticatingUsers.md)
 
 ## Collecting and uploading samples
 
-Use the <doc:PointHealthKit> to collect and upload health samples and basic user data to Point Database.
+Use the [Point Health Kit](PointHealthKit.md) functions to collect and upload health samples and basic user data to Point Database.
 
 ## Retrieving user data and generated metrics
 
-Use the <doc:PointAPI> to retrieve user data and generated metrics such as recommendations, trends, workouts, health metrics and more.
+Use the [Point Health Service](PointAPI.md) functions to retrieve user data and generated metrics such as recommendations, trends, workouts, health metrics and more.
