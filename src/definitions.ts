@@ -11,7 +11,8 @@ export interface PointSDKPlugin {
   }): Promise<void>;
 
   /**
-   * Request user permissions for all ``QueryType`` defined at SDK setup. It is recommended to do it before setting the user token or attempting to evoke other SDK methods.
+   * Request user permissions for all ``QueryType`` defined at SDK setup.
+   * It is recommended to do it before setting the user token or attempting to evoke other SDK methods.
    */
   requestAuthorizationsIfPossible(): Promise<void>;
 
@@ -26,7 +27,7 @@ export interface PointSDKPlugin {
   setupAllBackgroundQueries(): Promise<any>;
 
   /**
-   * Setup background delivery query for specific query type.
+   * Setup background query for specific query type.
    */
   setupBackgroundQueryForType(options: { type: QueryType }): Promise<any>;
 

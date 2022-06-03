@@ -1,6 +1,24 @@
 # point-sdk-capacitor
 
-Capacitor Wrapper for PointSDK
+Access comprehensive health and fitness user data collected from across multiple wearable devices.
+
+## Overview
+
+Point SDK provides an easy, “plug-and-play” way for you to get access to the full-range of user health metrics powered by Point.
+
+With Point SDK, you can:
+
+- Collect user health and fitness data through Apple HealthKit and have it processed by Point.
+- Decide the granularity of health and fitness data you would like to use from the wearable devices, depending on your app needs.
+- Retrieve digested health metrics in a normalized, consistent data format across all devices
+
+Point SDK provides a high-level interface for you to setup some listeners on your app, which will be watching for new wearables data coming from Apple HealthKit and proceed to process this data asynchronously.
+
+Point is continually deriving new health metrics, health score updates, personalized health insights, and workout recommendations based on the wearables data, and you can retrieve those through our SDK at any time to deliver a custom experience to your users.
+
+## Getting your credentials
+
+Once you've completed your onboarding process with us, you'll receive an api key and your first clientId and clientSecret to start using our SDK! For more information about out onboarding process, please contact [tech@areyouonpoint.co](mailto:tech@areyouonpoint.co)
 
 ## Install
 
@@ -73,7 +91,8 @@ Before any feature can be used, you must initialize the SDK providing your crede
 requestAuthorizationsIfPossible() => Promise<void>
 ```
 
-Request user permissions for all <a href="#querytype">``QueryType``</a> defined at SDK setup. It is recommended to do it before setting the user token or attempting to evoke other SDK methods.
+Request user permissions for all <a href="#querytype">``QueryType``</a> defined at SDK setup.
+It is recommended to do it before setting the user token or attempting to evoke other SDK methods.
 
 --------------------
 
@@ -112,7 +131,7 @@ Setup background queries to sync all types defined on SDK setup.
 setupBackgroundQueryForType(options: { type: QueryType; }) => Promise<any>
 ```
 
-Setup background delivery query for specific query type.
+Setup background query for specific query type.
 
 | Param         | Type                                                       |
 | ------------- | ---------------------------------------------------------- |
