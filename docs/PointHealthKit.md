@@ -40,7 +40,7 @@ async setupBackgroundQueries() {
 }
 ```
 
-You can also setup a background query for just a specific `HealthQueryType`.
+You can also setup a background query for just a specific type.
 
 ```typescript
 async setupStepCountBackgroundQuery() {
@@ -52,16 +52,15 @@ async setupStepCountBackgroundQuery() {
 
 After asking for user permission for the desired sample types, you must enable the background listeners you have set up.
 
-You can enable the background listeners for all `HealthQueryType` you have set up the SDK with.
+You can enable the background listeners for all types you have set up the SDK with.
 
 ```typescript
 async enableBackgroundDelivery() {
     await PointSDK.enableAllBackgroundDelivery();
 }
-
 ```
 
-You can also enable a background listener for just a specific `HealthQueryType`.
+You can also enable a background listener for just a specific type.
 
 ```typescript
 async enableStepCountBackgroundDelivery() {
@@ -99,17 +98,19 @@ async disableAllBackgroundDelivery() {
 
 A foreground listener runs a query that monitors Apple's Health while your app is on foreground. They can be used to automatically get and upload new data from Apple's Health to the Point database as soon as they are available.
 
-You can start all listeners by calling `enableAllForegroundListeners()`. This will start a foreground listeners for each one of the `HealthQueryType` you have requested to use on the SDK set up.
+You can start all listeners by calling `enableAllForegroundListeners()`. This will start a foreground listeners for each one of the types you have requested to use on the SDK set up. To start a specific listener, you can call `stopForegroundListenerForType`.
 
-To stop all listeners you can call `stopAllForegroundListeners`. To stop a specific listener, you can call `stopListener`
+To stop all listeners you can call `stopAllForegroundListeners`. To stop a specific listener, you can call `stopForegroundListenerForType`.
 
 ```typescript
 async handleForegroundListeners() {
     App.addListener("appStateChange", ({ isActive }) => {
       if (isActive) {
         await PointSDK.enableAllForegroundListeners();
+        //await PointSDK.enableForegroundListenerForType({ type: QueryType.StepCount })
       } else {
         await PointSDK.stopAllForegroundListeners();
+        //await PointSDK.stopForegroundListenerForType({ type: QueryType.StepCount })
       }
     });
 }
