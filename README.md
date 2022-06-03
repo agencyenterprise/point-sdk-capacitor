@@ -20,6 +20,10 @@ Point is continually deriving new health metrics, health score updates, personal
 
 Once you've completed your onboarding process with us, you'll receive an api key and your first clientId and clientSecret to start using our SDK! For more information about out onboarding process, please contact [tech@areyouonpoint.co](mailto:tech@areyouonpoint.co)
 
+## Registering and authenticating your users
+
+See [Authenticating Users](AuthenticatingUsers.md) to learn how to link your user accounts with Point Database.
+
 ## Install
 
 ```bash
@@ -31,39 +35,39 @@ npx cap sync
 
 <docgen-index>
 
-* [`setup(...)`](#setup)
-* [`requestAuthorizationsIfPossible()`](#requestauthorizationsifpossible)
-* [`setUserToken(...)`](#setusertoken)
-* [`setupAllBackgroundQueries()`](#setupallbackgroundqueries)
-* [`setupBackgroundQueryForType(...)`](#setupbackgroundqueryfortype)
-* [`enableAllBackgroundDelivery()`](#enableallbackgrounddelivery)
-* [`disableAllBackgroundDelivery()`](#disableallbackgrounddelivery)
-* [`enableBackgroundDeliveryForType(...)`](#enablebackgrounddeliveryfortype)
-* [`disableBackgroundDeliveryForType(...)`](#disablebackgrounddeliveryfortype)
-* [`enableAllForegroundListeners()`](#enableallforegroundlisteners)
-* [`enableForegroundListenerForType(...)`](#enableforegroundlistenerfortype)
-* [`stopAllForegroundListeners()`](#stopallforegroundlisteners)
-* [`stopForegroundListenerForType(...)`](#stopforegroundlistenerfortype)
-* [`syncAllHistoricalData()`](#syncallhistoricaldata)
-* [`syncHistoricalDataForType(...)`](#synchistoricaldatafortype)
-* [`syncAllLatestData()`](#syncalllatestdata)
-* [`syncLatestDataForType(...)`](#synclatestdatafortype)
-* [`getUserData()`](#getuserdata)
-* [`getUserTrends()`](#getusertrends)
-* [`getUserWorkouts(...)`](#getuserworkouts)
-* [`getUserWorkoutById(...)`](#getuserworkoutbyid)
-* [`getWorkoutRecommendations(...)`](#getworkoutrecommendations)
-* [`getUserRecommendations()`](#getuserrecommendations)
-* [`getDailyHistory(...)`](#getdailyhistory)
-* [`getHealthMetrics(...)`](#gethealthmetrics)
-* [`setUserGoal(...)`](#setusergoal)
-* [`setUserSpecificGoal(...)`](#setuserspecificgoal)
-* [`recommendationSeen(...)`](#recommendationseen)
-* [`saveWorkoutRecommendation(...)`](#saveworkoutrecommendation)
-* [`rateWorkout(...)`](#rateworkout)
-* [Interfaces](#interfaces)
-* [Type Aliases](#type-aliases)
-* [Enums](#enums)
+- [`setup(...)`](#setup)
+- [`requestAuthorizationsIfPossible()`](#requestauthorizationsifpossible)
+- [`setUserToken(...)`](#setusertoken)
+- [`setupAllBackgroundQueries()`](#setupallbackgroundqueries)
+- [`setupBackgroundQueryForType(...)`](#setupbackgroundqueryfortype)
+- [`enableAllBackgroundDelivery()`](#enableallbackgrounddelivery)
+- [`disableAllBackgroundDelivery()`](#disableallbackgrounddelivery)
+- [`enableBackgroundDeliveryForType(...)`](#enablebackgrounddeliveryfortype)
+- [`disableBackgroundDeliveryForType(...)`](#disablebackgrounddeliveryfortype)
+- [`enableAllForegroundListeners()`](#enableallforegroundlisteners)
+- [`enableForegroundListenerForType(...)`](#enableforegroundlistenerfortype)
+- [`stopAllForegroundListeners()`](#stopallforegroundlisteners)
+- [`stopForegroundListenerForType(...)`](#stopforegroundlistenerfortype)
+- [`syncAllHistoricalData()`](#syncallhistoricaldata)
+- [`syncHistoricalDataForType(...)`](#synchistoricaldatafortype)
+- [`syncAllLatestData()`](#syncalllatestdata)
+- [`syncLatestDataForType(...)`](#synclatestdatafortype)
+- [`getUserData()`](#getuserdata)
+- [`getUserTrends()`](#getusertrends)
+- [`getUserWorkouts(...)`](#getuserworkouts)
+- [`getUserWorkoutById(...)`](#getuserworkoutbyid)
+- [`getWorkoutRecommendations(...)`](#getworkoutrecommendations)
+- [`getUserRecommendations()`](#getuserrecommendations)
+- [`getDailyHistory(...)`](#getdailyhistory)
+- [`getHealthMetrics(...)`](#gethealthmetrics)
+- [`setUserGoal(...)`](#setusergoal)
+- [`setUserSpecificGoal(...)`](#setuserspecificgoal)
+- [`recommendationSeen(...)`](#recommendationseen)
+- [`saveWorkoutRecommendation(...)`](#saveworkoutrecommendation)
+- [`rateWorkout(...)`](#rateworkout)
+- [Interfaces](#interfaces)
+- [Type Aliases](#type-aliases)
+- [Enums](#enums)
 
 </docgen-index>
 
@@ -76,14 +80,13 @@ npx cap sync
 setup(options: { clientId: string; clientSecret: string; environment: string; queryTypes: QueryType[]; verbose: boolean; }) => Promise<void>
 ```
 
-Before any feature can be used, you must initialize the SDK providing your credentials and every Health Data Type you wish to use. For more information about the supported data types, please refer to <a href="#querytype">``QueryType``</a>.
+Before any feature can be used, you must initialize the SDK providing your credentials and every Health Data Type you wish to use. For more information about the supported data types, please refer to <a href="#querytype">`QueryType`</a>.
 
 | Param         | Type                                                                                                                     |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | **`options`** | <code>{ clientId: string; clientSecret: string; environment: string; queryTypes: QueryType[]; verbose: boolean; }</code> |
 
---------------------
-
+---
 
 ### requestAuthorizationsIfPossible()
 
@@ -91,11 +94,10 @@ Before any feature can be used, you must initialize the SDK providing your crede
 requestAuthorizationsIfPossible() => Promise<void>
 ```
 
-Request user permissions for all <a href="#querytype">``QueryType``</a> defined at SDK setup.
+Request user permissions for all <a href="#querytype">`QueryType`</a> defined at SDK setup.
 It is recommended to do it before setting the user token or attempting to evoke other SDK methods.
 
---------------------
-
+---
 
 ### setUserToken(...)
 
@@ -109,8 +111,7 @@ Set the user access token. It is recommended to do it as soon as possible, right
 | ------------- | ----------------------------------- |
 | **`options`** | <code>{ userToken: string; }</code> |
 
---------------------
-
+---
 
 ### setupAllBackgroundQueries()
 
@@ -122,8 +123,7 @@ Setup background queries to sync all types defined on SDK setup.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
---------------------
-
+---
 
 ### setupBackgroundQueryForType(...)
 
@@ -139,8 +139,7 @@ Setup background query for specific query type.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
---------------------
-
+---
 
 ### enableAllBackgroundDelivery()
 
@@ -152,8 +151,7 @@ Enables background delivery for all types defined on SDK setup.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
---------------------
-
+---
 
 ### disableAllBackgroundDelivery()
 
@@ -165,8 +163,7 @@ Disables background delivery for all types.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
---------------------
-
+---
 
 ### enableBackgroundDeliveryForType(...)
 
@@ -182,8 +179,7 @@ Enables background delivery for specific query type.
 
 **Returns:** <code>Promise&lt;boolean&gt;</code>
 
---------------------
-
+---
 
 ### disableBackgroundDeliveryForType(...)
 
@@ -199,8 +195,7 @@ Disables background delivery for specific query type.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
---------------------
-
+---
 
 ### enableAllForegroundListeners()
 
@@ -212,8 +207,7 @@ Start a foreground listeners for all types defined on SDK setup.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
---------------------
-
+---
 
 ### enableForegroundListenerForType(...)
 
@@ -229,8 +223,7 @@ Start a foreground listener for specific query type.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
---------------------
-
+---
 
 ### stopAllForegroundListeners()
 
@@ -242,8 +235,7 @@ Stops all foreground listeners that are currently active
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
---------------------
-
+---
 
 ### stopForegroundListenerForType(...)
 
@@ -259,8 +251,7 @@ Stops foreground listener off specific query type.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
---------------------
-
+---
 
 ### syncAllHistoricalData()
 
@@ -270,8 +261,7 @@ syncAllHistoricalData() => Promise<any>
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
---------------------
-
+---
 
 ### syncHistoricalDataForType(...)
 
@@ -285,8 +275,7 @@ syncHistoricalDataForType(options: { type: QueryType; }) => Promise<any>
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
---------------------
-
+---
 
 ### syncAllLatestData()
 
@@ -296,8 +285,7 @@ syncAllLatestData() => Promise<any>
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
---------------------
-
+---
 
 ### syncLatestDataForType(...)
 
@@ -311,8 +299,7 @@ syncLatestDataForType(options: { type: QueryType; }) => Promise<any>
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
---------------------
-
+---
 
 ### getUserData()
 
@@ -322,8 +309,7 @@ getUserData() => Promise<User>
 
 **Returns:** <code>Promise&lt;<a href="#user">User</a>&gt;</code>
 
---------------------
-
+---
 
 ### getUserTrends()
 
@@ -333,8 +319,7 @@ getUserTrends() => Promise<Trend[]>
 
 **Returns:** <code>Promise&lt;Trend[]&gt;</code>
 
---------------------
-
+---
 
 ### getUserWorkouts(...)
 
@@ -348,8 +333,7 @@ getUserWorkouts(options: { offset: number; }) => Promise<Workout[]>
 
 **Returns:** <code>Promise&lt;Workout[]&gt;</code>
 
---------------------
-
+---
 
 ### getUserWorkoutById(...)
 
@@ -363,8 +347,7 @@ getUserWorkoutById(options: { workoutId: number; }) => Promise<Workout>
 
 **Returns:** <code>Promise&lt;<a href="#workout">Workout</a>&gt;</code>
 
---------------------
-
+---
 
 ### getWorkoutRecommendations(...)
 
@@ -378,8 +361,7 @@ getWorkoutRecommendations(options: { date: string; }) => Promise<WorkoutRecommen
 
 **Returns:** <code>Promise&lt;WorkoutRecommendation[]&gt;</code>
 
---------------------
-
+---
 
 ### getUserRecommendations()
 
@@ -389,8 +371,7 @@ getUserRecommendations() => Promise<Recommendation[]>
 
 **Returns:** <code>Promise&lt;Recommendation[]&gt;</code>
 
---------------------
-
+---
 
 ### getDailyHistory(...)
 
@@ -404,8 +385,7 @@ getDailyHistory(options: { offset: number; }) => Promise<[{ date: Date; metrics:
 
 **Returns:** <code>Promise&lt;[{ date: <a href="#date">Date</a>; metrics: HealthMetric[]; }]&gt;</code>
 
---------------------
-
+---
 
 ### getHealthMetrics(...)
 
@@ -419,8 +399,7 @@ getHealthMetrics(params: { filter?: HealthMetricType[]; workoutId?: number; date
 
 **Returns:** <code>Promise&lt;HealthMetric[]&gt;</code>
 
---------------------
-
+---
 
 ### setUserGoal(...)
 
@@ -434,8 +413,7 @@ setUserGoal(options: { goal: Goal; }) => Promise<User>
 
 **Returns:** <code>Promise&lt;<a href="#user">User</a>&gt;</code>
 
---------------------
-
+---
 
 ### setUserSpecificGoal(...)
 
@@ -449,8 +427,7 @@ setUserSpecificGoal(options: { specificGoal: SpecificGoal; }) => Promise<User>
 
 **Returns:** <code>Promise&lt;<a href="#user">User</a>&gt;</code>
 
---------------------
-
+---
 
 ### recommendationSeen(...)
 
@@ -464,8 +441,7 @@ recommendationSeen(options: { id: number; }) => Promise<any>
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
---------------------
-
+---
 
 ### saveWorkoutRecommendation(...)
 
@@ -479,8 +455,7 @@ saveWorkoutRecommendation(options: { id: number; }) => Promise<any>
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
---------------------
-
+---
 
 ### rateWorkout(...)
 
@@ -494,11 +469,9 @@ rateWorkout(options: { id: number; ratings: WorkoutRatings; }) => Promise<Workou
 
 **Returns:** <code>Promise&lt;<a href="#workout">Workout</a>&gt;</code>
 
---------------------
-
+---
 
 ### Interfaces
-
 
 #### User
 
@@ -514,7 +487,6 @@ rateWorkout(options: { id: number; ratings: WorkoutRatings; }) => Promise<Workou
 | **`specificGoal`** | <code>string</code>                                                                                                                                 |
 | **`lastWorkout`**  | <code><a href="#workout">Workout</a></code>                                                                                                         |
 
-
 #### Trend
 
 | Prop                   | Type                                              |
@@ -522,7 +494,6 @@ rateWorkout(options: { id: number; ratings: WorkoutRatings; }) => Promise<Workou
 | **`id`**               | <code>string</code>                               |
 | **`type`**             | <code><a href="#trendtypes">TrendTypes</a></code> |
 | **`additionalFields`** | <code>string</code>                               |
-
 
 #### Recommendation
 
@@ -540,14 +511,12 @@ rateWorkout(options: { id: number; ratings: WorkoutRatings; }) => Promise<Workou
 | **`icon`**           | <code>string</code>                                         |
 | **`color`**          | <code>string</code>                                         |
 
-
 #### RecommendationAction
 
 | Prop        | Type                |
 | ----------- | ------------------- |
 | **`label`** | <code>string</code> |
 | **`url`**   | <code>string</code> |
-
 
 #### Date
 
@@ -599,64 +568,53 @@ Enables basic storage and retrieval of dates and times.
 | **toISOString**        | () =&gt; string                                                                                              | Returns a date as a string value in ISO format.                                                                                         |
 | **toJSON**             | (key?: any) =&gt; string                                                                                     | Used by the JSON.stringify method to enable the transformation of an object's data for JavaScript Object Notation (JSON) serialization. |
 
-
 ### Type Aliases
-
 
 #### Record
 
 Construct a type with a set of properties K of type T
 
-<code>{ [P in K]: T; }</code>
-
+<code>{
+[P in K]: T;
+}</code>
 
 #### GoalProgressKey
 
 <code>'overral' | 'endurance' | 'recovery' | 'strength'</code>
 
-
 #### GoalProgressValue
 
 <code>{ value: number; variance: number; }</code>
-
 
 #### Workout
 
 <code>{ id: number; calories: number; distance: number; duration: number; start: string; end: string; activityName: string; activityId: number; ratings: <a href="#workoutratings">WorkoutRatings</a>; }</code>
 
-
 #### WorkoutRatings
 
 <code>{ difficulty: number; energy: number; instructor: number; }</code>
-
 
 #### TrendTypes
 
 <code>'record_calories_burned_across_all_workout_types' | 'most_efficient_workout_type' | 'longest_workout_type' | 'avg_workout_calories_burned' | 'avg_workout_duration' | 'usual_workout_time'</code>
 
-
 #### WorkoutRecommendation
 
 <code>{ id: number; date: string; activityId: number; activityName: string; workoutId: number; completedAt: string; createdAt: string; savedAt: string; }</code>
-
 
 #### InsightCategory
 
 <code>'HeartLifetimeIncrease' | 'Motivational' | 'NeedRecovery' | 'RoutineFreqOptimization' | 'RoutineTimeOptimization' | 'RoutineWorkoutTypeOptimization' | 'TocayaDeal' | 'TryHarder' | 'WorkoutStreak'</code>
 
-
 #### HealthMetric
 
 <code>{ type: string; date: string; value: number; variance: number; workoutId: number; }</code>
-
 
 #### HealthMetricType
 
 <code>'RestingHR' | 'OneMinuteHRR' | 'ThreeMinuteHRR' | 'HRV' | 'Vo2Max' | 'ActiveCalories' | 'BasalCalories' | 'TotalCalories' | 'WorkoutCalories' | 'WorkoutDistance' | 'WorkoutDuration' | 'ExertionRate' | 'MovementLevel' | 'MinsHRZone1' | 'MinsHRZone2' | 'MinsHRZone3' | 'MinsHRZone4' | 'MinsHRZone12' | 'MinsHRZone23' | 'MinsHRZone34' | 'WorkoutMinsHRZone1' | 'WorkoutMinsHRZone2' | 'WorkoutMinsHRZone3' | 'WorkoutMinsHRZone4' | 'WorkoutMinsHRZone12' | 'WorkoutMinsHRZone23' | 'WorkoutMinsHRZone34' | 'MindfulMinutes' | 'AvgWorkoutHR' | 'MinWorkoutHR' | 'MaxWorkoutHR' | 'SleepDuration' | 'SleepDurationInbed' | 'SleepDurationAsleep' | 'TotalWorkoutDuration' | 'TotalMinsHRZone12' | 'TotalMinsHRZone34' | 'WeeklyAvgWorkoutHR' | 'WeeklyExertionRate' | 'DailyWorkoutDuration'</code>
 
-
 ### Enums
-
 
 #### QueryType
 
@@ -674,14 +632,12 @@ Construct a type with a set of properties K of type T
 | **`SleepAnalysis`**            | <code>'sleepAnalysis'</code>            |
 | **`Birthday`**                 | <code>'birthday'</code>                 |
 
-
 #### Goal
 
 | Members                   | Value                              |
 | ------------------------- | ---------------------------------- |
 | **`WeightLoss`**          | <code>'weightLoss'</code>          |
 | **`AthleticPerformance`** | <code>'athleticPerformance'</code> |
-
 
 #### SpecificGoal
 
