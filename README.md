@@ -22,7 +22,7 @@ Once you've completed your onboarding process with us, you'll receive an api key
 
 ## Registering and authenticating your users
 
-See [Authenticating Users](AuthenticatingUsers.md) to learn how to link your user accounts with Point Database.
+See [Authenticating Users](docs/AuthenticatingUsers.md) to learn how to link your user accounts with Point Database.
 
 ## Install
 
