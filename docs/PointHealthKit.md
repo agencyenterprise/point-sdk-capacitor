@@ -49,16 +49,19 @@ async setupStepCountBackgroundQuery() {
 ```
 
 ### Enable
+
 After asking for user permission for the desired sample types, you must enable the background listeners you have set up.
 
-You can enable the background listeners for all types you have set up the SDK with:
+You can enable the background listeners for all types you have set up the SDK with.
+
 ```typescript
 async enableBackgroundDelivery() {
     await PointSDK.enableAllBackgroundDelivery();
 }
 ```
 
-You can also enable a background listener for just a specific type:
+You can also enable a background listener for just a specific type.
+
 ```typescript
 async enableStepCountBackgroundDelivery() {
     await PointSDK.enableBackgroundDeliveryForType({ type: QueryType.StepCount });
@@ -70,9 +73,11 @@ async enableStepCountBackgroundDelivery() {
 > Important: For iOS 15 you must enable the HealthKit Background Delivery by adding the com.apple.developer.healthkit.background-delivery entitlement to your app.
 
 ### Stop
+
 Stopping a background listener will make any changes made on Apple's Health unnoticeable while the app is not on foreground.
 
 You can stop background delivery for specific type:
+
 ```typescript
 async disableStepCountBackgroundDelivery() {
     await PointSDK.disableBackgroundDeliveryForType({ type: QueryType.StepCount })
@@ -80,6 +85,7 @@ async disableStepCountBackgroundDelivery() {
 ```
 
 Or you can stop all background listeners:
+
 ```typescript
 async disableAllBackgroundDelivery() {
     await PointSDK.disableAllBackgroundDelivery()
@@ -110,14 +116,14 @@ async handleForegroundListeners() {
 }
 ```
 
-> You can import App Listeners by adding `import { App } from "@capacitor/app";` to your file
+> You can import App Listeners by adding `import { App } from "@capacitor/app";` to your file.
 > The starting date of the listener query is the date and time you create the listener. It won't listen for past data.
 
 ## Historical Data
 
 **Helper functions to get the user past data, optimized to handle large amounts of data, using multiple Tasks and uploading in batches.**
 
-Fetches and uploads the user past data for all `HealthQueryType` defined in the SDK setup. This is executed automatically when you set the user token for the first time in a session, so you don't need to call this function manually unless you turned automatic syncing off.
+Fetches and uploads the user past data for all types defined in the SDK setup. This is executed automatically when you set the user token for the first time in a session, so you don't need to call this function manually unless you turned automatic syncing off.
 
 ```typescript
 async syncAllHistoricalData() {
@@ -125,7 +131,7 @@ async syncAllHistoricalData() {
 }
 ```
 
-You can also run a manual sync for specific `HealthQueryType`, but we encourage not to do it and let the automated process handle that.
+You can also run a manual sync for specific type, but we encourage not to do it and let the automated process handle that.
 
 ```typescript
 async syncHistoricalDataForType() {

@@ -19,7 +19,10 @@ export interface PointSDKPlugin {
   /**
    * Set the user access token. It is recommended to do it as soon as possible, right after having requested user permissions.
    */
-  setUserToken(options: { userToken: string }): Promise<void>;
+  setUserToken(options: {
+    userToken: string;
+    shouldSyncData?: boolean;
+  }): Promise<void>;
 
   /**
    * Setup background queries to sync all types defined on SDK setup.
@@ -73,11 +76,29 @@ export interface PointSDKPlugin {
    */
   stopForegroundListenerForType(options: { type: QueryType }): Promise<any>;
 
-  // Sync
+  /**
+   * Syncs the past 3 months of historical data for permissioned types with the `Point` database.
+   */
   syncAllHistoricalData(): Promise<any>;
+
+  /**
+   * Syncs the past 3 months historical data for a given sample type with the `Point` database.
+   */
   syncHistoricalDataForType(options: { type: QueryType }): Promise<any>;
+
+  /**
+   * Syncs the HealthKit data for all permissioned types with `Point` database limited to 6 months.
+   */
   syncAllLatestData(): Promise<any>;
+
+  /**
+   * Syncs the HealthKit data from the latest sample of the given type until now with `Point` database, limited to 3 months of data.
+   */
   syncLatestDataForType(options: { type: QueryType }): Promise<any>;
+
+  /**
+   * Syncs the HealthKit data from the query results with the `Point` database.
+   */
   sync(options: {
     startDate?: string;
     endDate?: string;
