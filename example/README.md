@@ -10,8 +10,6 @@
 
 `npm start`
 
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
 ### Update `capacitor.config.json` and change the url param to your local ip address:
 
 ```json
