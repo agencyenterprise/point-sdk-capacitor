@@ -77,12 +77,12 @@ export interface PointSDKPlugin {
   stopForegroundListenerForType(options: { type: QueryType }): Promise<any>;
 
   /**
-   * Syncs the past 3 months of historical data for permissioned types with the `Point` database.
+   * Syncs the past 3 months of historical data for permissioned types with the Point database.
    */
   syncAllHistoricalData(): Promise<any>;
 
   /**
-   * Syncs the past 3 months historical data for a given sample type with the `Point` database.
+   * Syncs the past 3 months historical data for a given sample type with the Point database.
    */
   syncHistoricalDataForType(options: { type: QueryType }): Promise<any>;
 
@@ -92,7 +92,7 @@ export interface PointSDKPlugin {
   syncAllLatestData(): Promise<any>;
 
   /**
-   * Syncs the HealthKit data from the latest sample of the given type until now with `Point` database, limited to 3 months of data.
+   * Syncs the HealthKit data from the latest sample of the given type until now with Point database, limited to 3 months of data.
    */
   syncLatestDataForType(options: { type: QueryType }): Promise<any>;
 
@@ -106,32 +106,82 @@ export interface PointSDKPlugin {
     avoidDuplicates?: boolean;
   }): Promise<any>;
 
-  //API
+  /**
+   * Retrieves information about the User, such as email, first name, birthday, last workout, goals and more.
+   */
   getUserData(): Promise<User>;
+
+  /**
+   * You can get the user Trends for the last 3 months, like average workout duration and record calories burned.
+   */
   getUserTrends(): Promise<Trend[]>;
+
+  /**
+   * Retrieves a list of the User's last 16 Workouts, in descending order. The offset is meant to be used as a pagination, and if no value is passed, it is defaulted to 0.
+   */
   getUserWorkouts(options: { offset: number }): Promise<Workout[]>;
+
+  /**
+   * Retrieves a single Workout for the given id.
+   */
   getUserWorkoutById(options: { workoutId: number }): Promise<Workout>;
+
+  /**
+   * Retrieves a list of WorkoutRecommendation. Workout recommendations are generated weekly on the Point database, based in the user **goal**. The date parameter defines which week you will get recommendations from.
+   */
   getWorkoutRecommendations(options: {
     date: string;
   }): Promise<WorkoutRecommendation[]>;
+
+  /**
+   * Retrieves a list of Recommendations. Point periodically checks if it can create a new personalized recommendation. A recommendation will be available for a finite time before it expires. There are different types of insights, listed in InsightCategory.
+   */
   getUserRecommendations(): Promise<Recommendation[]>;
+
+  /**
+   * Retrieves a list of the User's last 16 days worth of DailyHistory, in descending order. The DailyHistory is composed of daily total calories, exertion rate and total workout duration. The offset is meant to be used as a pagination, and if no value is passed, it is defaulted to 0.
+   */
   getDailyHistory(options: {
     offset: number;
   }): Promise<[{ date: Date; metrics: HealthMetric[] }]>;
+
+  /**
+   * You can get a set of user health metrics, which are a summary of the collected samples. Check [HealthMetric](https://agencyenterprise.github.io/point-ios/documentation/pointsdk/healthmetric/healthmetrictype) to know all kinds of health metrics available.
+   */
   getHealthMetrics(params: {
     filter?: HealthMetricType[];
     workoutId?: number;
     date?: string;
   }): Promise<HealthMetric[]>;
 
+  /**
+   * Goals are used to generate **recommendations** and insights for the user.
+   * Sets the user Goal. This is more limited set of options. If you wish to provide more options, use the **Specific Goal**.
+   */
   setUserGoal(options: { goal: Goal }): Promise<User>;
+
+  /**
+   * Sets the user SpecificGoal. This provides a wider array of options. Calling this function also sets the Goal.
+   */
   setUserSpecificGoal(options: { specificGoal: SpecificGoal }): Promise<User>;
-  recommendationSeen(options: { id: number }): Promise<any>;
-  saveWorkoutRecommendation(options: { id: number }): Promise<any>;
+
+  /**
+   * You can allow users to rate their past workouts. A workout rating is divided in "Difficulty", "Energy" and "Instructor" ratings. Each field can be rated from 1 to 5, defaulting to 0 if a value is not set.
+   */
   rateWorkout(options: {
     id: number;
     ratings: WorkoutRatings;
   }): Promise<Workout>;
+
+  /**
+   * Mark a recommendation as already seen, using the ID of the recommendation.
+   */
+  recommendationSeen(options: { id: number }): Promise<any>;
+
+  /**
+   * Save a workout recommendation, using the ID of the workout.
+   */
+  saveWorkoutRecommendation(options: { id: number }): Promise<any>;
 }
 
 type GoalProgressKey = 'overral' | 'endurance' | 'recovery' | 'strength';
