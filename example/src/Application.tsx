@@ -1,7 +1,7 @@
 import Nullstack from "nullstack";
 import "./Application.scss";
 import { App } from "@capacitor/app";
-import { PointSDK, PointEnvironment, QueryType, Goal } from "../../dist/esm";
+import { PointSDK, PointEnvironment, QueryType, Goal, SpecificGoal, WorkoutRatings } from "../../dist/esm";
 
 const token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb24iOiJUZXN0aW5nIE9yZyIsIm9yZ0lkIjozNSwic3ViIjoiNjI4NjkwNmU3NDk0MWUwMDZlNjE3ZGJjIiwiaWF0IjoxNjU0MTc4MzkzLCJleHAiOjE2NTQyNjQ3OTN9.eNho00BVktk1onUUs7KlHJG9Jcifx5ejzEFvF0Byxjw";
@@ -138,8 +138,24 @@ class Application extends Nullstack {
     Application.logAndAlert(result);
   }
 
+  async rateWorkout() {
+    const ratings = { difficulty: 4, energy: 5, instructor: 3 };
+    const result = await PointSDK.rateWorkout({ id: 5793, ratings });
+    Application.logAndAlert(result);
+  }
+
   async getUserTrends() {
     const result = await PointSDK.getUserTrends();
+    Application.logAndAlert(result);
+  }
+
+  async getUserRecommendations() {
+    const result = await PointSDK.getUserRecommendations();
+    Application.logAndAlert(result);
+  }
+
+  async getWorkoutRecommendations() {
+    const result = await PointSDK.getWorkoutRecommendations({ date: new Date().toISOString() });
     Application.logAndAlert(result);
   }
 
@@ -155,6 +171,11 @@ class Application extends Nullstack {
 
   async setUserGoal() {
     const result = await PointSDK.setUserGoal({ goal: Goal.AthleticPerformance });
+    Application.logAndAlert(result);
+  }
+
+  async setUserSpecificGoal() {
+    const result = await PointSDK.setUserSpecificGoal({ specificGoal: SpecificGoal.BuildLeanMuscle });
     Application.logAndAlert(result);
   }
 
