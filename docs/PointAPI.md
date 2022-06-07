@@ -93,7 +93,7 @@ Retrieves a list of `WorkoutRecommendation`. Workout recommendations are generat
 
 ```typescript
 async getWorkoutRecommendations() {
-    const result = await PointSDK.getWorkoutRecommendations({date: new Date().toISOString()})
+    const result = await PointSDK.getWorkoutRecommendations({ date: new Date().toISOString() });
 }
 ```
 
