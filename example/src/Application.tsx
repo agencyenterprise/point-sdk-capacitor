@@ -4,14 +4,12 @@ import { App } from "@capacitor/app";
 import { PointSDK, PointEnvironment, QueryType, Goal } from "../../dist/esm";
 
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb24iOiJUZXN0aW5nIE9yZyIsIm9yZ0lkIjozNSwic3ViIjoiNjI4NjkwNmU3NDk0MWUwMDZlNjE3ZGJjIiwiaWF0IjoxNjU0MTc4MzkzLCJleHAiOjE2NTQyNjQ3OTN9.eNho00BVktk1onUUs7KlHJG9Jcifx5ejzEFvF0Byxjw";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb24iOiJQb2ludCIsIm9yZ0lkIjo0Mywic3ViIjoicG9pbnR8NjI4NjkwNmU3NDk0MWUwMDZlNjE3ZGJjIiwiaWF0IjoxNjU0NjIxOTUzLCJleHAiOjE2NTQ3MDgzNTN9.S39kJWD2bGOJiAyOYioKNlB7vNa0JK7NcDO3B9Z3rWg";
+
 class Application extends Nullstack {
   async hydrate() {
     // Setup the SDK as soon as possible, before background queries
     this.setupSDK();
-
-    // TODO remove this when new SDK version with persisted token is available
-    await this.setUserToken();
 
     // Apple recommends setting up the background queries as soon as possible, first thing on app launch
     await this.setupBackgroundQueries();
@@ -33,6 +31,8 @@ class Application extends Nullstack {
   render() {
     return (
       <main>
+        <button onclick={this.setUserToken}>Set user token</button>
+        <br></br>
         <button onclick={this.requestPermissions}>Request permissions</button>
         <br></br>
         <button onclick={this.getUserData}>Get user data</button>
