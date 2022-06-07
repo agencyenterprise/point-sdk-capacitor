@@ -88,7 +88,7 @@ Or you can stop all background listeners.
 
 ```typescript
 async disableAllBackgroundDelivery() {
-    await PointSDK.disableAllBackgroundDelivery()
+    await PointSDK.disableAllBackgroundDelivery();
 }
 ```
 
