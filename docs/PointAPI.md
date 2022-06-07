@@ -9,7 +9,7 @@ Retrieves information about the `User`, such as email, first name, birthday, las
 ```typescript
 async getUserData() {
     const user = await PointSDK.getUserData();
-  }
+}
 ```
 
 ## User Workouts
@@ -104,9 +104,9 @@ async getWorkoutRecommendations() {
 You can get the user `Trend`s for the last 3 months, like average workout duration and record calories burned. To get a trend content, you must access the dictionary `Trend/additionalFields` and handle its content individually. Each trend has an associated `TrendType` that determines what keys will be available in the dictionary and how you should handle its values.
 
 ```typescript
-  async getUserTrends() {
+async getUserTrends() {
     const result = await PointSDK.getUserTrends();
-  }
+}
 ```
 
 ## User Recommendations
