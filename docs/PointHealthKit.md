@@ -80,7 +80,7 @@ You can stop background delivery for specific type.
 
 ```typescript
 async disableStepCountBackgroundDelivery() {
-    await PointSDK.disableBackgroundDeliveryForType({ type: QueryType.StepCount })
+    await PointSDK.disableBackgroundDeliveryForType({ type: QueryType.StepCount });
 }
 ```
 
