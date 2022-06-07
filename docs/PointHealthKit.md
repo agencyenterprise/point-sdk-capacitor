@@ -17,7 +17,7 @@ Request authorization for all types defined on SDK setup, it is recommended to d
 ```typescript
 async requestPermissions() {
     await PointSDK.requestAuthorizationsIfPossible();
-  }
+}
 ```
 
 ## Background Listeners
