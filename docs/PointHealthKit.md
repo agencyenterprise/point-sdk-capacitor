@@ -129,7 +129,7 @@ Fetches and uploads the user past data for all types defined in the SDK setup. T
 
 ```typescript
 async syncAllHistoricalData() {
-    await PointSDK.syncAllHistoricalData()
+    await PointSDK.syncAllHistoricalData();
 }
 ```
 
