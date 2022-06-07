@@ -153,7 +153,7 @@ Fetches and uploads the user latest data for a specific type. This is executed a
 
 ```typescript
 async syncLatestDataForType(){
-    await PointSDK.syncLatestDataForType({ type: QueryType.StepCount })
+    await PointSDK.syncLatestDataForType({ type: QueryType.StepCount });
 }
 ```
 
