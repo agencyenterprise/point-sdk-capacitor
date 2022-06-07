@@ -137,7 +137,7 @@ You can also run a manual sync for specific type, but we encourage not to do it 
 
 ```typescript
 async syncHistoricalDataForType() {
-    await PointSDK.syncHistoricalDataForType({ type: QueryType.StepCount })
+    await PointSDK.syncHistoricalDataForType({ type: QueryType.StepCount });
 }
 ```
 
