@@ -115,6 +115,6 @@ Retrieves a list of `Recommendation`. `Point` periodically checks if it can crea
 
 ```typescript
 async getUserRecommendations() {
-    const result = await PointSDK.getUserRecommendations()
+    const result = await PointSDK.getUserRecommendations();
 }
 ```
