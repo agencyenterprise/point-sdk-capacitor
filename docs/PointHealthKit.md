@@ -161,7 +161,7 @@ You can additionally retrieve the latest samples of all `HealthQueryType` you ha
 
 ```typescript
 async syncAllLatestData() {
-    await PointSDK.syncAllLatestData()
+    await PointSDK.syncAllLatestData();
 }
 ```
 
