@@ -180,7 +180,7 @@ async syncHeartRate() {
         endDate?: string;
         ascending?: boolean;
         avoidDuplicates?: boolean;
-    })
+    });
 }
 ```
 
