@@ -80,7 +80,7 @@ You can stop background delivery for specific type.
 
 ```typescript
 async disableStepCountBackgroundDelivery() {
-    await PointSDK.disableBackgroundDeliveryForType({ type: QueryType.StepCount })
+    await PointSDK.disableBackgroundDeliveryForType({ type: QueryType.StepCount });
 }
 ```
 
@@ -88,7 +88,7 @@ Or you can stop all background listeners.
 
 ```typescript
 async disableAllBackgroundDelivery() {
-    await PointSDK.disableAllBackgroundDelivery()
+    await PointSDK.disableAllBackgroundDelivery();
 }
 ```
 
@@ -129,7 +129,7 @@ Fetches and uploads the user past data for all types defined in the SDK setup. T
 
 ```typescript
 async syncAllHistoricalData() {
-    await PointSDK.syncAllHistoricalData()
+    await PointSDK.syncAllHistoricalData();
 }
 ```
 
@@ -137,7 +137,7 @@ You can also run a manual sync for specific type, but we encourage not to do it 
 
 ```typescript
 async syncHistoricalDataForType() {
-    await PointSDK.syncHistoricalDataForType({ type: QueryType.StepCount })
+    await PointSDK.syncHistoricalDataForType({ type: QueryType.StepCount });
 }
 ```
 
@@ -153,7 +153,7 @@ Fetches and uploads the user latest data for a specific type. This is executed a
 
 ```typescript
 async syncLatestDataForType(){
-    await PointSDK.syncLatestDataForType({ type: QueryType.StepCount })
+    await PointSDK.syncLatestDataForType({ type: QueryType.StepCount });
 }
 ```
 
@@ -161,7 +161,7 @@ You can additionally retrieve the latest samples of all `HealthQueryType` you ha
 
 ```typescript
 async syncAllLatestData() {
-    await PointSDK.syncAllLatestData()
+    await PointSDK.syncAllLatestData();
 }
 ```
 
@@ -180,7 +180,7 @@ async syncHeartRate() {
         endDate?: string;
         ascending?: boolean;
         avoidDuplicates?: boolean;
-    })
+    });
 }
 ```
 
