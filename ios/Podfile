@@ -12,5 +12,5 @@ end
 
 target 'PointSDK-Capacitor' do
   capacitor_pods
-  pod 'PointSDK', '~> 0.1.7'
+  pod 'PointSDK', '~> 0.1.13'
 end

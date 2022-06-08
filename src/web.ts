@@ -77,6 +77,16 @@ export class PointSDKWeb extends WebPlugin implements PointSDKPlugin {
   syncLatestDataForType(_options: { type: QueryType }): Promise<any> {
     throw new Error('Method not implemented.');
   }
+
+  sync(_options: {
+    startDate?: string | undefined;
+    endDate?: string | undefined;
+    ascending?: boolean | undefined;
+    avoidDuplicates?: boolean | undefined;
+  }): Promise<any> {
+    throw new Error('Method not implemented.');
+  }
+
   getUserData(): Promise<User> {
     throw new Error('Method not implemented.');
   }

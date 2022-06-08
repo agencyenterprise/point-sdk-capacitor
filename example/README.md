@@ -10,9 +10,8 @@
 
 `npm start`
 
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Update `capacitor.config.json` and change the url param to your local ip address:
 
-### Update ``capacitor.config.json`` and change the url param to your local ip address:
 ```json
 {
   "appId": "com.example.app",
@@ -28,7 +27,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### Update the iOS app:
 
-`npx cap sync`
+`npx cap sync ios`
 
 ### Run the iOS app:
 
