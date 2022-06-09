@@ -313,7 +313,16 @@ export type HealthMetricType =
   | 'TotalMinsHRZone34'
   | 'WeeklyAvgWorkoutHR'
   | 'WeeklyExertionRate'
-  | 'DailyWorkoutDuration';
+  | 'DailyWorkoutDuration'
+  | 'Weight'
+  | 'SleepEfficiency'
+  | 'SleepLatency'
+  | 'SleepStageDeep'
+  | 'SleepStageLight'
+  | 'SleepStageREM'
+  | 'SleepStageWake'
+  | 'SleepDurationInbed'
+  | 'SleepDurationAsleep';
 
 export interface RecommendationAction {
   label: string;
