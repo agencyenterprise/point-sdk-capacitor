@@ -252,6 +252,7 @@ export enum QueryType {
   MindfulSession = 'mindfulSession',
   SleepAnalysis = 'sleepAnalysis',
   Birthday = 'birthday',
+  BodyMass = 'bodyMass',
 }
 
 export enum Goal {
