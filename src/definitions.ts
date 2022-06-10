@@ -252,6 +252,7 @@ export enum QueryType {
   MindfulSession = 'mindfulSession',
   SleepAnalysis = 'sleepAnalysis',
   Birthday = 'birthday',
+  BodyMass = 'bodyMass',
 }
 
 export enum Goal {
@@ -313,7 +314,16 @@ export type HealthMetricType =
   | 'TotalMinsHRZone34'
   | 'WeeklyAvgWorkoutHR'
   | 'WeeklyExertionRate'
-  | 'DailyWorkoutDuration';
+  | 'DailyWorkoutDuration'
+  | 'Weight'
+  | 'SleepEfficiency'
+  | 'SleepLatency'
+  | 'SleepStageDeep'
+  | 'SleepStageLight'
+  | 'SleepStageREM'
+  | 'SleepStageWake'
+  | 'SleepDurationInbed'
+  | 'SleepDurationAsleep';
 
 export interface RecommendationAction {
   label: string;
