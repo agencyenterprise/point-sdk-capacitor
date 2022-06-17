@@ -66,11 +66,11 @@ Or you can stop all background listeners.
 
 ```typescript
 async disableAllBackgroundListeners() {
-    await PointSDK.disableAllBackgroundDelivery();
+    await PointSDK.disableAllBackgroundListeners();
 }
 ```
 
-**Important:** Avoid stopping background delivery in the application lifecycle, we recommend using it only on user logout.
+**Important:** Avoid stopping background listeners in the application lifecycle, we recommend using it only on user logout.
 
 ## Foreground Listeners
 
