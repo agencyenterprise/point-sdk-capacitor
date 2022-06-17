@@ -9,12 +9,10 @@ CAP_PLUGIN(PointSDKPlugin, "PointSDK",
            CAP_PLUGIN_METHOD(setUserToken, CAPPluginReturnNone);
            
            // MARK: - Background Listeners
-           CAP_PLUGIN_METHOD(setupAllBackgroundQueries, CAPPluginReturnNone);
-           CAP_PLUGIN_METHOD(setupBackgroundQueryForType, CAPPluginReturnNone);
-           CAP_PLUGIN_METHOD(enableAllBackgroundDelivery, CAPPluginReturnNone);
-           CAP_PLUGIN_METHOD(enableBackgroundDeliveryForType, CAPPluginReturnPromise);
-           CAP_PLUGIN_METHOD(disableAllBackgroundDelivery, CAPPluginReturnNone);
-           CAP_PLUGIN_METHOD(disableBackgroundDeliveryForType, CAPPluginReturnNone);
+           CAP_PLUGIN_METHOD(startAllBackgroundListeners, CAPPluginReturnNone);
+           CAP_PLUGIN_METHOD(startBackgroundListenerForType, CAPPluginReturnNone);
+           CAP_PLUGIN_METHOD(disableAllBackgroundListeners, CAPPluginReturnNone);
+           CAP_PLUGIN_METHOD(disableBackgroundListenersForType, CAPPluginReturnNone);
            
            // MARK: - Foreground Listeners
            CAP_PLUGIN_METHOD(enableAllForegroundListeners, CAPPluginReturnNone);

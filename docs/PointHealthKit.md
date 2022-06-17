@@ -24,47 +24,23 @@ async requestPermissions() {
 
 Background listeners run on top of HealthKit's background delivery. When a background listener is set, it wakes up your app whenever a process adds new samples of the specified type, and then syncs those to the Point database.
 
-They are split into two parts: setup and enable.
+### Start
 
-### Setup
+You need to start the background listeners you wish to run. This must be done as soon as possible, such as when the app finishes launching.
 
-First, you need to setup the background queries you wish to run. This must be done as soon as possible, such as when the app finishes launching.
-
-> This can be done (and we encourage you to do so) before asking for user authorization for the given type. If the user denies authorization, the query will simply have no effect.
-
-You can set up background queries for all types you have set up the SDK with.
+You can set up background listeners for all types you have set up the SDK with.
 
 ```typescript
-async setupBackgroundQueries() {
-    await PointSDK.setupAllBackgroundQueries();
+async startAllBackgroundListeners() {
+    await PointSDK.startAllBackgroundListeners();
 }
 ```
 
-You can also setup a background query for just a specific type.
+You can also start a background listener for just a specific type.
 
 ```typescript
-async setupStepCountBackgroundQuery() {
-    await PointSDK.setupBackgroundQueryForType({ type: QueryType.StepCount });
-}
-```
-
-### Enable
-
-After asking for user permission for the desired sample types, you must enable the background listeners you have set up.
-
-You can enable the background listeners for all types you have set up the SDK with.
-
-```typescript
-async enableBackgroundDelivery() {
-    await PointSDK.enableAllBackgroundDelivery();
-}
-```
-
-You can also enable a background listener for just a specific type.
-
-```typescript
-async enableStepCountBackgroundDelivery() {
-    await PointSDK.enableBackgroundDeliveryForType({ type: QueryType.StepCount });
+async startStepCountBackgroundListener() {
+    await PointSDK.startBackgroundListenersForType({ type: QueryType.StepCount });
 }
 ```
 
@@ -72,22 +48,24 @@ async enableStepCountBackgroundDelivery() {
 
 > Important: For iOS 15 you must enable the HealthKit Background Delivery by adding the com.apple.developer.healthkit.background-delivery entitlement to your app.
 
+> Important: Since the listeners are meant to be started in application launch, on the very first usage/session the queries will fail and not stay alive. This is because you start background listeners before asking for user permissions. If you want to collect data in background from the first moment, we recommend also calling the start methods once after requesting user permissions.
+
 ### Stop
 
 Stopping a background listener will make any changes made on Apple's Health unnoticeable while the app is not on foreground.
 
-You can stop background delivery for specific type.
+You can stop background listeners for just a specific type.
 
 ```typescript
-async disableStepCountBackgroundDelivery() {
-    await PointSDK.disableBackgroundDeliveryForType({ type: QueryType.StepCount });
+async disableStepCountBackgroundListeners() {
+    await PointSDK.disableBackgroundListenersForType({ type: QueryType.StepCount });
 }
 ```
 
 Or you can stop all background listeners.
 
 ```typescript
-async disableAllBackgroundDelivery() {
+async disableAllBackgroundListeners() {
     await PointSDK.disableAllBackgroundDelivery();
 }
 ```

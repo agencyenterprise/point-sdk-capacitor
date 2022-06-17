@@ -31,24 +31,16 @@ export class PointSDKWeb extends WebPlugin implements PointSDKPlugin {
   setUserToken(_options: { userToken: string }): Promise<void> {
     throw new Error('Method not implemented.');
   }
-  setupAllBackgroundQueries(): Promise<any> {
+  startAllBackgroundListeners(): Promise<any> {
     throw new Error('Method not implemented.');
   }
-  setupBackgroundQueryForType(_options: { type: QueryType }): Promise<any> {
+  startBackgroundListenersForType(_options: { type: QueryType }): Promise<any> {
     throw new Error('Method not implemented.');
   }
-  enableAllBackgroundDelivery(): Promise<any> {
+  disableAllBackgroundListeners(): Promise<any> {
     throw new Error('Method not implemented.');
   }
-  disableAllBackgroundDelivery(): Promise<any> {
-    throw new Error('Method not implemented.');
-  }
-  enableBackgroundDeliveryForType(_options: {
-    type: QueryType;
-  }): Promise<boolean> {
-    throw new Error('Method not implemented.');
-  }
-  disableBackgroundDeliveryForType(_options: {
+  disableBackgroundListenersForType(_options: {
     type: QueryType;
   }): Promise<any> {
     throw new Error('Method not implemented.');
