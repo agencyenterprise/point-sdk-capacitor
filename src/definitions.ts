@@ -25,36 +25,24 @@ export interface PointSDKPlugin {
   }): Promise<void>;
 
   /**
-   * Setup background queries to sync all types defined on SDK setup.
+   * Enable background listeners to sync all types defined on SDK setup.
    */
-  setupAllBackgroundQueries(): Promise<any>;
+  startAllBackgroundListeners(): Promise<any>;
 
   /**
-   * Setup background query for specific query type.
+   * Enable background listeners to sync just a specific query type.
    */
-  setupBackgroundQueryForType(options: { type: QueryType }): Promise<any>;
+  startBackgroundListenersForType(options: { type: QueryType }): Promise<any>;
 
   /**
-   * Enables background delivery for all types defined on SDK setup.
+   * Disables background listeners for all types defined on SDK setup.
    */
-  enableAllBackgroundDelivery(): Promise<any>;
+  disableAllBackgroundListeners(): Promise<any>;
 
   /**
-   * Disables background delivery for all types.
+   * Disables background listeners for a specific query type.
    */
-  disableAllBackgroundDelivery(): Promise<any>;
-
-  /**
-   * Enables background delivery for specific query type.
-   */
-  enableBackgroundDeliveryForType(options: {
-    type: QueryType;
-  }): Promise<boolean>;
-
-  /**
-   * Disables background delivery for specific query type.
-   */
-  disableBackgroundDeliveryForType(options: { type: QueryType }): Promise<any>;
+  disableBackgroundListenersForType(options: { type: QueryType }): Promise<any>;
 
   /**
    * Start a foreground listeners for all types defined on SDK setup.

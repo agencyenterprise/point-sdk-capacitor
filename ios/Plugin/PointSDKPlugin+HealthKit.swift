@@ -24,69 +24,12 @@ public extension PointSDKPlugin {
     // MARK: - Background Listeners
     
     @objc
-    func setupAllBackgroundQueries(_ call: CAPPluginCall) {
-        Task {
-            guard !Task.isCancelled else { return }
-            
-            await healthKit?.setupAllBackgroundQueries()
-            call.resolve()
-        }
-    }
-    
-    @objc
-    func setupBackgroundQueryForType(_ call: CAPPluginCall) {
-        Task {
-            guard !Task.isCancelled else { return }
-            
-            guard let queryType = queryTypeMapping(type: call.getString(queryTypeParam)) else {
-                call.reject(wrongQueryTypeMsg)
-                return
-            }
-            
-            await healthKit?.setupBackgroundQuery(for: queryType)
-            call.resolve()
-        }
-    }
-    
-    @objc
-    func enableAllBackgroundDelivery(_ call: CAPPluginCall) {
+    func startAllBackgroundListeners(_ call: CAPPluginCall) {
         Task {
             guard !Task.isCancelled else { return }
             
             do {
-                try await healthKit?.enableAllBackgroundDelivery()
-            } catch {
-                call.reject(error.localizedDescription)
-            }
-        }
-    }
-    
-    @objc
-    func enableBackgroundDeliveryForType(_ call: CAPPluginCall) {
-        Task {
-            guard !Task.isCancelled else { return }
-            
-            do {
-                guard let queryType = queryTypeMapping(type: call.getString(queryTypeParam)) else {
-                    call.reject(wrongQueryTypeMsg)
-                    return
-                }
-                
-                let enabled = try await healthKit?.enableBackgroundDelivery(for: queryType) ?? false
-                call.resolve(["enabled": enabled])
-            } catch {
-                call.reject(error.localizedDescription)
-            }
-        }
-    }
-    
-    @objc
-    func disableAllBackgroundDelivery(_ call: CAPPluginCall) {
-        Task {
-            guard !Task.isCancelled else { return }
-            
-            do {
-                try await healthKit?.disableAllBackgroundDelivery()
+                try await healthKit?.startAllBackgroundListeners()
                 call.resolve()
             } catch {
                 call.reject(error.localizedDescription)
@@ -95,7 +38,7 @@ public extension PointSDKPlugin {
     }
     
     @objc
-    func disableBackgroundDeliveryForType(_ call: CAPPluginCall) {
+    func startBackgroundListenerForType(_ call: CAPPluginCall) {
         Task {
             guard !Task.isCancelled else { return }
             
@@ -105,7 +48,40 @@ public extension PointSDKPlugin {
                     return
                 }
                 
-                try await healthKit?.disableBackgroundDelivery(for: queryType)
+                try await healthKit?.startBackgroundListeners(for: queryType)
+                call.resolve()
+            } catch {
+                call.reject(error.localizedDescription)
+            }
+        }
+    }
+    
+    @objc
+    func disableAllBackgroundListeners(_ call: CAPPluginCall) {
+        Task {
+            guard !Task.isCancelled else { return }
+            
+            do {
+                try await healthKit?.disableAllBackgroundListeners()
+                call.resolve()
+            } catch {
+                call.reject(error.localizedDescription)
+            }
+        }
+    }
+    
+    @objc
+    func disableBackgroundListenersForType(_ call: CAPPluginCall) {
+        Task {
+            guard !Task.isCancelled else { return }
+            
+            do {
+                guard let queryType = queryTypeMapping(type: call.getString(queryTypeParam)) else {
+                    call.reject(wrongQueryTypeMsg)
+                    return
+                }
+                
+                try await healthKit?.disableBackgroundListeners(for: queryType)
                 call.resolve()
             } catch {
                 call.reject(error.localizedDescription)

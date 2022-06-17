@@ -12,7 +12,7 @@ class Application extends Nullstack {
     this.setupSDK();
 
     // Apple recommends setting up the background queries as soon as possible, first thing on app launch
-    await this.setupBackgroundQueries();
+    await this.startBackgroundListeners();
 
     // enable/disable foreground listeners on app state change
     App.addListener("appStateChange", ({ isActive }) => {
@@ -71,12 +71,8 @@ class Application extends Nullstack {
     await PointSDK.requestAuthorizationsIfPossible();
   }
 
-  async setupBackgroundQueries() {
-    await PointSDK.setupAllBackgroundQueries();
-  }
-
-  async enableBackgroundDelivery() {
-    await PointSDK.enableAllBackgroundDelivery();
+  async startBackgroundListeners() {
+    await PointSDK.startAllBackgroundListeners();
   }
 
   async enableAllForegroundListeners() {

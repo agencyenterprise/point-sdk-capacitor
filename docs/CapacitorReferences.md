@@ -9,12 +9,10 @@ This document contains references to all available methods and types generated b
 - [`setup(...)`](#setup)
 - [`requestAuthorizationsIfPossible()`](#requestauthorizationsifpossible)
 - [`setUserToken(...)`](#setusertoken)
-- [`setupAllBackgroundQueries()`](#setupallbackgroundqueries)
-- [`setupBackgroundQueryForType(...)`](#setupbackgroundqueryfortype)
-- [`enableAllBackgroundDelivery()`](#enableallbackgrounddelivery)
-- [`disableAllBackgroundDelivery()`](#disableallbackgrounddelivery)
-- [`enableBackgroundDeliveryForType(...)`](#enablebackgrounddeliveryfortype)
-- [`disableBackgroundDeliveryForType(...)`](#disablebackgrounddeliveryfortype)
+- [`startAllBackgroundListeners()`](#startallbackgroundlisteners)
+- [`startBackgroundListenersForType(...)`](#startbackgroundlistenersfortype)
+- [`disableAllBackgroundListeners()`](#disableallbackgroundlisteners)
+- [`disableBackgroundListenersForType(...)`](#disablebackgroundlistenersfortype)
 - [`enableAllForegroundListeners()`](#enableallforegroundlisteners)
 - [`enableForegroundListenerForType(...)`](#enableforegroundlistenerfortype)
 - [`stopAllForegroundListeners()`](#stopallforegroundlisteners)
@@ -85,25 +83,25 @@ Set the user access token. It is recommended to do it as soon as possible, right
 
 ---
 
-### setupAllBackgroundQueries()
+### startAllBackgroundListeners()
 
 ```typescript
-setupAllBackgroundQueries() => Promise<any>
+startAllBackgroundListeners() => Promise<any>
 ```
 
-Setup background queries to sync all types defined on SDK setup.
+Enable background listeners to sync all types defined on SDK setup.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
 ---
 
-### setupBackgroundQueryForType(...)
+### startBackgroundListenersForType(...)
 
 ```typescript
-setupBackgroundQueryForType(options: { type: QueryType; }) => Promise<any>
+startBackgroundListenersForType(options: { type: QueryType; }) => Promise<any>
 ```
 
-Setup background query for specific query type.
+Enable background listeners to sync just a specific query type.
 
 | Param         | Type                                                       |
 | ------------- | ---------------------------------------------------------- |
@@ -113,53 +111,25 @@ Setup background query for specific query type.
 
 ---
 
-### enableAllBackgroundDelivery()
+### disableAllBackgroundListeners()
 
 ```typescript
-enableAllBackgroundDelivery() => Promise<any>
+disableAllBackgroundListeners() => Promise<any>
 ```
 
-Enables background delivery for all types defined on SDK setup.
+Disables background listeners for all types defined on SDK setup.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
 ---
 
-### disableAllBackgroundDelivery()
+### disableBackgroundListenersForType(...)
 
 ```typescript
-disableAllBackgroundDelivery() => Promise<any>
+disableBackgroundListenersForType(options: { type: QueryType; }) => Promise<any>
 ```
 
-Disables background delivery for all types.
-
-**Returns:** <code>Promise&lt;any&gt;</code>
-
----
-
-### enableBackgroundDeliveryForType(...)
-
-```typescript
-enableBackgroundDeliveryForType(options: { type: QueryType; }) => Promise<boolean>
-```
-
-Enables background delivery for specific query type.
-
-| Param         | Type                                                       |
-| ------------- | ---------------------------------------------------------- |
-| **`options`** | <code>{ type: <a href="#querytype">QueryType</a>; }</code> |
-
-**Returns:** <code>Promise&lt;boolean&gt;</code>
-
----
-
-### disableBackgroundDeliveryForType(...)
-
-```typescript
-disableBackgroundDeliveryForType(options: { type: QueryType; }) => Promise<any>
-```
-
-Disables background delivery for specific query type.
+Disables background listeners for a specific query type.
 
 | Param         | Type                                                       |
 | ------------- | ---------------------------------------------------------- |
@@ -543,14 +513,6 @@ Save a workout recommendation, using the ID of the workout.
 
 ### Type Aliases
 
-#### Record
-
-Construct a type with a set of properties K of type T
-
-<code>{
-[P in K]: T;
-}</code>
-
 #### GoalProgressKey
 
 <code>'overral' | 'endurance' | 'recovery' | 'strength'</code>
@@ -604,6 +566,7 @@ Construct a type with a set of properties K of type T
 | **`MindfulSession`**           | <code>'mindfulSession'</code>           |
 | **`SleepAnalysis`**            | <code>'sleepAnalysis'</code>            |
 | **`Birthday`**                 | <code>'birthday'</code>                 |
+| **`BodyMass`**                 | <code>'bodyMass'</code>                 |
 
 #### Goal
 
