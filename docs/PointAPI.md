@@ -99,6 +99,16 @@ async getWorkoutRecommendations() {
 
 > Tip: Use the current date to get recommendations from the current week.
 
+### Saving a Workout Recommendation
+
+ You can use ``HealthDataService/saveWorkoutRecommendation(id:)`` to let your user choose which workout recommendations they wish to accomplish. By saving it, Point is able to check if the user accomplished this recommendation and use this information to improve the next recommendations given to this user.
+
+ ```typescript
+ async saveWorkoutRecommendation() {
+     const result = await PointSDK.saveWorkoutRecommendation(id: 1)
+ }
+ ```
+
 ## Trends
 
 You can get the user `Trend`s for the last 3 months, like average workout duration and record calories burned. To get a trend content, you must access the dictionary `Trend/additionalFields` and handle its content individually. Each trend has an associated `TrendType` that determines what keys will be available in the dictionary and how you should handle its values.
