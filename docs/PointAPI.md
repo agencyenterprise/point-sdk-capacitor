@@ -104,9 +104,9 @@ async getWorkoutRecommendations() {
  You can use ``HealthDataService/saveWorkoutRecommendation(id:)`` to let your user choose which workout recommendations they wish to accomplish. By saving it, Point is able to check if the user accomplished this recommendation and use this information to improve the next recommendations given to this user.
 
  ```typescript
- async saveWorkoutRecommendation() {
-     const result = await PointSDK.saveWorkoutRecommendation(id: 1)
- }
+async saveWorkoutRecommendation(workoutRecommendation: WorkoutRecommendation) {
+    const result = await PointSDK.saveWorkoutRecommendation({id: workoutRecommendation.id});
+}
  ```
 
 ## Trends

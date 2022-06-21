@@ -6,38 +6,38 @@ This document contains references to all available methods and types generated b
 
 <docgen-index>
 
-- [`setup(...)`](#setup)
-- [`requestAuthorizationsIfPossible()`](#requestauthorizationsifpossible)
-- [`setUserToken(...)`](#setusertoken)
-- [`startAllBackgroundListeners()`](#startallbackgroundlisteners)
-- [`startBackgroundListenersForType(...)`](#startbackgroundlistenersfortype)
-- [`disableAllBackgroundListeners()`](#disableallbackgroundlisteners)
-- [`disableBackgroundListenersForType(...)`](#disablebackgroundlistenersfortype)
-- [`enableAllForegroundListeners()`](#enableallforegroundlisteners)
-- [`enableForegroundListenerForType(...)`](#enableforegroundlistenerfortype)
-- [`stopAllForegroundListeners()`](#stopallforegroundlisteners)
-- [`stopForegroundListenerForType(...)`](#stopforegroundlistenerfortype)
-- [`syncAllHistoricalData()`](#syncallhistoricaldata)
-- [`syncHistoricalDataForType(...)`](#synchistoricaldatafortype)
-- [`syncAllLatestData()`](#syncalllatestdata)
-- [`syncLatestDataForType(...)`](#synclatestdatafortype)
-- [`sync(...)`](#sync)
-- [`getUserData()`](#getuserdata)
-- [`getUserTrends()`](#getusertrends)
-- [`getUserWorkouts(...)`](#getuserworkouts)
-- [`getUserWorkoutById(...)`](#getuserworkoutbyid)
-- [`getWorkoutRecommendations(...)`](#getworkoutrecommendations)
-- [`getUserRecommendations()`](#getuserrecommendations)
-- [`getDailyHistory(...)`](#getdailyhistory)
-- [`getHealthMetrics(...)`](#gethealthmetrics)
-- [`setUserGoal(...)`](#setusergoal)
-- [`setUserSpecificGoal(...)`](#setuserspecificgoal)
-- [`rateWorkout(...)`](#rateworkout)
-- [`recommendationSeen(...)`](#recommendationseen)
-- [`saveWorkoutRecommendation(...)`](#saveworkoutrecommendation)
-- [Interfaces](#interfaces)
-- [Type Aliases](#type-aliases)
-- [Enums](#enums)
+* [`setup(...)`](#setup)
+* [`requestAuthorizationsIfPossible()`](#requestauthorizationsifpossible)
+* [`setUserToken(...)`](#setusertoken)
+* [`startAllBackgroundListeners()`](#startallbackgroundlisteners)
+* [`startBackgroundListenersForType(...)`](#startbackgroundlistenersfortype)
+* [`disableAllBackgroundListeners()`](#disableallbackgroundlisteners)
+* [`disableBackgroundListenersForType(...)`](#disablebackgroundlistenersfortype)
+* [`enableAllForegroundListeners()`](#enableallforegroundlisteners)
+* [`enableForegroundListenerForType(...)`](#enableforegroundlistenerfortype)
+* [`stopAllForegroundListeners()`](#stopallforegroundlisteners)
+* [`stopForegroundListenerForType(...)`](#stopforegroundlistenerfortype)
+* [`syncAllHistoricalData()`](#syncallhistoricaldata)
+* [`syncHistoricalDataForType(...)`](#synchistoricaldatafortype)
+* [`syncAllLatestData()`](#syncalllatestdata)
+* [`syncLatestDataForType(...)`](#synclatestdatafortype)
+* [`sync(...)`](#sync)
+* [`getUserData()`](#getuserdata)
+* [`getUserTrends()`](#getusertrends)
+* [`getUserWorkouts(...)`](#getuserworkouts)
+* [`getUserWorkoutById(...)`](#getuserworkoutbyid)
+* [`getWorkoutRecommendations(...)`](#getworkoutrecommendations)
+* [`getUserRecommendations()`](#getuserrecommendations)
+* [`getDailyHistory(...)`](#getdailyhistory)
+* [`getHealthMetrics(...)`](#gethealthmetrics)
+* [`setUserGoal(...)`](#setusergoal)
+* [`setUserSpecificGoal(...)`](#setuserspecificgoal)
+* [`rateWorkout(...)`](#rateworkout)
+* [`recommendationSeen(...)`](#recommendationseen)
+* [`saveWorkoutRecommendation(...)`](#saveworkoutrecommendation)
+* [Interfaces](#interfaces)
+* [Type Aliases](#type-aliases)
+* [Enums](#enums)
 
 </docgen-index>
 
@@ -50,13 +50,14 @@ This document contains references to all available methods and types generated b
 setup(options: { clientId: string; clientSecret: string; environment: string; queryTypes: QueryType[]; verbose: boolean; }) => Promise<void>
 ```
 
-Before any feature can be used, you must initialize the SDK providing your credentials and every Health Data Type you wish to use. For more information about the supported data types, please refer to <a href="#querytype">`QueryType`</a>.
+Before any feature can be used, you must initialize the SDK providing your credentials and every Health Data Type you wish to use. For more information about the supported data types, please refer to <a href="#querytype">``QueryType``</a>.
 
 | Param         | Type                                                                                                                     |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | **`options`** | <code>{ clientId: string; clientSecret: string; environment: string; queryTypes: QueryType[]; verbose: boolean; }</code> |
 
----
+--------------------
+
 
 ### requestAuthorizationsIfPossible()
 
@@ -64,10 +65,11 @@ Before any feature can be used, you must initialize the SDK providing your crede
 requestAuthorizationsIfPossible() => Promise<void>
 ```
 
-Request user permissions for all <a href="#querytype">`QueryType`</a> defined at SDK setup.
+Request user permissions for all <a href="#querytype">``QueryType``</a> defined at SDK setup.
 It is recommended to do it before setting the user token or attempting to evoke other SDK methods.
 
----
+--------------------
+
 
 ### setUserToken(...)
 
@@ -81,7 +83,8 @@ Set the user access token. It is recommended to do it as soon as possible, right
 | ------------- | ------------------------------------------------------------- |
 | **`options`** | <code>{ userToken: string; shouldSyncData?: boolean; }</code> |
 
----
+--------------------
+
 
 ### startAllBackgroundListeners()
 
@@ -93,7 +96,8 @@ Enable background listeners to sync all types defined on SDK setup.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### startBackgroundListenersForType(...)
 
@@ -109,7 +113,8 @@ Enable background listeners to sync just a specific query type.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### disableAllBackgroundListeners()
 
@@ -121,7 +126,8 @@ Disables background listeners for all types defined on SDK setup.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### disableBackgroundListenersForType(...)
 
@@ -137,7 +143,8 @@ Disables background listeners for a specific query type.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### enableAllForegroundListeners()
 
@@ -149,7 +156,8 @@ Start a foreground listeners for all types defined on SDK setup.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### enableForegroundListenerForType(...)
 
@@ -165,7 +173,8 @@ Start a foreground listener for specific query type.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### stopAllForegroundListeners()
 
@@ -177,7 +186,8 @@ Stops all foreground listeners that are currently active
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### stopForegroundListenerForType(...)
 
@@ -193,7 +203,8 @@ Stops foreground listener off specific query type.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### syncAllHistoricalData()
 
@@ -205,7 +216,8 @@ Syncs the past 3 months of historical data for permissioned types with the Point
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### syncHistoricalDataForType(...)
 
@@ -221,7 +233,8 @@ Syncs the past 3 months historical data for a given sample type with the Point d
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### syncAllLatestData()
 
@@ -233,7 +246,8 @@ Syncs the HealthKit data for all permissioned types with `Point` database limite
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### syncLatestDataForType(...)
 
@@ -249,7 +263,8 @@ Syncs the HealthKit data from the latest sample of the given type until now with
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### sync(...)
 
@@ -265,7 +280,8 @@ Syncs the HealthKit data from the query results with the `Point` database.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### getUserData()
 
@@ -277,7 +293,8 @@ Retrieves information about the <a href="#user">User</a>, such as email, first n
 
 **Returns:** <code>Promise&lt;<a href="#user">User</a>&gt;</code>
 
----
+--------------------
+
 
 ### getUserTrends()
 
@@ -289,7 +306,8 @@ You can get the user Trends for the last 3 months, like average workout duration
 
 **Returns:** <code>Promise&lt;Trend[]&gt;</code>
 
----
+--------------------
+
 
 ### getUserWorkouts(...)
 
@@ -305,7 +323,8 @@ Retrieves a list of the <a href="#user">User</a>'s last 16 Workouts, in descendi
 
 **Returns:** <code>Promise&lt;Workout[]&gt;</code>
 
----
+--------------------
+
 
 ### getUserWorkoutById(...)
 
@@ -321,7 +340,8 @@ Retrieves a single <a href="#workout">Workout</a> for the given id.
 
 **Returns:** <code>Promise&lt;<a href="#workout">Workout</a>&gt;</code>
 
----
+--------------------
+
 
 ### getWorkoutRecommendations(...)
 
@@ -331,13 +351,16 @@ getWorkoutRecommendations(options: { date: string; }) => Promise<WorkoutRecommen
 
 Retrieves a list of <a href="#workoutrecommendation">WorkoutRecommendation</a>. <a href="#workout">Workout</a> recommendations are generated weekly on the Point database, based in the user **goal**. The date parameter defines which week you will get recommendations from.
 
+We recommend using ``saveWorkoutRecommendation(id:)`` to let your users choose what recommendations they pick.
+
 | Param         | Type                           |
 | ------------- | ------------------------------ |
 | **`options`** | <code>{ date: string; }</code> |
 
 **Returns:** <code>Promise&lt;WorkoutRecommendation[]&gt;</code>
 
----
+--------------------
+
 
 ### getUserRecommendations()
 
@@ -349,7 +372,8 @@ Retrieves a list of Recommendations. Point periodically checks if it can create 
 
 **Returns:** <code>Promise&lt;Recommendation[]&gt;</code>
 
----
+--------------------
+
 
 ### getDailyHistory(...)
 
@@ -365,7 +389,8 @@ Retrieves a list of the <a href="#user">User</a>'s last 16 days worth of DailyHi
 
 **Returns:** <code>Promise&lt;[{ date: <a href="#date">Date</a>; metrics: HealthMetric[]; }]&gt;</code>
 
----
+--------------------
+
 
 ### getHealthMetrics(...)
 
@@ -381,7 +406,8 @@ You can get a set of user health metrics, which are a summary of the collected s
 
 **Returns:** <code>Promise&lt;HealthMetric[]&gt;</code>
 
----
+--------------------
+
 
 ### setUserGoal(...)
 
@@ -398,7 +424,8 @@ Sets the user <a href="#goal">Goal</a>. This is more limited set of options. If 
 
 **Returns:** <code>Promise&lt;<a href="#user">User</a>&gt;</code>
 
----
+--------------------
+
 
 ### setUserSpecificGoal(...)
 
@@ -414,7 +441,8 @@ Sets the user <a href="#specificgoal">SpecificGoal</a>. This provides a wider ar
 
 **Returns:** <code>Promise&lt;<a href="#user">User</a>&gt;</code>
 
----
+--------------------
+
 
 ### rateWorkout(...)
 
@@ -430,7 +458,8 @@ You can allow users to rate their past workouts. A workout rating is divided in 
 
 **Returns:** <code>Promise&lt;<a href="#workout">Workout</a>&gt;</code>
 
----
+--------------------
+
 
 ### recommendationSeen(...)
 
@@ -446,7 +475,8 @@ Mark a recommendation as already seen, using the ID of the recommendation.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### saveWorkoutRecommendation(...)
 
@@ -454,7 +484,9 @@ Mark a recommendation as already seen, using the ID of the recommendation.
 saveWorkoutRecommendation(options: { id: number; }) => Promise<any>
 ```
 
-Save a workout recommendation, using the ID of the workout.
+Saves a workout recommendation, meaning that the user wishes to accomplish this recommendation.
+
+When a recommendation is saved, Point is able to check if this workout recommendation was accomplished and improve the next workout recommendations given to this user.
 
 | Param         | Type                         |
 | ------------- | ---------------------------- |
@@ -462,9 +494,11 @@ Save a workout recommendation, using the ID of the workout.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### Interfaces
+
 
 #### User
 
@@ -480,6 +514,7 @@ Save a workout recommendation, using the ID of the workout.
 | **`specificGoal`** | <code>string</code>                                                                                                                                 |
 | **`lastWorkout`**  | <code><a href="#workout">Workout</a></code>                                                                                                         |
 
+
 #### Trend
 
 | Prop                   | Type                                              |
@@ -487,6 +522,7 @@ Save a workout recommendation, using the ID of the workout.
 | **`id`**               | <code>string</code>                               |
 | **`type`**             | <code><a href="#trendtypes">TrendTypes</a></code> |
 | **`additionalFields`** | <code>string</code>                               |
+
 
 #### Recommendation
 
@@ -504,6 +540,7 @@ Save a workout recommendation, using the ID of the workout.
 | **`icon`**           | <code>string</code>                                         |
 | **`color`**          | <code>string</code>                                         |
 
+
 #### RecommendationAction
 
 | Prop        | Type                |
@@ -511,45 +548,115 @@ Save a workout recommendation, using the ID of the workout.
 | **`label`** | <code>string</code> |
 | **`url`**   | <code>string</code> |
 
+
+#### Date
+
+Enables basic storage and retrieval of dates and times.
+
+| Method                 | Signature                                                                                                    | Description                                                                                                                             |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
+| **toString**           | () =&gt; string                                                                                              | Returns a string representation of a date. The format of the string depends on the locale.                                              |
+| **toDateString**       | () =&gt; string                                                                                              | Returns a date as a string value.                                                                                                       |
+| **toTimeString**       | () =&gt; string                                                                                              | Returns a time as a string value.                                                                                                       |
+| **toLocaleString**     | () =&gt; string                                                                                              | Returns a value as a string value appropriate to the host environment's current locale.                                                 |
+| **toLocaleDateString** | () =&gt; string                                                                                              | Returns a date as a string value appropriate to the host environment's current locale.                                                  |
+| **toLocaleTimeString** | () =&gt; string                                                                                              | Returns a time as a string value appropriate to the host environment's current locale.                                                  |
+| **valueOf**            | () =&gt; number                                                                                              | Returns the stored time value in milliseconds since midnight, January 1, 1970 UTC.                                                      |
+| **getTime**            | () =&gt; number                                                                                              | Gets the time value in milliseconds.                                                                                                    |
+| **getFullYear**        | () =&gt; number                                                                                              | Gets the year, using local time.                                                                                                        |
+| **getUTCFullYear**     | () =&gt; number                                                                                              | Gets the year using Universal Coordinated Time (UTC).                                                                                   |
+| **getMonth**           | () =&gt; number                                                                                              | Gets the month, using local time.                                                                                                       |
+| **getUTCMonth**        | () =&gt; number                                                                                              | Gets the month of a <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                             |
+| **getDate**            | () =&gt; number                                                                                              | Gets the day-of-the-month, using local time.                                                                                            |
+| **getUTCDate**         | () =&gt; number                                                                                              | Gets the day-of-the-month, using Universal Coordinated Time (UTC).                                                                      |
+| **getDay**             | () =&gt; number                                                                                              | Gets the day of the week, using local time.                                                                                             |
+| **getUTCDay**          | () =&gt; number                                                                                              | Gets the day of the week using Universal Coordinated Time (UTC).                                                                        |
+| **getHours**           | () =&gt; number                                                                                              | Gets the hours in a date, using local time.                                                                                             |
+| **getUTCHours**        | () =&gt; number                                                                                              | Gets the hours value in a <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                       |
+| **getMinutes**         | () =&gt; number                                                                                              | Gets the minutes of a <a href="#date">Date</a> object, using local time.                                                                |
+| **getUTCMinutes**      | () =&gt; number                                                                                              | Gets the minutes of a <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                           |
+| **getSeconds**         | () =&gt; number                                                                                              | Gets the seconds of a <a href="#date">Date</a> object, using local time.                                                                |
+| **getUTCSeconds**      | () =&gt; number                                                                                              | Gets the seconds of a <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                           |
+| **getMilliseconds**    | () =&gt; number                                                                                              | Gets the milliseconds of a <a href="#date">Date</a>, using local time.                                                                  |
+| **getUTCMilliseconds** | () =&gt; number                                                                                              | Gets the milliseconds of a <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                      |
+| **getTimezoneOffset**  | () =&gt; number                                                                                              | Gets the difference in minutes between the time on the local computer and Universal Coordinated Time (UTC).                             |
+| **setTime**            | (time: number) =&gt; number                                                                                  | Sets the date and time value in the <a href="#date">Date</a> object.                                                                    |
+| **setMilliseconds**    | (ms: number) =&gt; number                                                                                    | Sets the milliseconds value in the <a href="#date">Date</a> object using local time.                                                    |
+| **setUTCMilliseconds** | (ms: number) =&gt; number                                                                                    | Sets the milliseconds value in the <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                              |
+| **setSeconds**         | (sec: number, ms?: number \| undefined) =&gt; number                                                         | Sets the seconds value in the <a href="#date">Date</a> object using local time.                                                         |
+| **setUTCSeconds**      | (sec: number, ms?: number \| undefined) =&gt; number                                                         | Sets the seconds value in the <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                   |
+| **setMinutes**         | (min: number, sec?: number \| undefined, ms?: number \| undefined) =&gt; number                              | Sets the minutes value in the <a href="#date">Date</a> object using local time.                                                         |
+| **setUTCMinutes**      | (min: number, sec?: number \| undefined, ms?: number \| undefined) =&gt; number                              | Sets the minutes value in the <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                   |
+| **setHours**           | (hours: number, min?: number \| undefined, sec?: number \| undefined, ms?: number \| undefined) =&gt; number | Sets the hour value in the <a href="#date">Date</a> object using local time.                                                            |
+| **setUTCHours**        | (hours: number, min?: number \| undefined, sec?: number \| undefined, ms?: number \| undefined) =&gt; number | Sets the hours value in the <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                     |
+| **setDate**            | (date: number) =&gt; number                                                                                  | Sets the numeric day-of-the-month value of the <a href="#date">Date</a> object using local time.                                        |
+| **setUTCDate**         | (date: number) =&gt; number                                                                                  | Sets the numeric day of the month in the <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                        |
+| **setMonth**           | (month: number, date?: number \| undefined) =&gt; number                                                     | Sets the month value in the <a href="#date">Date</a> object using local time.                                                           |
+| **setUTCMonth**        | (month: number, date?: number \| undefined) =&gt; number                                                     | Sets the month value in the <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                     |
+| **setFullYear**        | (year: number, month?: number \| undefined, date?: number \| undefined) =&gt; number                         | Sets the year of the <a href="#date">Date</a> object using local time.                                                                  |
+| **setUTCFullYear**     | (year: number, month?: number \| undefined, date?: number \| undefined) =&gt; number                         | Sets the year value in the <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                      |
+| **toUTCString**        | () =&gt; string                                                                                              | Returns a date converted to a string using Universal Coordinated Time (UTC).                                                            |
+| **toISOString**        | () =&gt; string                                                                                              | Returns a date as a string value in ISO format.                                                                                         |
+| **toJSON**             | (key?: any) =&gt; string                                                                                     | Used by the JSON.stringify method to enable the transformation of an object's data for JavaScript Object Notation (JSON) serialization. |
+
+
 ### Type Aliases
+
+
+#### Record
+
+Construct a type with a set of properties K of type T
+
+<code>{ [P in K]: T; }</code>
+
 
 #### GoalProgressKey
 
 <code>'overral' | 'endurance' | 'recovery' | 'strength'</code>
 
+
 #### GoalProgressValue
 
 <code>{ value: number; variance: number; }</code>
+
 
 #### Workout
 
 <code>{ id: number; calories: number; distance: number; duration: number; start: string; end: string; activityName: string; activityId: number; ratings: <a href="#workoutratings">WorkoutRatings</a>; }</code>
 
+
 #### WorkoutRatings
 
 <code>{ difficulty: number; energy: number; instructor: number; }</code>
+
 
 #### TrendTypes
 
 <code>'record_calories_burned_across_all_workout_types' | 'most_efficient_workout_type' | 'longest_workout_type' | 'avg_workout_calories_burned' | 'avg_workout_duration' | 'usual_workout_time'</code>
 
+
 #### WorkoutRecommendation
 
 <code>{ id: number; date: string; activityId: number; activityName: string; workoutId: number; completedAt: string; createdAt: string; savedAt: string; }</code>
+
 
 #### InsightCategory
 
 <code>'HeartLifetimeIncrease' | 'Motivational' | 'NeedRecovery' | 'RoutineFreqOptimization' | 'RoutineTimeOptimization' | 'RoutineWorkoutTypeOptimization' | 'TocayaDeal' | 'TryHarder' | 'WorkoutStreak'</code>
 
+
 #### HealthMetric
 
 <code>{ type: string; date: string; value: number; variance: number; workoutId: number; }</code>
+
 
 #### HealthMetricType
 
 <code>'RestingHR' | 'OneMinuteHRR' | 'ThreeMinuteHRR' | 'HRV' | 'Vo2Max' | 'ActiveCalories' | 'BasalCalories' | 'TotalCalories' | 'WorkoutCalories' | 'WorkoutDistance' | 'WorkoutDuration' | 'ExertionRate' | 'MovementLevel' | 'MinsHRZone1' | 'MinsHRZone2' | 'MinsHRZone3' | 'MinsHRZone4' | 'MinsHRZone12' | 'MinsHRZone23' | 'MinsHRZone34' | 'WorkoutMinsHRZone1' | 'WorkoutMinsHRZone2' | 'WorkoutMinsHRZone3' | 'WorkoutMinsHRZone4' | 'WorkoutMinsHRZone12' | 'WorkoutMinsHRZone23' | 'WorkoutMinsHRZone34' | 'MindfulMinutes' | 'AvgWorkoutHR' | 'MinWorkoutHR' | 'MaxWorkoutHR' | 'SleepDuration' | 'SleepDurationInbed' | 'SleepDurationAsleep' | 'TotalWorkoutDuration' | 'TotalMinsHRZone12' | 'TotalMinsHRZone34' | 'WeeklyAvgWorkoutHR' | 'WeeklyExertionRate' | 'DailyWorkoutDuration' | 'Weight' | 'SleepEfficiency' | 'SleepLatency' | 'SleepStageDeep' | 'SleepStageLight' | 'SleepStageREM' | 'SleepStageWake' | 'SleepDurationInbed' | 'SleepDurationAsleep'</code>
 
+
 ### Enums
+
 
 #### QueryType
 
@@ -568,12 +675,14 @@ Save a workout recommendation, using the ID of the workout.
 | **`Birthday`**                 | <code>'birthday'</code>                 |
 | **`BodyMass`**                 | <code>'bodyMass'</code>                 |
 
+
 #### Goal
 
 | Members                   | Value                              |
 | ------------------------- | ---------------------------------- |
 | **`WeightLoss`**          | <code>'weightLoss'</code>          |
 | **`AthleticPerformance`** | <code>'athleticPerformance'</code> |
+
 
 #### SpecificGoal
 
