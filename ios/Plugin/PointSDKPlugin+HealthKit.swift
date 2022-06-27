@@ -174,8 +174,8 @@ public extension PointSDKPlugin {
                 
                 let result = try await healthKit?.syncHistoricalData(sampleType: queryType)
                 call.resolve([
-                    "successSampleCount": result?.successSampleCount ?? 0,
-                    "remainingSampleCount": result?.remainingSampleCount ?? 0
+                    "uploadedSamplesCount": result?.uploadedSamplesCount ?? 0,
+                    "remainingSampleCount": result?.remainingSamplesCount ?? 0
                 ])
             } catch {
                 call.reject(error.localizedDescription)
@@ -210,8 +210,8 @@ public extension PointSDKPlugin {
                 
                 let result = try await healthKit?.syncLatestData(sampleType: queryType)
                 call.resolve([
-                    "successSampleCount": result?.successSampleCount ?? 0,
-                    "remainingSampleCount": result?.remainingSampleCount ?? 0
+                    "successSampleCount": result?.uploadedSamplesCount ?? 0,
+                    "remainingSampleCount": result?.remainingSamplesCount ?? 0
                 ])
             } catch {
                 call.reject(error.localizedDescription)
@@ -238,7 +238,8 @@ public extension PointSDKPlugin {
                 let result = try await runQuery(sampleType: queryType, startDate: startDate, endDate: endDate, isAscending: asc, avoidDuplicates: avoidDuplicates)
                 call.resolve([
                     "success": result?.success ?? false,
-                    "samplesCount": result?.samplesCount ?? 0
+                    "uploadedSamplesCount": result?.uploadedSamplesCount ?? 0,
+                    "duplicatedSamplesCount": result?.duplicatedSamplesCount ?? 0
                 ])
             } catch {
                 call.reject(error.localizedDescription)

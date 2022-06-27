@@ -1,6 +1,6 @@
 {
   "name": "point-sdk-capacitor",
-  "version": "0.1.15",
+  "version": "0.1.17",
   "description": "Capacitor Wrapper for PointSDK",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -13,11 +13,11 @@
     "ios/Plugin/",
     "PointSdkCapacitor.podspec"
   ],
-  "author": "",
-  "license": "MIT",
+  "author": "Key Point Technologies, Inc.",
+  "license": "Proprietary",
   "repository": {
-    "type": "git",
-    "url": "git+ssh://github.com/agencyenterprise/point-sdk-capacitor.git"
+    "type": "http",
+    "url": "https://github.com/agencyenterprise/point-sdk-capacitor.git"
   },
   "bugs": {
     "url": "https://github.com/agencyenterprise/point-sdk-capacitor/issues"

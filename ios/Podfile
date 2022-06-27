@@ -1,5 +1,4 @@
 source 'https://cdn.cocoapods.org/'
-source 'git@github.com:agencyenterprise/point-specs.git'
 
 platform :ios, '13.0'
 
@@ -12,5 +11,5 @@ end
 
 target 'PointSDK-Capacitor' do
   capacitor_pods
-  pod 'PointSDK', '~> 0.1.15'
+  pod 'PointSDK', '~> 0.1.17'
 end
