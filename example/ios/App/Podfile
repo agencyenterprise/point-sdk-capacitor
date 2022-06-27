@@ -1,5 +1,4 @@
 source 'https://cdn.cocoapods.org/'
-source 'git@github.com:agencyenterprise/point-specs.git'
 
 platform :ios, '13.0'
 use_frameworks!
