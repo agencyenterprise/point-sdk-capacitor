@@ -117,7 +117,7 @@ export interface PointSDKPlugin {
   /**
    * Retrieves a list of WorkoutRecommendation. Workout recommendations are generated weekly on the Point database, based in the user **goal**. The date parameter defines which week you will get recommendations from.
    * 
-   * We recommend using ``saveWorkoutRecommendation(id:)`` to let your users choose what recommendations they pick.
+   * We recommend using `saveWorkoutRecommendation(options: { id: number })` to let your users choose what recommendations they pick.
    */
   getWorkoutRecommendations(options: {
     date: string;
