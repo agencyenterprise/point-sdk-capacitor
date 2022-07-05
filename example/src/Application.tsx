@@ -55,6 +55,10 @@ class Application extends Nullstack {
       clientId: "clientID",
       clientSecret: "clientSecret",
       environment: PointEnvironment.Development,
+      verbose: true,
+    });
+
+    PointSDK.setupHealthkitIntegration({
       queryTypes: [
         //only use this param if you want to enable the SDK for specific types, removing this will enable all types
         QueryType.HeartRate,
@@ -63,7 +67,6 @@ class Application extends Nullstack {
         QueryType.ActiveEnergyBurned,
         QueryType.BasalEnergyBurned,
       ],
-      verbose: true,
     });
   }
 

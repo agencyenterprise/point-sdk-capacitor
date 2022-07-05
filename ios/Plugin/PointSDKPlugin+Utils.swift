@@ -58,6 +58,8 @@ extension PointSDKPlugin {
           return .staging
         case "production":
           return .production
+        case "preprod":
+          return .preprod
         default:
           return .development
         }
@@ -181,6 +183,12 @@ extension PointSDKPlugin {
         guard let queryType = type else { return nil }
         
         return HealthQueryType.init(rawValue: queryType)
+    }
+    
+    func fitbitScopesMapping(type: String?) -> FitbitScopes? {
+        guard let scope = type else { return nil }
+        
+        return FitbitScopes.init(rawValue: scope)
     }
     
     func runQuery(

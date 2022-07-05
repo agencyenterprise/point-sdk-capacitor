@@ -1,6 +1,7 @@
 import { WebPlugin } from '@capacitor/core';
 
 import type {
+  FitbitScopes,
   Goal,
   HealthMetric,
   HealthMetricType,
@@ -20,7 +21,6 @@ export class PointSDKWeb extends WebPlugin implements PointSDKPlugin {
     clientId: string;
     clientSecret: string;
     environment: string;
-    queryTypes: string[];
     verbose: boolean;
   }): Promise<void> {
     throw new Error('Method not implemented.');
@@ -127,6 +127,23 @@ export class PointSDKWeb extends WebPlugin implements PointSDKPlugin {
     id: number;
     ratings: WorkoutRatings;
   }): Promise<Workout> {
+    throw new Error('Method not implemented.');
+  }
+  setupHealthkitIntegration(_options: {
+    queryTypes: QueryType[];
+  }): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
+  setupFitbitIntegration(_options: { fitbitClientId: string }): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
+  authenticateFitbit(_options: {
+    callbackURLScheme: string;
+    fitbitScopes: FitbitScopes[];
+  }): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
+  revokeFitbitAuthentication(): Promise<void> {
     throw new Error('Method not implemented.');
   }
 }

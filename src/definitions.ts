@@ -1,14 +1,42 @@
 export interface PointSDKPlugin {
   /**
-   * Before any feature can be used, you must initialize the SDK providing your credentials and every Health Data Type you wish to use. For more information about the supported data types, please refer to ``QueryType``.
+   * Before any feature can be used, you must initialize the SDK providing your credentials.
    */
   setup(options: {
     clientId: string;
     clientSecret: string;
     environment: string;
-    queryTypes: QueryType[];
     verbose: boolean;
   }): Promise<void>;
+
+  /**
+   * Sets up Apple's Healthkit integration
+   * Before Apple's Healthkit features can be used, you must initialize HealthKit providing every Health Data Type you wish to use. This will define which kind of samples are going to be collected.
+   */
+  setupHealthkitIntegration(options: {
+    queryTypes: QueryType[];
+  }): Promise<void>;
+
+  /**
+   * Sets up Fitbit integration.
+   * Calling this will instantiate ``FitbitIntegrationManager`` within the SDK and it will be available for you to use.
+   * Your Fitbit Client ID is provided by Fitbit when you create your Fitbit app integration.
+   */
+  setupFitbitIntegration(options: { fitbitClientId: string }): Promise<void>;
+
+  /**
+   * Call this function to let the user authenticate his `Fitbit` account and integrate it with their `Point` account.
+   * When you call this function your app will display a browser with the Fitbit authentication web page, if the user successfully authenticates, the browser will be dismissed and the control will be handled back to your app.
+   */
+  authenticateFitbit(options: {
+    callbackURLScheme: string;
+    fitbitScopes: FitbitScopes[];
+  }): Promise<void>;
+
+  /**
+   * Revokes the user's Fitbit authentication. Effectively, this will cause Point to stop collecting Fitbit data from this user.
+   */
+  revokeFitbitAuthentication(): Promise<void>;
 
   /**
    * Request user permissions for all ``QueryType`` defined at SDK setup.
@@ -116,7 +144,7 @@ export interface PointSDKPlugin {
 
   /**
    * Retrieves a list of WorkoutRecommendation. Workout recommendations are generated weekly on the Point database, based in the user **goal**. The date parameter defines which week you will get recommendations from.
-   * 
+   *
    * We recommend using `saveWorkoutRecommendation(options: { id: number })` to let your users choose what recommendations they pick.
    */
   getWorkoutRecommendations(options: {
@@ -170,7 +198,7 @@ export interface PointSDKPlugin {
 
   /**
    * Saves a workout recommendation, meaning that the user wishes to accomplish this recommendation.
-   * 
+   *
    * When a recommendation is saved, Point is able to check if this workout recommendation was accomplished and improve the next workout recommendations given to this user.
    */
   saveWorkoutRecommendation(options: { id: number }): Promise<any>;
@@ -247,6 +275,18 @@ export enum QueryType {
   BodyMass = 'bodyMass',
 }
 
+export enum FitbitScopes {
+  Activity = 'restingHeartRate',
+  Heartrate = 'heartrate',
+  Location = 'location',
+  Nutrition = 'nutrition',
+  Profile = 'profile',
+  Settings = 'settings',
+  Sleep = 'sleep',
+  Social = 'social',
+  Weight = 'weight',
+}
+
 export enum Goal {
   WeightLoss = 'weightLoss',
   AthleticPerformance = 'athleticPerformance',
@@ -263,6 +303,7 @@ export enum SpecificGoal {
 export enum PointEnvironment {
   Development = 'development',
   Production = 'production',
+  PreProduction = 'preprod',
   Staging = 'staging',
 }
 
