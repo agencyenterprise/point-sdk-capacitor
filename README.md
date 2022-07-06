@@ -22,11 +22,11 @@ Once you've completed your onboarding process with us, you'll receive an api key
 
 ## Registering and authenticating your users
 
-See [Authenticating Users](docs/AuthenticatingUsers.md) to learn how to link your user accounts with Point Database.
+See [Authenticating Users](https://point-landing-pages.vercel.app/docs/authenticating-users) to learn how to link your user accounts with Point Database.
 
 ## Adding to your project
 
-See [Getting Started](docs/GettingStarted.md) to learn how to configure you project and start using the SDK.
+See [Getting Started](https://point-landing-pages.vercel.app/docs/capacitor-getting-started) to learn how to configure you project and start using the SDK.
 
 ## Full Capacitor SDK reference
 
