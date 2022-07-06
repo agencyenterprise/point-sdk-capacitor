@@ -7,6 +7,10 @@ This document contains references to all available methods and types generated b
 <docgen-index>
 
 * [`setup(...)`](#setup)
+* [`setupHealthkitIntegration(...)`](#setuphealthkitintegration)
+* [`setupFitbitIntegration(...)`](#setupfitbitintegration)
+* [`authenticateFitbit(...)`](#authenticatefitbit)
+* [`revokeFitbitAuthentication()`](#revokefitbitauthentication)
 * [`requestAuthorizationsIfPossible()`](#requestauthorizationsifpossible)
 * [`setUserToken(...)`](#setusertoken)
 * [`startAllBackgroundListeners()`](#startallbackgroundlisteners)
@@ -47,14 +51,74 @@ This document contains references to all available methods and types generated b
 ### setup(...)
 
 ```typescript
-setup(options: { clientId: string; clientSecret: string; environment: string; queryTypes: QueryType[]; verbose: boolean; }) => Promise<void>
+setup(options: { clientId: string; clientSecret: string; environment: string; verbose: boolean; }) => Promise<void>
 ```
 
-Before any feature can be used, you must initialize the SDK providing your credentials and every Health Data Type you wish to use. For more information about the supported data types, please refer to <a href="#querytype">``QueryType``</a>.
+Before any feature can be used, you must initialize the SDK providing your credentials.
 
-| Param         | Type                                                                                                                     |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| **`options`** | <code>{ clientId: string; clientSecret: string; environment: string; queryTypes: QueryType[]; verbose: boolean; }</code> |
+| Param         | Type                                                                                            |
+| ------------- | ----------------------------------------------------------------------------------------------- |
+| **`options`** | <code>{ clientId: string; clientSecret: string; environment: string; verbose: boolean; }</code> |
+
+--------------------
+
+
+### setupHealthkitIntegration(...)
+
+```typescript
+setupHealthkitIntegration(options: { queryTypes?: QueryType[]; }) => Promise<void>
+```
+
+Sets up Apple's Healthkit integration
+Before Apple's Healthkit features can be used, you must initialize HealthKit providing every Health Data Type you wish to use. This will define which kind of samples are going to be collected.
+
+| Param         | Type                                       |
+| ------------- | ------------------------------------------ |
+| **`options`** | <code>{ queryTypes?: QueryType[]; }</code> |
+
+--------------------
+
+
+### setupFitbitIntegration(...)
+
+```typescript
+setupFitbitIntegration(options: { fitbitClientId: string; }) => Promise<void>
+```
+
+Sets up Fitbit integration.
+Calling this will instantiate ``FitbitIntegrationManager`` within the SDK and it will be available for you to use.
+Your Fitbit Client ID is provided by Fitbit when you create your Fitbit app integration.
+
+| Param         | Type                                     |
+| ------------- | ---------------------------------------- |
+| **`options`** | <code>{ fitbitClientId: string; }</code> |
+
+--------------------
+
+
+### authenticateFitbit(...)
+
+```typescript
+authenticateFitbit(options: { callbackURLScheme: string; fitbitScopes?: FitbitScopes[]; }) => Promise<void>
+```
+
+Call this function to let the user authenticate his `Fitbit` account and integrate it with their `Point` account.
+When you call this function your app will display a browser with the Fitbit authentication web page, if the user successfully authenticates, the browser will be dismissed and the control will be handled back to your app.
+
+| Param         | Type                                                                       |
+| ------------- | -------------------------------------------------------------------------- |
+| **`options`** | <code>{ callbackURLScheme: string; fitbitScopes?: FitbitScopes[]; }</code> |
+
+--------------------
+
+
+### revokeFitbitAuthentication()
+
+```typescript
+revokeFitbitAuthentication() => Promise<void>
+```
+
+Revokes the user's Fitbit authentication. Effectively, this will cause Point to stop collecting Fitbit data from this user.
 
 --------------------
 
@@ -351,7 +415,7 @@ getWorkoutRecommendations(options: { date: string; }) => Promise<WorkoutRecommen
 
 Retrieves a list of <a href="#workoutrecommendation">WorkoutRecommendation</a>. <a href="#workout">Workout</a> recommendations are generated weekly on the Point database, based in the user **goal**. The date parameter defines which week you will get recommendations from.
 
-We recommend using ``saveWorkoutRecommendation(id:)`` to let your users choose what recommendations they pick.
+We recommend using `saveWorkoutRecommendation(options: { id: number })` to let your users choose what recommendations they pick.
 
 | Param         | Type                           |
 | ------------- | ------------------------------ |
@@ -548,9 +612,7 @@ When a recommendation is saved, Point is able to check if this workout recommend
 | **`label`** | <code>string</code> |
 | **`url`**   | <code>string</code> |
 
-
 ### Type Aliases
-
 
 #### Record
 
@@ -625,6 +687,21 @@ Construct a type with a set of properties K of type T
 | **`SleepAnalysis`**            | <code>'sleepAnalysis'</code>            |
 | **`Birthday`**                 | <code>'birthday'</code>                 |
 | **`BodyMass`**                 | <code>'bodyMass'</code>                 |
+
+
+#### FitbitScopes
+
+| Members         | Value                           |
+| --------------- | ------------------------------- |
+| **`Activity`**  | <code>'restingHeartRate'</code> |
+| **`Heartrate`** | <code>'heartrate'</code>        |
+| **`Location`**  | <code>'location'</code>         |
+| **`Nutrition`** | <code>'nutrition'</code>        |
+| **`Profile`**   | <code>'profile'</code>          |
+| **`Settings`**  | <code>'settings'</code>         |
+| **`Sleep`**     | <code>'sleep'</code>            |
+| **`Social`**    | <code>'social'</code>           |
+| **`Weight`**    | <code>'weight'</code>           |
 
 
 #### Goal
