@@ -4,7 +4,7 @@ import { App } from "@capacitor/app";
 import { PointSDK, PointEnvironment, QueryType, Goal } from "../../dist/esm";
 
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb24iOiJQb2ludCIsIm9yZ0lkIjo0Mywic3ViIjoicG9pbnR8NjI4NjkwNmU3NDk0MWUwMDZlNjE3ZGJjIiwiaWF0IjoxNjU0NjIxOTUzLCJleHAiOjE2NTQ3MDgzNTN9.S39kJWD2bGOJiAyOYioKNlB7vNa0JK7NcDO3B9Z3rWg";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb24iOiJQb2ludCIsIm9yZ0lkIjo0Miwic3ViIjoicG9pbnR8NjJhYjNjNzJkYzc0ODZhM2VkZTFkMTdjIiwiaWF0IjoxNjU3MTE1NDI5LCJleHAiOjE2NTcyMDE4Mjl9.L3HVj4U4NCu9nJ-gzmXjTGANyp_yCcNxLqRk0U_pQNQ";
 
 class Application extends Nullstack {
   async hydrate() {
@@ -46,6 +46,8 @@ class Application extends Nullstack {
         <button onclick={this.getUserDailyHistory}>Get daily history</button>
         <br></br>
         <button onclick={this.getUserHealthMetrics}>Get health metrics</button>
+        <br></br>
+        <button onclick={this.authenticateFitbit}>Authenticate Fitbit</button>
       </main>
     );
   }
@@ -68,6 +70,8 @@ class Application extends Nullstack {
         QueryType.BasalEnergyBurned,
       ],
     });
+
+    PointSDK.setupFitbitIntegration({ fitbitClientId: "23895P" });
   }
 
   async requestPermissions() {
@@ -128,6 +132,10 @@ class Application extends Nullstack {
   async setUserGoal() {
     const result = await PointSDK.setUserGoal({ goal: Goal.AthleticPerformance });
     Application.logAndAlert(result);
+  }
+
+  async authenticateFitbit() {
+    await PointSDK.authenticateFitbit({ callbackURLScheme: "exampleapp" });
   }
 
   static logAndAlert(content) {

@@ -14,7 +14,7 @@ export interface PointSDKPlugin {
    * Before Apple's Healthkit features can be used, you must initialize HealthKit providing every Health Data Type you wish to use. This will define which kind of samples are going to be collected.
    */
   setupHealthkitIntegration(options: {
-    queryTypes: QueryType[];
+    queryTypes?: QueryType[];
   }): Promise<void>;
 
   /**
@@ -30,7 +30,7 @@ export interface PointSDKPlugin {
    */
   authenticateFitbit(options: {
     callbackURLScheme: string;
-    fitbitScopes: FitbitScopes[];
+    fitbitScopes?: FitbitScopes[];
   }): Promise<void>;
 
   /**

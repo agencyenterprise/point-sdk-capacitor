@@ -4,6 +4,17 @@ import PointSDK
 
 @objc
 public extension PointSDKPlugin {
+    
+    @objc
+    func setupFitbitIntegration(_ call: CAPPluginCall) {
+        if let clientId = call.getString("fitbitClientId") {
+            fitbitManager = Point.setupFitbitIntegration(fitbitClientId: clientId)
+            call.resolve()
+        } else {
+            call.reject("setupFitbitIntegration error: Must provide fitbit client id.")
+        }
+    }
+    
     @objc
     func authenticateFitbit(_ call: CAPPluginCall) {
         Task {

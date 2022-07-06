@@ -27,27 +27,6 @@ public class PointSDKPlugin: CAPPlugin {
     }
     
     @objc
-    public func setupHealthkitIntegration(_ call: CAPPluginCall) {
-        var queryTypes = HealthQueryType.allCases
-        if let queryTypesParam = call.getArray("queryTypes") {
-            queryTypes = queryTypesParam.compactMap { queryTypeMapping(type: $0 as? String) }
-        }
-        healthKit = Point.setupHealthkitIntegration(queryTypes: Set(queryTypes))
-        
-        call.resolve()
-    }
-    
-    @objc
-    public func setupFitbitIntegration(_ call: CAPPluginCall) {
-        if let clientId = call.getString("fitbitClientId") {
-            fitbitManager = Point.setupFitbitIntegration(fitbitClientId: clientId)
-            call.resolve()
-        } else {
-            call.reject("setupFitbitIntegration error: Must provide fitbit client id.")
-        }
-    }
-    
-    @objc
     public func setUserToken(_ call: CAPPluginCall) {
         Task {
             guard !Task.isCancelled else { return }

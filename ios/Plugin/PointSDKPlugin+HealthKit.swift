@@ -5,6 +5,17 @@ import PointSDK
 @objc
 public extension PointSDKPlugin {
     
+    @objc
+    func setupHealthkitIntegration(_ call: CAPPluginCall) {
+        var queryTypes = HealthQueryType.allCases
+        if let queryTypesParam = call.getArray("queryTypes") {
+            queryTypes = queryTypesParam.compactMap { queryTypeMapping(type: $0 as? String) }
+        }
+        healthKit = Point.setupHealthkitIntegration(queryTypes: Set(queryTypes))
+        
+        call.resolve()
+    }
+    
     // MARK: - User Permissions
     
     @objc

@@ -6,42 +6,42 @@ This document contains references to all available methods and types generated b
 
 <docgen-index>
 
-- [`setup(...)`](#setup)
-- [`setupHealthkitIntegration(...)`](#setuphealthkitintegration)
-- [`setupFitbitIntegration(...)`](#setupfitbitintegration)
-- [`authenticateFitbit(...)`](#authenticatefitbit)
-- [`revokeFitbitAuthentication()`](#revokefitbitauthentication)
-- [`requestAuthorizationsIfPossible()`](#requestauthorizationsifpossible)
-- [`setUserToken(...)`](#setusertoken)
-- [`startAllBackgroundListeners()`](#startallbackgroundlisteners)
-- [`startBackgroundListenersForType(...)`](#startbackgroundlistenersfortype)
-- [`disableAllBackgroundListeners()`](#disableallbackgroundlisteners)
-- [`disableBackgroundListenersForType(...)`](#disablebackgroundlistenersfortype)
-- [`enableAllForegroundListeners()`](#enableallforegroundlisteners)
-- [`enableForegroundListenerForType(...)`](#enableforegroundlistenerfortype)
-- [`stopAllForegroundListeners()`](#stopallforegroundlisteners)
-- [`stopForegroundListenerForType(...)`](#stopforegroundlistenerfortype)
-- [`syncAllHistoricalData()`](#syncallhistoricaldata)
-- [`syncHistoricalDataForType(...)`](#synchistoricaldatafortype)
-- [`syncAllLatestData()`](#syncalllatestdata)
-- [`syncLatestDataForType(...)`](#synclatestdatafortype)
-- [`sync(...)`](#sync)
-- [`getUserData()`](#getuserdata)
-- [`getUserTrends()`](#getusertrends)
-- [`getUserWorkouts(...)`](#getuserworkouts)
-- [`getUserWorkoutById(...)`](#getuserworkoutbyid)
-- [`getWorkoutRecommendations(...)`](#getworkoutrecommendations)
-- [`getUserRecommendations()`](#getuserrecommendations)
-- [`getDailyHistory(...)`](#getdailyhistory)
-- [`getHealthMetrics(...)`](#gethealthmetrics)
-- [`setUserGoal(...)`](#setusergoal)
-- [`setUserSpecificGoal(...)`](#setuserspecificgoal)
-- [`rateWorkout(...)`](#rateworkout)
-- [`recommendationSeen(...)`](#recommendationseen)
-- [`saveWorkoutRecommendation(...)`](#saveworkoutrecommendation)
-- [Interfaces](#interfaces)
-- [Type Aliases](#type-aliases)
-- [Enums](#enums)
+* [`setup(...)`](#setup)
+* [`setupHealthkitIntegration(...)`](#setuphealthkitintegration)
+* [`setupFitbitIntegration(...)`](#setupfitbitintegration)
+* [`authenticateFitbit(...)`](#authenticatefitbit)
+* [`revokeFitbitAuthentication()`](#revokefitbitauthentication)
+* [`requestAuthorizationsIfPossible()`](#requestauthorizationsifpossible)
+* [`setUserToken(...)`](#setusertoken)
+* [`startAllBackgroundListeners()`](#startallbackgroundlisteners)
+* [`startBackgroundListenersForType(...)`](#startbackgroundlistenersfortype)
+* [`disableAllBackgroundListeners()`](#disableallbackgroundlisteners)
+* [`disableBackgroundListenersForType(...)`](#disablebackgroundlistenersfortype)
+* [`enableAllForegroundListeners()`](#enableallforegroundlisteners)
+* [`enableForegroundListenerForType(...)`](#enableforegroundlistenerfortype)
+* [`stopAllForegroundListeners()`](#stopallforegroundlisteners)
+* [`stopForegroundListenerForType(...)`](#stopforegroundlistenerfortype)
+* [`syncAllHistoricalData()`](#syncallhistoricaldata)
+* [`syncHistoricalDataForType(...)`](#synchistoricaldatafortype)
+* [`syncAllLatestData()`](#syncalllatestdata)
+* [`syncLatestDataForType(...)`](#synclatestdatafortype)
+* [`sync(...)`](#sync)
+* [`getUserData()`](#getuserdata)
+* [`getUserTrends()`](#getusertrends)
+* [`getUserWorkouts(...)`](#getuserworkouts)
+* [`getUserWorkoutById(...)`](#getuserworkoutbyid)
+* [`getWorkoutRecommendations(...)`](#getworkoutrecommendations)
+* [`getUserRecommendations()`](#getuserrecommendations)
+* [`getDailyHistory(...)`](#getdailyhistory)
+* [`getHealthMetrics(...)`](#gethealthmetrics)
+* [`setUserGoal(...)`](#setusergoal)
+* [`setUserSpecificGoal(...)`](#setuserspecificgoal)
+* [`rateWorkout(...)`](#rateworkout)
+* [`recommendationSeen(...)`](#recommendationseen)
+* [`saveWorkoutRecommendation(...)`](#saveworkoutrecommendation)
+* [Interfaces](#interfaces)
+* [Type Aliases](#type-aliases)
+* [Enums](#enums)
 
 </docgen-index>
 
@@ -60,22 +60,24 @@ Before any feature can be used, you must initialize the SDK providing your crede
 | ------------- | ----------------------------------------------------------------------------------------------- |
 | **`options`** | <code>{ clientId: string; clientSecret: string; environment: string; verbose: boolean; }</code> |
 
----
+--------------------
+
 
 ### setupHealthkitIntegration(...)
 
 ```typescript
-setupHealthkitIntegration(options: { queryTypes: QueryType[]; }) => Promise<void>
+setupHealthkitIntegration(options: { queryTypes?: QueryType[]; }) => Promise<void>
 ```
 
 Sets up Apple's Healthkit integration
 Before Apple's Healthkit features can be used, you must initialize HealthKit providing every Health Data Type you wish to use. This will define which kind of samples are going to be collected.
 
-| Param         | Type                                      |
-| ------------- | ----------------------------------------- |
-| **`options`** | <code>{ queryTypes: QueryType[]; }</code> |
+| Param         | Type                                       |
+| ------------- | ------------------------------------------ |
+| **`options`** | <code>{ queryTypes?: QueryType[]; }</code> |
 
----
+--------------------
+
 
 ### setupFitbitIntegration(...)
 
@@ -84,29 +86,31 @@ setupFitbitIntegration(options: { fitbitClientId: string; }) => Promise<void>
 ```
 
 Sets up Fitbit integration.
-Calling this will instantiate `FitbitIntegrationManager` within the SDK and it will be available for you to use.
+Calling this will instantiate ``FitbitIntegrationManager`` within the SDK and it will be available for you to use.
 Your Fitbit Client ID is provided by Fitbit when you create your Fitbit app integration.
 
 | Param         | Type                                     |
 | ------------- | ---------------------------------------- |
 | **`options`** | <code>{ fitbitClientId: string; }</code> |
 
----
+--------------------
+
 
 ### authenticateFitbit(...)
 
 ```typescript
-authenticateFitbit(options: { callbackURLScheme: string; fitbitScopes: FitbitScopes[]; }) => Promise<void>
+authenticateFitbit(options: { callbackURLScheme: string; fitbitScopes?: FitbitScopes[]; }) => Promise<void>
 ```
 
 Call this function to let the user authenticate his `Fitbit` account and integrate it with their `Point` account.
 When you call this function your app will display a browser with the Fitbit authentication web page, if the user successfully authenticates, the browser will be dismissed and the control will be handled back to your app.
 
-| Param         | Type                                                                      |
-| ------------- | ------------------------------------------------------------------------- |
-| **`options`** | <code>{ callbackURLScheme: string; fitbitScopes: FitbitScopes[]; }</code> |
+| Param         | Type                                                                       |
+| ------------- | -------------------------------------------------------------------------- |
+| **`options`** | <code>{ callbackURLScheme: string; fitbitScopes?: FitbitScopes[]; }</code> |
 
----
+--------------------
+
 
 ### revokeFitbitAuthentication()
 
@@ -116,7 +120,8 @@ revokeFitbitAuthentication() => Promise<void>
 
 Revokes the user's Fitbit authentication. Effectively, this will cause Point to stop collecting Fitbit data from this user.
 
----
+--------------------
+
 
 ### requestAuthorizationsIfPossible()
 
@@ -124,10 +129,11 @@ Revokes the user's Fitbit authentication. Effectively, this will cause Point to 
 requestAuthorizationsIfPossible() => Promise<void>
 ```
 
-Request user permissions for all <a href="#querytype">`QueryType`</a> defined at SDK setup.
+Request user permissions for all <a href="#querytype">``QueryType``</a> defined at SDK setup.
 It is recommended to do it before setting the user token or attempting to evoke other SDK methods.
 
----
+--------------------
+
 
 ### setUserToken(...)
 
@@ -141,7 +147,8 @@ Set the user access token. It is recommended to do it as soon as possible, right
 | ------------- | ------------------------------------------------------------- |
 | **`options`** | <code>{ userToken: string; shouldSyncData?: boolean; }</code> |
 
----
+--------------------
+
 
 ### startAllBackgroundListeners()
 
@@ -153,7 +160,8 @@ Enable background listeners to sync all types defined on SDK setup.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### startBackgroundListenersForType(...)
 
@@ -169,7 +177,8 @@ Enable background listeners to sync just a specific query type.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### disableAllBackgroundListeners()
 
@@ -181,7 +190,8 @@ Disables background listeners for all types defined on SDK setup.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### disableBackgroundListenersForType(...)
 
@@ -197,7 +207,8 @@ Disables background listeners for a specific query type.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### enableAllForegroundListeners()
 
@@ -209,7 +220,8 @@ Start a foreground listeners for all types defined on SDK setup.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### enableForegroundListenerForType(...)
 
@@ -225,7 +237,8 @@ Start a foreground listener for specific query type.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### stopAllForegroundListeners()
 
@@ -237,7 +250,8 @@ Stops all foreground listeners that are currently active
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### stopForegroundListenerForType(...)
 
@@ -253,7 +267,8 @@ Stops foreground listener off specific query type.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### syncAllHistoricalData()
 
@@ -265,7 +280,8 @@ Syncs the past 3 months of historical data for permissioned types with the Point
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### syncHistoricalDataForType(...)
 
@@ -281,7 +297,8 @@ Syncs the past 3 months historical data for a given sample type with the Point d
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### syncAllLatestData()
 
@@ -293,7 +310,8 @@ Syncs the HealthKit data for all permissioned types with `Point` database limite
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### syncLatestDataForType(...)
 
@@ -309,7 +327,8 @@ Syncs the HealthKit data from the latest sample of the given type until now with
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### sync(...)
 
@@ -325,7 +344,8 @@ Syncs the HealthKit data from the query results with the `Point` database.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### getUserData()
 
@@ -337,7 +357,8 @@ Retrieves information about the <a href="#user">User</a>, such as email, first n
 
 **Returns:** <code>Promise&lt;<a href="#user">User</a>&gt;</code>
 
----
+--------------------
+
 
 ### getUserTrends()
 
@@ -349,7 +370,8 @@ You can get the user Trends for the last 3 months, like average workout duration
 
 **Returns:** <code>Promise&lt;Trend[]&gt;</code>
 
----
+--------------------
+
 
 ### getUserWorkouts(...)
 
@@ -365,7 +387,8 @@ Retrieves a list of the <a href="#user">User</a>'s last 16 Workouts, in descendi
 
 **Returns:** <code>Promise&lt;Workout[]&gt;</code>
 
----
+--------------------
+
 
 ### getUserWorkoutById(...)
 
@@ -381,7 +404,8 @@ Retrieves a single <a href="#workout">Workout</a> for the given id.
 
 **Returns:** <code>Promise&lt;<a href="#workout">Workout</a>&gt;</code>
 
----
+--------------------
+
 
 ### getWorkoutRecommendations(...)
 
@@ -399,7 +423,8 @@ We recommend using `saveWorkoutRecommendation(options: { id: number })` to let y
 
 **Returns:** <code>Promise&lt;WorkoutRecommendation[]&gt;</code>
 
----
+--------------------
+
 
 ### getUserRecommendations()
 
@@ -411,7 +436,8 @@ Retrieves a list of Recommendations. Point periodically checks if it can create 
 
 **Returns:** <code>Promise&lt;Recommendation[]&gt;</code>
 
----
+--------------------
+
 
 ### getDailyHistory(...)
 
@@ -427,7 +453,8 @@ Retrieves a list of the <a href="#user">User</a>'s last 16 days worth of DailyHi
 
 **Returns:** <code>Promise&lt;[{ date: <a href="#date">Date</a>; metrics: HealthMetric[]; }]&gt;</code>
 
----
+--------------------
+
 
 ### getHealthMetrics(...)
 
@@ -443,7 +470,8 @@ You can get a set of user health metrics, which are a summary of the collected s
 
 **Returns:** <code>Promise&lt;HealthMetric[]&gt;</code>
 
----
+--------------------
+
 
 ### setUserGoal(...)
 
@@ -460,7 +488,8 @@ Sets the user <a href="#goal">Goal</a>. This is more limited set of options. If 
 
 **Returns:** <code>Promise&lt;<a href="#user">User</a>&gt;</code>
 
----
+--------------------
+
 
 ### setUserSpecificGoal(...)
 
@@ -476,7 +505,8 @@ Sets the user <a href="#specificgoal">SpecificGoal</a>. This provides a wider ar
 
 **Returns:** <code>Promise&lt;<a href="#user">User</a>&gt;</code>
 
----
+--------------------
+
 
 ### rateWorkout(...)
 
@@ -492,7 +522,8 @@ You can allow users to rate their past workouts. A workout rating is divided in 
 
 **Returns:** <code>Promise&lt;<a href="#workout">Workout</a>&gt;</code>
 
----
+--------------------
+
 
 ### recommendationSeen(...)
 
@@ -508,7 +539,8 @@ Mark a recommendation as already seen, using the ID of the recommendation.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### saveWorkoutRecommendation(...)
 
@@ -526,9 +558,11 @@ When a recommendation is saved, Point is able to check if this workout recommend
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### Interfaces
+
 
 #### User
 
@@ -544,6 +578,7 @@ When a recommendation is saved, Point is able to check if this workout recommend
 | **`specificGoal`** | <code>string</code>                                                                                                                                 |
 | **`lastWorkout`**  | <code><a href="#workout">Workout</a></code>                                                                                                         |
 
+
 #### Trend
 
 | Prop                   | Type                                              |
@@ -551,6 +586,7 @@ When a recommendation is saved, Point is able to check if this workout recommend
 | **`id`**               | <code>string</code>                               |
 | **`type`**             | <code><a href="#trendtypes">TrendTypes</a></code> |
 | **`additionalFields`** | <code>string</code>                               |
+
 
 #### Recommendation
 
@@ -568,6 +604,7 @@ When a recommendation is saved, Point is able to check if this workout recommend
 | **`icon`**           | <code>string</code>                                         |
 | **`color`**          | <code>string</code>                                         |
 
+
 #### RecommendationAction
 
 | Prop        | Type                |
@@ -582,46 +619,57 @@ When a recommendation is saved, Point is able to check if this workout recommend
 Construct a type with a set of properties K of type T
 
 <code>{
-[P in K]: T;
-}</code>
+ [P in K]: T;
+ }</code>
+
 
 #### GoalProgressKey
 
 <code>'overral' | 'endurance' | 'recovery' | 'strength'</code>
 
+
 #### GoalProgressValue
 
 <code>{ value: number; variance: number; }</code>
+
 
 #### Workout
 
 <code>{ id: number; calories: number; distance: number; duration: number; start: string; end: string; activityName: string; activityId: number; ratings: <a href="#workoutratings">WorkoutRatings</a>; }</code>
 
+
 #### WorkoutRatings
 
 <code>{ difficulty: number; energy: number; instructor: number; }</code>
+
 
 #### TrendTypes
 
 <code>'record_calories_burned_across_all_workout_types' | 'most_efficient_workout_type' | 'longest_workout_type' | 'avg_workout_calories_burned' | 'avg_workout_duration' | 'usual_workout_time'</code>
 
+
 #### WorkoutRecommendation
 
 <code>{ id: number; date: string; activityId: number; activityName: string; workoutId: number; completedAt: string; createdAt: string; savedAt: string; }</code>
+
 
 #### InsightCategory
 
 <code>'HeartLifetimeIncrease' | 'Motivational' | 'NeedRecovery' | 'RoutineFreqOptimization' | 'RoutineTimeOptimization' | 'RoutineWorkoutTypeOptimization' | 'TocayaDeal' | 'TryHarder' | 'WorkoutStreak'</code>
 
+
 #### HealthMetric
 
 <code>{ type: string; date: string; value: number; variance: number; workoutId: number; }</code>
+
 
 #### HealthMetricType
 
 <code>'RestingHR' | 'OneMinuteHRR' | 'ThreeMinuteHRR' | 'HRV' | 'Vo2Max' | 'ActiveCalories' | 'BasalCalories' | 'TotalCalories' | 'WorkoutCalories' | 'WorkoutDistance' | 'WorkoutDuration' | 'ExertionRate' | 'MovementLevel' | 'MinsHRZone1' | 'MinsHRZone2' | 'MinsHRZone3' | 'MinsHRZone4' | 'MinsHRZone12' | 'MinsHRZone23' | 'MinsHRZone34' | 'WorkoutMinsHRZone1' | 'WorkoutMinsHRZone2' | 'WorkoutMinsHRZone3' | 'WorkoutMinsHRZone4' | 'WorkoutMinsHRZone12' | 'WorkoutMinsHRZone23' | 'WorkoutMinsHRZone34' | 'MindfulMinutes' | 'AvgWorkoutHR' | 'MinWorkoutHR' | 'MaxWorkoutHR' | 'SleepDuration' | 'SleepDurationInbed' | 'SleepDurationAsleep' | 'TotalWorkoutDuration' | 'TotalMinsHRZone12' | 'TotalMinsHRZone34' | 'WeeklyAvgWorkoutHR' | 'WeeklyExertionRate' | 'DailyWorkoutDuration' | 'Weight' | 'SleepEfficiency' | 'SleepLatency' | 'SleepStageDeep' | 'SleepStageLight' | 'SleepStageREM' | 'SleepStageWake' | 'SleepDurationInbed' | 'SleepDurationAsleep'</code>
 
+
 ### Enums
+
 
 #### QueryType
 
@@ -640,6 +688,7 @@ Construct a type with a set of properties K of type T
 | **`Birthday`**                 | <code>'birthday'</code>                 |
 | **`BodyMass`**                 | <code>'bodyMass'</code>                 |
 
+
 #### FitbitScopes
 
 | Members         | Value                           |
@@ -654,12 +703,14 @@ Construct a type with a set of properties K of type T
 | **`Social`**    | <code>'social'</code>           |
 | **`Weight`**    | <code>'weight'</code>           |
 
+
 #### Goal
 
 | Members                   | Value                              |
 | ------------------------- | ---------------------------------- |
 | **`WeightLoss`**          | <code>'weightLoss'</code>          |
 | **`AthleticPerformance`** | <code>'athleticPerformance'</code> |
+
 
 #### SpecificGoal
 
