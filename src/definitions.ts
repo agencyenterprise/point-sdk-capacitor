@@ -276,7 +276,7 @@ export enum QueryType {
 }
 
 export enum FitbitScopes {
-  Activity = 'restingHeartRate',
+  Activity = 'activity',
   Heartrate = 'heartrate',
   Location = 'location',
   Nutrition = 'nutrition',
