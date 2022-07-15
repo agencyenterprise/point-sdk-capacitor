@@ -148,36 +148,6 @@ extension PointSDKPlugin {
           "savedAt": recommendation.savedAt as Any
         ]
       }
-      
-      func userRecommendationMapping(recommendation: UserRecommendation?) -> [String : Any] {
-        guard let recommendation = recommendation else { return [:] }
-        
-        return [
-          "id": recommendation.id,
-          "insightId": recommendation.insightId as Any,
-          "templateId": recommendation.templateId as Any,
-          "category": recommendation.category?.rawValue as Any,
-          "description": recommendation.description,
-          "actions": recommendation.actions.map {
-            [
-              "label": $0.label,
-              "url": $0.url
-            ]
-          },
-          "cooldownEndsAt": recommendation.cooldownEndsAt?.toIsoString() as Any,
-          "lastSeenAt": recommendation.lastSeenAt?.toIsoString() as Any
-        ]
-      }
-      
-      func trendMapping(trend: Trend?) -> [String : Any] {
-        guard let trend = trend else { return [:] }
-        
-        return [
-          "id": trend.id,
-          "type": trend.type.rawValue,
-          "additionalFields": trend.additionalFields
-        ]
-      }
     
     func queryTypeMapping(type: String?) -> HealthQueryType? {
         guard let queryType = type else { return nil }

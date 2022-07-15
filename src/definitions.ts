@@ -128,11 +128,6 @@ export interface PointSDKPlugin {
   getUserData(): Promise<User>;
 
   /**
-   * You can get the user Trends for the last 3 months, like average workout duration and record calories burned.
-   */
-  getUserTrends(): Promise<Trend[]>;
-
-  /**
    * Retrieves a list of the User's last 16 Workouts, in descending order. The offset is meant to be used as a pagination, and if no value is passed, it is defaulted to 0.
    */
   getUserWorkouts(options: { offset: number }): Promise<Workout[]>;
@@ -150,11 +145,6 @@ export interface PointSDKPlugin {
   getWorkoutRecommendations(options: {
     date: string;
   }): Promise<WorkoutRecommendation[]>;
-
-  /**
-   * Retrieves a list of Recommendations. Point periodically checks if it can create a new personalized recommendation. A recommendation will be available for a finite time before it expires. There are different types of insights, listed in InsightCategory.
-   */
-  getUserRecommendations(): Promise<Recommendation[]>;
 
   /**
    * Retrieves a list of the User's last 16 days worth of DailyHistory, in descending order. The DailyHistory is composed of daily total calories, exertion rate and total workout duration. The offset is meant to be used as a pagination, and if no value is passed, it is defaulted to 0.
@@ -190,11 +180,6 @@ export interface PointSDKPlugin {
     id: number;
     ratings: WorkoutRatings;
   }): Promise<Workout>;
-
-  /**
-   * Mark a recommendation as already seen, using the ID of the recommendation.
-   */
-  recommendationSeen(options: { id: number }): Promise<any>;
 
   /**
    * Saves a workout recommendation, meaning that the user wishes to accomplish this recommendation.
@@ -358,46 +343,3 @@ export type HealthMetricType =
   | 'SleepDurationInbed'
   | 'SleepDurationAsleep';
 
-export interface RecommendationAction {
-  label: string;
-  url: string;
-}
-
-export type InsightCategory =
-  | 'HeartLifetimeIncrease'
-  | 'Motivational'
-  | 'NeedRecovery'
-  | 'RoutineFreqOptimization'
-  | 'RoutineTimeOptimization'
-  | 'RoutineWorkoutTypeOptimization'
-  | 'TocayaDeal'
-  | 'TryHarder'
-  | 'WorkoutStreak';
-
-export interface Recommendation {
-  id: number;
-  insightId: number;
-  templateId: number;
-  category: InsightCategory;
-  description: string;
-  actions: RecommendationAction[];
-  cooldownEndsAt: Date;
-  lastSeenAt: Date;
-  dismissedAt: Date;
-  icon: string;
-  color: string;
-}
-
-export type TrendTypes =
-  | 'record_calories_burned_across_all_workout_types'
-  | 'most_efficient_workout_type'
-  | 'longest_workout_type'
-  | 'avg_workout_calories_burned'
-  | 'avg_workout_duration'
-  | 'usual_workout_time';
-
-export interface Trend {
-  id: string;
-  type: TrendTypes;
-  additionalFields: string;
-}
