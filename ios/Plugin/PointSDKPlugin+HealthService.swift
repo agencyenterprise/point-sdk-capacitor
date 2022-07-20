@@ -15,17 +15,6 @@ public extension PointSDKPlugin {
         }
     }
 
-    func getUserTrends(_ call: CAPPluginCall) {
-        Task {
-            do {
-                let trends = try await healthService.getUserTrends()
-                call.resolve(["trends": trends.map { trendMapping(trend: $0) }])
-            } catch {
-                call.reject(error.localizedDescription)
-            }
-        }
-    }
-
     func getUserWorkouts(_ call: CAPPluginCall) {
         Task {
             do {
@@ -59,18 +48,6 @@ public extension PointSDKPlugin {
                 call.resolve([
                     "recommendations": recommendations.map { workoutRecommendationMapping(recommendation: $0) }
                 ])
-            } catch {
-                call.reject(error.localizedDescription)
-            }
-        }
-    }
-
-    func getUserRecommendations(_ call: CAPPluginCall) {
-        Task {
-            do {
-                let recommendations = try await healthService.getUserRecommendations()
-
-                call.resolve(["recommendations": recommendations.map { userRecommendationMapping(recommendation: $0) }])
             } catch {
                 call.reject(error.localizedDescription)
             }
@@ -152,28 +129,6 @@ public extension PointSDKPlugin {
                 let ratings = WorkoutRatings(difficulty: call.getInt("difficulty"), energy: call.getInt("energy"), instructor: call.getInt("instructor"))
                 let newWorkout = try await healthService.rate(workout: workout, ratings: ratings)
                 call.resolve(workoutMapping(workout: newWorkout))
-            } catch {
-                call.reject(error.localizedDescription)
-            }
-        }
-    }
-
-    func saveWorkoutRecommendation(_ call: CAPPluginCall) {
-        Task {
-            do {
-                let result = try await healthService.saveWorkoutRecommendation(id: call.getInt("id")!)
-                call.resolve(["result": result])
-            } catch {
-                call.reject(error.localizedDescription)
-            }
-        }
-    }
-
-    func recommendationSeen(_ call: CAPPluginCall) {
-        Task {
-            do {
-                let result = try await healthService.recommendationSeen(id: call.getInt("id")!)
-                call.resolve(["result": result])
             } catch {
                 call.reject(error.localizedDescription)
             }
