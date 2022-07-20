@@ -179,4 +179,23 @@ public extension PointSDKPlugin {
             }
         }
     }
+
+    func getInsights(_ call: CAPPluginCall) {
+        Task {
+            do {
+                 let startDate = call.getString("startDate")
+                 let endDate = call.getString("endDate")
+                 let offset = call.getInt("offset")
+                 let typesString = call.getArray("types") as? [String]
+
+                 var types = typesString.compactMap { InsightType(rawValue: $0) }
+
+                 let insights = try await healthService.getInsights(types: types, from: startDate, to: endDate, offset)
+
+                 call.resolve(["insights": insights.map { insightsMapping(insight: $0) }])
+            } catch {
+                call.reject(error.localizedDescription)
+            }
+        }
+    }
 }

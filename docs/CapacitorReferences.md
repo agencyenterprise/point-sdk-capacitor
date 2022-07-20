@@ -6,42 +6,43 @@ This document contains references to all available methods and types generated b
 
 <docgen-index>
 
-- [`setup(...)`](#setup)
-- [`setupHealthkitIntegration(...)`](#setuphealthkitintegration)
-- [`setupFitbitIntegration(...)`](#setupfitbitintegration)
-- [`authenticateFitbit(...)`](#authenticatefitbit)
-- [`revokeFitbitAuthentication()`](#revokefitbitauthentication)
-- [`requestAuthorizationsIfPossible()`](#requestauthorizationsifpossible)
-- [`setUserToken(...)`](#setusertoken)
-- [`startAllBackgroundListeners()`](#startallbackgroundlisteners)
-- [`startBackgroundListenersForType(...)`](#startbackgroundlistenersfortype)
-- [`disableAllBackgroundListeners()`](#disableallbackgroundlisteners)
-- [`disableBackgroundListenersForType(...)`](#disablebackgroundlistenersfortype)
-- [`enableAllForegroundListeners()`](#enableallforegroundlisteners)
-- [`enableForegroundListenerForType(...)`](#enableforegroundlistenerfortype)
-- [`stopAllForegroundListeners()`](#stopallforegroundlisteners)
-- [`stopForegroundListenerForType(...)`](#stopforegroundlistenerfortype)
-- [`syncAllHistoricalData()`](#syncallhistoricaldata)
-- [`syncHistoricalDataForType(...)`](#synchistoricaldatafortype)
-- [`syncAllLatestData()`](#syncalllatestdata)
-- [`syncLatestDataForType(...)`](#synclatestdatafortype)
-- [`sync(...)`](#sync)
-- [`getUserData()`](#getuserdata)
-- [`getUserTrends()`](#getusertrends)
-- [`getUserWorkouts(...)`](#getuserworkouts)
-- [`getUserWorkoutById(...)`](#getuserworkoutbyid)
-- [`getWorkoutRecommendations(...)`](#getworkoutrecommendations)
-- [`getUserRecommendations()`](#getuserrecommendations)
-- [`getDailyHistory(...)`](#getdailyhistory)
-- [`getHealthMetrics(...)`](#gethealthmetrics)
-- [`setUserGoal(...)`](#setusergoal)
-- [`setUserSpecificGoal(...)`](#setuserspecificgoal)
-- [`rateWorkout(...)`](#rateworkout)
-- [`recommendationSeen(...)`](#recommendationseen)
-- [`saveWorkoutRecommendation(...)`](#saveworkoutrecommendation)
-- [Interfaces](#interfaces)
-- [Type Aliases](#type-aliases)
-- [Enums](#enums)
+* [`setup(...)`](#setup)
+* [`setupHealthkitIntegration(...)`](#setuphealthkitintegration)
+* [`setupFitbitIntegration(...)`](#setupfitbitintegration)
+* [`authenticateFitbit(...)`](#authenticatefitbit)
+* [`revokeFitbitAuthentication()`](#revokefitbitauthentication)
+* [`requestAuthorizationsIfPossible()`](#requestauthorizationsifpossible)
+* [`setUserToken(...)`](#setusertoken)
+* [`startAllBackgroundListeners()`](#startallbackgroundlisteners)
+* [`startBackgroundListenersForType(...)`](#startbackgroundlistenersfortype)
+* [`disableAllBackgroundListeners()`](#disableallbackgroundlisteners)
+* [`disableBackgroundListenersForType(...)`](#disablebackgroundlistenersfortype)
+* [`enableAllForegroundListeners()`](#enableallforegroundlisteners)
+* [`enableForegroundListenerForType(...)`](#enableforegroundlistenerfortype)
+* [`stopAllForegroundListeners()`](#stopallforegroundlisteners)
+* [`stopForegroundListenerForType(...)`](#stopforegroundlistenerfortype)
+* [`syncAllHistoricalData()`](#syncallhistoricaldata)
+* [`syncHistoricalDataForType(...)`](#synchistoricaldatafortype)
+* [`syncAllLatestData()`](#syncalllatestdata)
+* [`syncLatestDataForType(...)`](#synclatestdatafortype)
+* [`sync(...)`](#sync)
+* [`getUserData()`](#getuserdata)
+* [`getUserTrends()`](#getusertrends)
+* [`getUserWorkouts(...)`](#getuserworkouts)
+* [`getUserWorkoutById(...)`](#getuserworkoutbyid)
+* [`getWorkoutRecommendations(...)`](#getworkoutrecommendations)
+* [`getUserRecommendations()`](#getuserrecommendations)
+* [`getDailyHistory(...)`](#getdailyhistory)
+* [`getHealthMetrics(...)`](#gethealthmetrics)
+* [`setUserGoal(...)`](#setusergoal)
+* [`setUserSpecificGoal(...)`](#setuserspecificgoal)
+* [`rateWorkout(...)`](#rateworkout)
+* [`recommendationSeen(...)`](#recommendationseen)
+* [`saveWorkoutRecommendation(...)`](#saveworkoutrecommendation)
+* [`getInsights(...)`](#getinsights)
+* [Interfaces](#interfaces)
+* [Type Aliases](#type-aliases)
+* [Enums](#enums)
 
 </docgen-index>
 
@@ -526,9 +527,26 @@ When a recommendation is saved, Point is able to check if this workout recommend
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
+
+### getInsights(...)
+
+```typescript
+getInsights(options: { type: InsightType; from?: string; to?: string; offset?: number; }) => Promise<Insight>
+```
+
+| Param         | Type                                                                                                        |
+| ------------- | ----------------------------------------------------------------------------------------------------------- |
+| **`options`** | <code>{ type: <a href="#insighttype">InsightType</a>; from?: string; to?: string; offset?: number; }</code> |
+
+**Returns:** <code>Promise&lt;<a href="#insight">Insight</a>&gt;</code>
+
+--------------------
+
 
 ### Interfaces
+
 
 #### User
 
@@ -575,53 +593,120 @@ When a recommendation is saved, Point is able to check if this workout recommend
 | **`label`** | <code>string</code> |
 | **`url`**   | <code>string</code> |
 
+
+#### Date
+
+Enables basic storage and retrieval of dates and times.
+
+| Method                 | Signature                                                                                                    | Description                                                                                                                             |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
+| **toString**           | () =&gt; string                                                                                              | Returns a string representation of a date. The format of the string depends on the locale.                                              |
+| **toDateString**       | () =&gt; string                                                                                              | Returns a date as a string value.                                                                                                       |
+| **toTimeString**       | () =&gt; string                                                                                              | Returns a time as a string value.                                                                                                       |
+| **toLocaleString**     | () =&gt; string                                                                                              | Returns a value as a string value appropriate to the host environment's current locale.                                                 |
+| **toLocaleDateString** | () =&gt; string                                                                                              | Returns a date as a string value appropriate to the host environment's current locale.                                                  |
+| **toLocaleTimeString** | () =&gt; string                                                                                              | Returns a time as a string value appropriate to the host environment's current locale.                                                  |
+| **valueOf**            | () =&gt; number                                                                                              | Returns the stored time value in milliseconds since midnight, January 1, 1970 UTC.                                                      |
+| **getTime**            | () =&gt; number                                                                                              | Gets the time value in milliseconds.                                                                                                    |
+| **getFullYear**        | () =&gt; number                                                                                              | Gets the year, using local time.                                                                                                        |
+| **getUTCFullYear**     | () =&gt; number                                                                                              | Gets the year using Universal Coordinated Time (UTC).                                                                                   |
+| **getMonth**           | () =&gt; number                                                                                              | Gets the month, using local time.                                                                                                       |
+| **getUTCMonth**        | () =&gt; number                                                                                              | Gets the month of a <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                             |
+| **getDate**            | () =&gt; number                                                                                              | Gets the day-of-the-month, using local time.                                                                                            |
+| **getUTCDate**         | () =&gt; number                                                                                              | Gets the day-of-the-month, using Universal Coordinated Time (UTC).                                                                      |
+| **getDay**             | () =&gt; number                                                                                              | Gets the day of the week, using local time.                                                                                             |
+| **getUTCDay**          | () =&gt; number                                                                                              | Gets the day of the week using Universal Coordinated Time (UTC).                                                                        |
+| **getHours**           | () =&gt; number                                                                                              | Gets the hours in a date, using local time.                                                                                             |
+| **getUTCHours**        | () =&gt; number                                                                                              | Gets the hours value in a <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                       |
+| **getMinutes**         | () =&gt; number                                                                                              | Gets the minutes of a <a href="#date">Date</a> object, using local time.                                                                |
+| **getUTCMinutes**      | () =&gt; number                                                                                              | Gets the minutes of a <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                           |
+| **getSeconds**         | () =&gt; number                                                                                              | Gets the seconds of a <a href="#date">Date</a> object, using local time.                                                                |
+| **getUTCSeconds**      | () =&gt; number                                                                                              | Gets the seconds of a <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                           |
+| **getMilliseconds**    | () =&gt; number                                                                                              | Gets the milliseconds of a <a href="#date">Date</a>, using local time.                                                                  |
+| **getUTCMilliseconds** | () =&gt; number                                                                                              | Gets the milliseconds of a <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                      |
+| **getTimezoneOffset**  | () =&gt; number                                                                                              | Gets the difference in minutes between the time on the local computer and Universal Coordinated Time (UTC).                             |
+| **setTime**            | (time: number) =&gt; number                                                                                  | Sets the date and time value in the <a href="#date">Date</a> object.                                                                    |
+| **setMilliseconds**    | (ms: number) =&gt; number                                                                                    | Sets the milliseconds value in the <a href="#date">Date</a> object using local time.                                                    |
+| **setUTCMilliseconds** | (ms: number) =&gt; number                                                                                    | Sets the milliseconds value in the <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                              |
+| **setSeconds**         | (sec: number, ms?: number \| undefined) =&gt; number                                                         | Sets the seconds value in the <a href="#date">Date</a> object using local time.                                                         |
+| **setUTCSeconds**      | (sec: number, ms?: number \| undefined) =&gt; number                                                         | Sets the seconds value in the <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                   |
+| **setMinutes**         | (min: number, sec?: number \| undefined, ms?: number \| undefined) =&gt; number                              | Sets the minutes value in the <a href="#date">Date</a> object using local time.                                                         |
+| **setUTCMinutes**      | (min: number, sec?: number \| undefined, ms?: number \| undefined) =&gt; number                              | Sets the minutes value in the <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                   |
+| **setHours**           | (hours: number, min?: number \| undefined, sec?: number \| undefined, ms?: number \| undefined) =&gt; number | Sets the hour value in the <a href="#date">Date</a> object using local time.                                                            |
+| **setUTCHours**        | (hours: number, min?: number \| undefined, sec?: number \| undefined, ms?: number \| undefined) =&gt; number | Sets the hours value in the <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                     |
+| **setDate**            | (date: number) =&gt; number                                                                                  | Sets the numeric day-of-the-month value of the <a href="#date">Date</a> object using local time.                                        |
+| **setUTCDate**         | (date: number) =&gt; number                                                                                  | Sets the numeric day of the month in the <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                        |
+| **setMonth**           | (month: number, date?: number \| undefined) =&gt; number                                                     | Sets the month value in the <a href="#date">Date</a> object using local time.                                                           |
+| **setUTCMonth**        | (month: number, date?: number \| undefined) =&gt; number                                                     | Sets the month value in the <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                     |
+| **setFullYear**        | (year: number, month?: number \| undefined, date?: number \| undefined) =&gt; number                         | Sets the year of the <a href="#date">Date</a> object using local time.                                                                  |
+| **setUTCFullYear**     | (year: number, month?: number \| undefined, date?: number \| undefined) =&gt; number                         | Sets the year value in the <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                      |
+| **toUTCString**        | () =&gt; string                                                                                              | Returns a date converted to a string using Universal Coordinated Time (UTC).                                                            |
+| **toISOString**        | () =&gt; string                                                                                              | Returns a date as a string value in ISO format.                                                                                         |
+| **toJSON**             | (key?: any) =&gt; string                                                                                     | Used by the JSON.stringify method to enable the transformation of an object's data for JavaScript Object Notation (JSON) serialization. |
+
+
 ### Type Aliases
+
 
 #### Record
 
 Construct a type with a set of properties K of type T
 
-<code>{
-[P in K]: T;
-}</code>
+<code>{ [P in K]: T; }</code>
+
 
 #### GoalProgressKey
 
 <code>'overral' | 'endurance' | 'recovery' | 'strength'</code>
 
+
 #### GoalProgressValue
 
 <code>{ value: number; variance: number; }</code>
+
 
 #### Workout
 
 <code>{ id: number; calories: number; distance: number; duration: number; start: string; end: string; activityName: string; activityId: number; ratings: <a href="#workoutratings">WorkoutRatings</a>; }</code>
 
+
 #### WorkoutRatings
 
 <code>{ difficulty: number; energy: number; instructor: number; }</code>
+
 
 #### TrendTypes
 
 <code>'record_calories_burned_across_all_workout_types' | 'most_efficient_workout_type' | 'longest_workout_type' | 'avg_workout_calories_burned' | 'avg_workout_duration' | 'usual_workout_time'</code>
 
+
 #### WorkoutRecommendation
 
 <code>{ id: number; date: string; activityId: number; activityName: string; workoutId: number; completedAt: string; createdAt: string; savedAt: string; }</code>
+
 
 #### InsightCategory
 
 <code>'HeartLifetimeIncrease' | 'Motivational' | 'NeedRecovery' | 'RoutineFreqOptimization' | 'RoutineTimeOptimization' | 'RoutineWorkoutTypeOptimization' | 'TocayaDeal' | 'TryHarder' | 'WorkoutStreak'</code>
 
+
 #### HealthMetric
 
 <code>{ type: string; date: string; value: number; variance: number; workoutId: number; }</code>
+
 
 #### HealthMetricType
 
 <code>'RestingHR' | 'OneMinuteHRR' | 'ThreeMinuteHRR' | 'HRV' | 'Vo2Max' | 'ActiveCalories' | 'BasalCalories' | 'TotalCalories' | 'WorkoutCalories' | 'WorkoutDistance' | 'WorkoutDuration' | 'ExertionRate' | 'MovementLevel' | 'MinsHRZone1' | 'MinsHRZone2' | 'MinsHRZone3' | 'MinsHRZone4' | 'MinsHRZone12' | 'MinsHRZone23' | 'MinsHRZone34' | 'WorkoutMinsHRZone1' | 'WorkoutMinsHRZone2' | 'WorkoutMinsHRZone3' | 'WorkoutMinsHRZone4' | 'WorkoutMinsHRZone12' | 'WorkoutMinsHRZone23' | 'WorkoutMinsHRZone34' | 'MindfulMinutes' | 'AvgWorkoutHR' | 'MinWorkoutHR' | 'MaxWorkoutHR' | 'SleepDuration' | 'SleepDurationInbed' | 'SleepDurationAsleep' | 'TotalWorkoutDuration' | 'TotalMinsHRZone12' | 'TotalMinsHRZone34' | 'WeeklyAvgWorkoutHR' | 'WeeklyExertionRate' | 'DailyWorkoutDuration' | 'Weight' | 'SleepEfficiency' | 'SleepLatency' | 'SleepStageDeep' | 'SleepStageLight' | 'SleepStageREM' | 'SleepStageWake' | 'SleepDurationInbed' | 'SleepDurationAsleep'</code>
 
+
+#### Insight
+
+<code>{ id: string; type: <a href="#insighttype">InsightType</a>; additionalFields: string; createdAt: string; }</code>
+
+
 ### Enums
+
 
 #### QueryType
 
@@ -670,5 +755,35 @@ Construct a type with a set of properties K of type T
 | **`PrepareForEvent`** | <code>'prepareForEvent'</code> |
 | **`AccomplishMore`**  | <code>'accomplishMore'</code>  |
 | **`MaintainHealth`**  | <code>'maintainHealth'</code>  |
+
+
+#### InsightType
+
+| Members                                         | Value                                                          |
+| ----------------------------------------------- | -------------------------------------------------------------- |
+| **`ExertionOptimalAm`**                         | <code>"exertion_optimal_am"</code>                             |
+| **`ExertionOptimalPm`**                         | <code>"exertion_optimal_pm"</code>                             |
+| **`CalorieBurnOptimalAm`**                      | <code>"calorie_burn_optimal_am"</code>                         |
+| **`CalorieBurnOptimalPm`**                      | <code>"calorie_burn_optimal_pm"</code>                         |
+| **`DurationOptimalAm`**                         | <code>"duration_optimal_am"</code>                             |
+| **`DurationOptimalPm`**                         | <code>"duration_optimal_pm"</code>                             |
+| **`HrvDecreaseMedsev`**                         | <code>"hrv_decrease_medsev"</code>                             |
+| **`HrvDecreaseHisev`**                          | <code>"hrv_decrease_hisev"</code>                              |
+| **`RecordCaloriesBurned`**                      | <code>"record_calories_burned"</code>                          |
+| **`RecordExertionRate`**                        | <code>"record_exertion_rate"</code>                            |
+| **`RecordCaloriesBurnedAcrossAllWorkoutTypes`** | <code>"record_calories_burned_across_all_workout_types"</code> |
+| **`RecordExertionRateAcrossAllWorkoutTypes`**   | <code>"record_exertion_rate_across_all_workout_types"</code>   |
+| **`MostEfficientWorkoutType`**                  | <code>"most_efficient_workout_type"</code>                     |
+| **`LongestWorkoutType`**                        | <code>"longest_workout_type"</code>                            |
+| **`AvgWorkoutCaloriesBurned`**                  | <code>"avg_workout_calories_burned"</code>                     |
+| **`AvgWorkoutExertionRate`**                    | <code>"avg_workout_exertion_rate"</code>                       |
+| **`UsualWorkoutTime`**                          | <code>"usual_workout_time"</code>                              |
+| **`OptimalWorkoutRoutine`**                     | <code>"optimal_workout_routine"</code>                         |
+| **`DurationTip`**                               | <code>"duration_tip"</code>                                    |
+| **`WorkoutHrZone5HighMinutes`**                 | <code>"workout_hr_zone5_high_minutes"</code>                   |
+| **`WeekHrZonesLowMinutesBurnFat`**              | <code>"week_hr_zones_low_minutes_burn_fat"</code>              |
+| **`WeekHrZonesLowMinutesBurnCarb`**             | <code>"week_hr_zones_low_minutes_burn_carb"</code>             |
+| **`WeekHrZonesHighMinutesBurnCarb`**            | <code>"week_hr_zones_high_minutes_burn_carb"</code>            |
+| **`WeekHrZone5HighMinutes`**                    | <code>"week_hr_zone5_high_minutes"</code>                      |
 
 </docgen-api>

@@ -168,6 +168,17 @@ extension PointSDKPlugin {
           "lastSeenAt": recommendation.lastSeenAt?.toIsoString() as Any
         ]
       }
+
+      func insightMapping(insight: Insight?) -> [String: Any] {
+        guard let insight = insight else { return [:] }
+
+        return [
+          "id": insight.id,
+          "type": insight.type.rawValue,
+          "additionalFields": insight.additionalFields,
+          "createdAt": insight.createdAt
+        ]
+      }
       
       func trendMapping(trend: Trend?) -> [String : Any] {
         guard let trend = trend else { return [:] }
