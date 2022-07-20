@@ -9,9 +9,7 @@ import type {
   InsightType,
   PointSDKPlugin,
   QueryType,
-  Recommendation,
   SpecificGoal,
-  Trend,
   User,
   Workout,
   WorkoutRatings,
@@ -84,9 +82,6 @@ export class PointSDKWeb extends WebPlugin implements PointSDKPlugin {
   getUserData(): Promise<User> {
     throw new Error('Method not implemented.');
   }
-  getUserTrends(): Promise<Trend[]> {
-    throw new Error('Method not implemented.');
-  }
   getUserWorkouts(_options: { offset: number }): Promise<Workout[]> {
     throw new Error('Method not implemented.');
   }
@@ -96,9 +91,6 @@ export class PointSDKWeb extends WebPlugin implements PointSDKPlugin {
   getWorkoutRecommendations(_options: {
     date: string;
   }): Promise<WorkoutRecommendation[]> {
-    throw new Error('Method not implemented.');
-  }
-  getUserRecommendations(): Promise<Recommendation[]> {
     throw new Error('Method not implemented.');
   }
   getDailyHistory(_options: {
@@ -125,9 +117,6 @@ export class PointSDKWeb extends WebPlugin implements PointSDKPlugin {
     throw new Error('Method not implemented.');
   }
   setUserSpecificGoal(_options: { specificGoal: SpecificGoal }): Promise<User> {
-    throw new Error('Method not implemented.');
-  }
-  recommendationSeen(_options: { id: number }): Promise<any> {
     throw new Error('Method not implemented.');
   }
   saveWorkoutRecommendation(_options: { id: number }): Promise<any> {

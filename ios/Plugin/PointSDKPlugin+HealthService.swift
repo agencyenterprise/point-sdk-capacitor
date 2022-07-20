@@ -15,17 +15,6 @@ public extension PointSDKPlugin {
         }
     }
 
-    func getUserTrends(_ call: CAPPluginCall) {
-        Task {
-            do {
-                let trends = try await healthService.getUserTrends()
-                call.resolve(["trends": trends.map { trendMapping(trend: $0) }])
-            } catch {
-                call.reject(error.localizedDescription)
-            }
-        }
-    }
-
     func getUserWorkouts(_ call: CAPPluginCall) {
         Task {
             do {
@@ -59,18 +48,6 @@ public extension PointSDKPlugin {
                 call.resolve([
                     "recommendations": recommendations.map { workoutRecommendationMapping(recommendation: $0) }
                 ])
-            } catch {
-                call.reject(error.localizedDescription)
-            }
-        }
-    }
-
-    func getUserRecommendations(_ call: CAPPluginCall) {
-        Task {
-            do {
-                let recommendations = try await healthService.getUserRecommendations()
-
-                call.resolve(["recommendations": recommendations.map { userRecommendationMapping(recommendation: $0) }])
             } catch {
                 call.reject(error.localizedDescription)
             }
@@ -169,30 +146,21 @@ public extension PointSDKPlugin {
         }
     }
 
-    func recommendationSeen(_ call: CAPPluginCall) {
-        Task {
-            do {
-                let result = try await healthService.recommendationSeen(id: call.getInt("id")!)
-                call.resolve(["result": result])
-            } catch {
-                call.reject(error.localizedDescription)
-            }
-        }
-    }
-
     func getInsights(_ call: CAPPluginCall) {
         Task {
             do {
-                 let startDate = call.getString("startDate")
-                 let endDate = call.getString("endDate")
-                 let offset = call.getInt("offset")
-                 let typesString = call.getArray("types") as? [String]
+                let startDate = call.getString("startDate")?.fromIsoStringToDate()
+                let endDate = call.getString("endDate")?.fromIsoStringToDate()
+                let offset = call.getInt("offset")
+                guard let typesString = call.getArray("types") as? [String],
+                      typesString.count > 0
+                else { call.reject("No Insight Type provided"); return }
 
-                 var types = typesString.compactMap { InsightType(rawValue: $0) }
+                let types = typesString.compactMap { InsightType(rawValue: $0) }
 
-                 let insights = try await healthService.getInsights(types: types, from: startDate, to: endDate, offset)
+                let insights = try await healthService.getInsights(types: Set(types), from: startDate, to: endDate, offset: offset)
 
-                 call.resolve(["insights": insights.map { insightsMapping(insight: $0) }])
+                call.resolve(["insights": insights.map { insightMapping(insight: $0) }])
             } catch {
                 call.reject(error.localizedDescription)
             }
