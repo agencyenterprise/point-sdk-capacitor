@@ -45,4 +45,5 @@ CAP_PLUGIN(PointSDKPlugin, "PointSDK",
            CAP_PLUGIN_METHOD(setUserSpecificGoal, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(saveWorkoutRecommendation, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(rateWorkout, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getInsights, CAPPluginReturnPromise);
 )

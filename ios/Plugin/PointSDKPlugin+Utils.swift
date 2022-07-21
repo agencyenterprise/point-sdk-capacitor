@@ -148,6 +148,17 @@ extension PointSDKPlugin {
           "savedAt": recommendation.savedAt as Any
         ]
       }
+
+      func insightMapping(insight: Insight?) -> [String: Any] {
+        guard let insight = insight else { return [:] }
+
+        return [
+          "id": insight.id,
+          "type": insight.type.rawValue,
+          "additionalFields": insight.additionalFields,
+          "createdAt": insight.createdAt
+        ]
+      }
     
     func queryTypeMapping(type: String?) -> HealthQueryType? {
         guard let queryType = type else { return nil }

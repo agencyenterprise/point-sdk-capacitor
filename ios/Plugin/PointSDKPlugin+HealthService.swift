@@ -134,4 +134,36 @@ public extension PointSDKPlugin {
             }
         }
     }
+
+    func saveWorkoutRecommendation(_ call: CAPPluginCall) {
+        Task {
+            do {
+                let result = try await healthService.saveWorkoutRecommendation(id: call.getInt("id")!)
+                call.resolve(["result": result])
+            } catch {
+                call.reject(error.localizedDescription)
+            }
+        }
+    }
+
+    func getInsights(_ call: CAPPluginCall) {
+        Task {
+            do {
+                let startDate = call.getString("startDate")?.fromIsoStringToDate()
+                let endDate = call.getString("endDate")?.fromIsoStringToDate()
+                let offset = call.getInt("offset")
+                guard let typesString = call.getArray("types") as? [String],
+                      typesString.count > 0
+                else { call.reject("No Insight Type provided"); return }
+
+                let types = typesString.compactMap { InsightType(rawValue: $0) }
+
+                let insights = try await healthService.getInsights(types: Set(types), from: startDate, to: endDate, offset: offset)
+
+                call.resolve(["insights": insights.map { insightMapping(insight: $0) }])
+            } catch {
+                call.reject(error.localizedDescription)
+            }
+        }
+    }
 }

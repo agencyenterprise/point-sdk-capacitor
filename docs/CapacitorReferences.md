@@ -36,6 +36,7 @@ This document contains references to all available methods and types generated b
 * [`setUserSpecificGoal(...)`](#setuserspecificgoal)
 * [`rateWorkout(...)`](#rateworkout)
 * [`saveWorkoutRecommendation(...)`](#saveworkoutrecommendation)
+* [`getInsights(...)`](#getinsights)
 * [Interfaces](#interfaces)
 * [Type Aliases](#type-aliases)
 * [Enums](#enums)
@@ -515,6 +516,21 @@ When a recommendation is saved, Point is able to check if this workout recommend
 --------------------
 
 
+### getInsights(...)
+
+```typescript
+getInsights(options: { types: InsightType[]; from?: string; to?: string; offset?: number; }) => Promise<Insight>
+```
+
+| Param         | Type                                                                                |
+| ------------- | ----------------------------------------------------------------------------------- |
+| **`options`** | <code>{ types: InsightType[]; from?: string; to?: string; offset?: number; }</code> |
+
+**Returns:** <code>Promise&lt;<a href="#insight">Insight</a>&gt;</code>
+
+--------------------
+
+
 ### Interfaces
 
 
@@ -532,17 +548,8 @@ When a recommendation is saved, Point is able to check if this workout recommend
 | **`specificGoal`** | <code>string</code>                                                                                                                                 |
 | **`lastWorkout`**  | <code><a href="#workout">Workout</a></code>                                                                                                         |
 
-
 ### Type Aliases
 
-
-#### Record
-
-Construct a type with a set of properties K of type T
-
-<code>{
- [P in K]: T;
- }</code>
 
 
 #### GoalProgressKey
@@ -565,9 +572,11 @@ Construct a type with a set of properties K of type T
 <code>{ difficulty: number; energy: number; instructor: number; }</code>
 
 
+
 #### WorkoutRecommendation
 
 <code>{ id: number; date: string; activityId: number; activityName: string; workoutId: number; completedAt: string; createdAt: string; savedAt: string; }</code>
+
 
 
 #### HealthMetric
@@ -578,6 +587,11 @@ Construct a type with a set of properties K of type T
 #### HealthMetricType
 
 <code>'RestingHR' | 'OneMinuteHRR' | 'ThreeMinuteHRR' | 'HRV' | 'Vo2Max' | 'ActiveCalories' | 'BasalCalories' | 'TotalCalories' | 'WorkoutCalories' | 'WorkoutDistance' | 'WorkoutDuration' | 'ExertionRate' | 'MovementLevel' | 'MinsHRZone1' | 'MinsHRZone2' | 'MinsHRZone3' | 'MinsHRZone4' | 'MinsHRZone12' | 'MinsHRZone23' | 'MinsHRZone34' | 'WorkoutMinsHRZone1' | 'WorkoutMinsHRZone2' | 'WorkoutMinsHRZone3' | 'WorkoutMinsHRZone4' | 'WorkoutMinsHRZone12' | 'WorkoutMinsHRZone23' | 'WorkoutMinsHRZone34' | 'MindfulMinutes' | 'AvgWorkoutHR' | 'MinWorkoutHR' | 'MaxWorkoutHR' | 'SleepDuration' | 'SleepDurationInbed' | 'SleepDurationAsleep' | 'TotalWorkoutDuration' | 'TotalMinsHRZone12' | 'TotalMinsHRZone34' | 'WeeklyAvgWorkoutHR' | 'WeeklyExertionRate' | 'DailyWorkoutDuration' | 'Weight' | 'SleepEfficiency' | 'SleepLatency' | 'SleepStageDeep' | 'SleepStageLight' | 'SleepStageREM' | 'SleepStageWake' | 'SleepDurationInbed' | 'SleepDurationAsleep'</code>
+
+
+#### Insight
+
+<code>{ id: string; type: <a href="#insighttype">InsightType</a>; additionalFields: string; createdAt: string; }</code>
 
 
 ### Enums
@@ -633,5 +647,35 @@ Construct a type with a set of properties K of type T
 | **`PrepareForEvent`** | <code>'prepareForEvent'</code> |
 | **`AccomplishMore`**  | <code>'accomplishMore'</code>  |
 | **`MaintainHealth`**  | <code>'maintainHealth'</code>  |
+
+
+#### InsightType
+
+| Members                                         | Value                                                          |
+| ----------------------------------------------- | -------------------------------------------------------------- |
+| **`ExertionOptimalAm`**                         | <code>"exertion_optimal_am"</code>                             |
+| **`ExertionOptimalPm`**                         | <code>"exertion_optimal_pm"</code>                             |
+| **`CalorieBurnOptimalAm`**                      | <code>"calorie_burn_optimal_am"</code>                         |
+| **`CalorieBurnOptimalPm`**                      | <code>"calorie_burn_optimal_pm"</code>                         |
+| **`DurationOptimalAm`**                         | <code>"duration_optimal_am"</code>                             |
+| **`DurationOptimalPm`**                         | <code>"duration_optimal_pm"</code>                             |
+| **`HrvDecreaseMedsev`**                         | <code>"hrv_decrease_medsev"</code>                             |
+| **`HrvDecreaseHisev`**                          | <code>"hrv_decrease_hisev"</code>                              |
+| **`RecordCaloriesBurned`**                      | <code>"record_calories_burned"</code>                          |
+| **`RecordExertionRate`**                        | <code>"record_exertion_rate"</code>                            |
+| **`RecordCaloriesBurnedAcrossAllWorkoutTypes`** | <code>"record_calories_burned_across_all_workout_types"</code> |
+| **`RecordExertionRateAcrossAllWorkoutTypes`**   | <code>"record_exertion_rate_across_all_workout_types"</code>   |
+| **`MostEfficientWorkoutType`**                  | <code>"most_efficient_workout_type"</code>                     |
+| **`LongestWorkoutType`**                        | <code>"longest_workout_type"</code>                            |
+| **`AvgWorkoutCaloriesBurned`**                  | <code>"avg_workout_calories_burned"</code>                     |
+| **`AvgWorkoutExertionRate`**                    | <code>"avg_workout_exertion_rate"</code>                       |
+| **`UsualWorkoutTime`**                          | <code>"usual_workout_time"</code>                              |
+| **`OptimalWorkoutRoutine`**                     | <code>"optimal_workout_routine"</code>                         |
+| **`DurationTip`**                               | <code>"duration_tip"</code>                                    |
+| **`WorkoutHrZone5HighMinutes`**                 | <code>"workout_hr_zone5_high_minutes"</code>                   |
+| **`WeekHrZonesLowMinutesBurnFat`**              | <code>"week_hr_zones_low_minutes_burn_fat"</code>              |
+| **`WeekHrZonesLowMinutesBurnCarb`**             | <code>"week_hr_zones_low_minutes_burn_carb"</code>             |
+| **`WeekHrZonesHighMinutesBurnCarb`**            | <code>"week_hr_zones_high_minutes_burn_carb"</code>            |
+| **`WeekHrZone5HighMinutes`**                    | <code>"week_hr_zone5_high_minutes"</code>                      |
 
 </docgen-api>

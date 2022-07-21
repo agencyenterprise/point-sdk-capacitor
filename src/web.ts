@@ -5,6 +5,8 @@ import type {
   Goal,
   HealthMetric,
   HealthMetricType,
+  Insight,
+  InsightType,
   PointSDKPlugin,
   QueryType,
   SpecificGoal,
@@ -102,6 +104,14 @@ export class PointSDKWeb extends WebPlugin implements PointSDKPlugin {
     date?: string | undefined;
   }): Promise<HealthMetric[]> {
     throw new Error('Method not implemented.');
+  }
+  getInsights(_options: { 
+    types: InsightType[]; 
+    from?: string | undefined; 
+    to?: string | undefined; 
+    offset?: number | undefined; 
+  }): Promise<Insight> {
+    throw new Error('Method not implemented.')
   }
   setUserGoal(_options: { goal: Goal }): Promise<User> {
     throw new Error('Method not implemented.');
