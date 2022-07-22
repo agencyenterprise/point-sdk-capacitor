@@ -1,6 +1,6 @@
 {
   "name": "point-sdk-capacitor",
-  "version": "0.2.3",
+  "version": "0.2.5",
   "description": "Capacitor Wrapper for PointSDK",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
