@@ -572,21 +572,14 @@ getInsights(options: { types: InsightType[]; from?: string; to?: string; offset?
 <code>{ difficulty: number; energy: number; instructor: number; }</code>
 
 
-
 #### WorkoutRecommendation
 
 <code>{ id: number; date: string; activityId: number; activityName: string; workoutId: number; completedAt: string; createdAt: string; savedAt: string; }</code>
 
 
-
 #### HealthMetric
 
 <code>{ type: string; date: string; value: number; variance: number; workoutId: number; }</code>
-
-
-#### HealthMetricType
-
-<code>'RestingHR' | 'OneMinuteHRR' | 'ThreeMinuteHRR' | 'HRV' | 'Vo2Max' | 'ActiveCalories' | 'BasalCalories' | 'TotalCalories' | 'WorkoutCalories' | 'WorkoutDistance' | 'WorkoutDuration' | 'ExertionRate' | 'MovementLevel' | 'MinsHRZone1' | 'MinsHRZone2' | 'MinsHRZone3' | 'MinsHRZone4' | 'MinsHRZone12' | 'MinsHRZone23' | 'MinsHRZone34' | 'WorkoutMinsHRZone1' | 'WorkoutMinsHRZone2' | 'WorkoutMinsHRZone3' | 'WorkoutMinsHRZone4' | 'WorkoutMinsHRZone12' | 'WorkoutMinsHRZone23' | 'WorkoutMinsHRZone34' | 'MindfulMinutes' | 'AvgWorkoutHR' | 'MinWorkoutHR' | 'MaxWorkoutHR' | 'SleepDuration' | 'SleepDurationInbed' | 'SleepDurationAsleep' | 'TotalWorkoutDuration' | 'TotalMinsHRZone12' | 'TotalMinsHRZone34' | 'WeeklyAvgWorkoutHR' | 'WeeklyExertionRate' | 'DailyWorkoutDuration' | 'Weight' | 'SleepEfficiency' | 'SleepLatency' | 'SleepStageDeep' | 'SleepStageLight' | 'SleepStageREM' | 'SleepStageWake' | 'SleepDurationInbed' | 'SleepDurationAsleep'</code>
 
 
 #### Insight
@@ -628,6 +621,63 @@ getInsights(options: { types: InsightType[]; from?: string; to?: string; offset?
 | **`Sleep`**     | <code>'sleep'</code>     |
 | **`Social`**    | <code>'social'</code>    |
 | **`Weight`**    | <code>'weight'</code>    |
+
+
+#### HealthMetricType
+
+| Members                    | Value                               |
+| -------------------------- | ----------------------------------- |
+| **`RestingHR`**            | <code>'RestingHR'</code>            |
+| **`OneMinuteHRR`**         | <code>'OneMinuteHRR'</code>         |
+| **`ThreeMinuteHRR`**       | <code>'ThreeMinuteHRR'</code>       |
+| **`HRV`**                  | <code>'HRV'</code>                  |
+| **`Vo2Max`**               | <code>'Vo2Max'</code>               |
+| **`ActiveCalories`**       | <code>'ActiveCalories'</code>       |
+| **`BasalCalories`**        | <code>'BasalCalories'</code>        |
+| **`TotalCalories`**        | <code>'TotalCalories'</code>        |
+| **`WorkoutCalories`**      | <code>'WorkoutCalories'</code>      |
+| **`WorkoutDistance`**      | <code>'WorkoutDistance'</code>      |
+| **`WorkoutDuration`**      | <code>'WorkoutDuration'</code>      |
+| **`ExertionRate`**         | <code>'ExertionRate'</code>         |
+| **`MovementLevel`**        | <code>'MovementLevel'</code>        |
+| **`MinsHRZone1`**          | <code>'MinsHRZone1'</code>          |
+| **`MinsHRZone2`**          | <code>'MinsHRZone2'</code>          |
+| **`MinsHRZone3`**          | <code>'MinsHRZone3'</code>          |
+| **`MinsHRZone4`**          | <code>'MinsHRZone4'</code>          |
+| **`MinsHRZone12`**         | <code>'MinsHRZone12'</code>         |
+| **`MinsHRZone23`**         | <code>'MinsHRZone23'</code>         |
+| **`MinsHRZone34`**         | <code>'MinsHRZone34'</code>         |
+| **`MinsHRZone45`**         | <code>'MinsHRZone45'</code>         |
+| **`MinsHRZone5`**          | <code>'MinsHRZone5'</code>          |
+| **`WorkoutMinsHRZone1`**   | <code>'WorkoutMinsHRZone1'</code>   |
+| **`WorkoutMinsHRZone2`**   | <code>'WorkoutMinsHRZone2'</code>   |
+| **`WorkoutMinsHRZone3`**   | <code>'WorkoutMinsHRZone3'</code>   |
+| **`WorkoutMinsHRZone4`**   | <code>'WorkoutMinsHRZone4'</code>   |
+| **`WorkoutMinsHRZone12`**  | <code>'WorkoutMinsHRZone12'</code>  |
+| **`WorkoutMinsHRZone23`**  | <code>'WorkoutMinsHRZone23'</code>  |
+| **`WorkoutMinsHRZone34`**  | <code>'WorkoutMinsHRZone34'</code>  |
+| **`WorkoutMinsHRZone45`**  | <code>'WorkoutMinsHRZone45'</code>  |
+| **`WorkoutMinsHRZone5`**   | <code>'WorkoutMinsHRZone5'</code>   |
+| **`MindfulMinutes`**       | <code>'MindfulMinutes'</code>       |
+| **`AvgWorkoutHR`**         | <code>'AvgWorkoutHR'</code>         |
+| **`MinWorkoutHR`**         | <code>'MinWorkoutHR'</code>         |
+| **`MaxWorkoutHR`**         | <code>'MaxWorkoutHR'</code>         |
+| **`SleepDuration`**        | <code>'SleepDuration'</code>        |
+| **`SleepDurationInbed`**   | <code>'SleepDurationInbed'</code>   |
+| **`SleepDurationAsleep`**  | <code>'SleepDurationAsleep'</code>  |
+| **`TotalWorkoutDuration`** | <code>'TotalWorkoutDuration'</code> |
+| **`TotalMinsHRZone12`**    | <code>'TotalMinsHRZone12'</code>    |
+| **`TotalMinsHRZone34`**    | <code>'TotalMinsHRZone34'</code>    |
+| **`WeeklyAvgWorkoutHR`**   | <code>'WeeklyAvgWorkoutHR'</code>   |
+| **`WeeklyExertionRate`**   | <code>'WeeklyExertionRate'</code>   |
+| **`DailyWorkoutDuration`** | <code>'DailyWorkoutDuration'</code> |
+| **`Weight`**               | <code>'Weight'</code>               |
+| **`SleepEfficiency`**      | <code>'SleepEfficiency'</code>      |
+| **`SleepLatency`**         | <code>'SleepLatency'</code>         |
+| **`SleepStageDeep`**       | <code>'SleepStageDeep'</code>       |
+| **`SleepStageLight`**      | <code>'SleepStageLight'</code>      |
+| **`SleepStageREM`**        | <code>'SleepStageREM'</code>        |
+| **`SleepStageWake`**       | <code>'SleepStageWake'</code>       |
 
 
 #### Goal

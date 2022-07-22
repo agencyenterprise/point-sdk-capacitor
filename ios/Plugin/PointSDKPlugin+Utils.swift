@@ -126,11 +126,11 @@ extension PointSDKPlugin {
         guard let metric = metric else { return [:] }
 
         return [
-          "type": metric.type,
-          "date": metric.date,
-          "value": metric.value,
-          "variance": metric.variance as Any,
-          "workoutId": metric.workoutId as Any
+            "type": metric.type.rawValue,
+            "date": metric.date,
+            "value": metric.value,
+            "variance": metric.variance as Any,
+            "workoutId": metric.workoutId as Any
         ]
       }
       

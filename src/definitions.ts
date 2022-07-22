@@ -333,54 +333,57 @@ export enum PointEnvironment {
   Staging = 'staging',
 }
 
-export type HealthMetricType =
-  | 'RestingHR'
-  | 'OneMinuteHRR'
-  | 'ThreeMinuteHRR'
-  | 'HRV'
-  | 'Vo2Max'
-  | 'ActiveCalories'
-  | 'BasalCalories'
-  | 'TotalCalories'
-  | 'WorkoutCalories'
-  | 'WorkoutDistance'
-  | 'WorkoutDuration'
-  | 'ExertionRate'
-  | 'MovementLevel'
-  | 'MinsHRZone1'
-  | 'MinsHRZone2'
-  | 'MinsHRZone3'
-  | 'MinsHRZone4'
-  | 'MinsHRZone12'
-  | 'MinsHRZone23'
-  | 'MinsHRZone34'
-  | 'WorkoutMinsHRZone1'
-  | 'WorkoutMinsHRZone2'
-  | 'WorkoutMinsHRZone3'
-  | 'WorkoutMinsHRZone4'
-  | 'WorkoutMinsHRZone12'
-  | 'WorkoutMinsHRZone23'
-  | 'WorkoutMinsHRZone34'
-  | 'MindfulMinutes'
-  | 'AvgWorkoutHR'
-  | 'MinWorkoutHR'
-  | 'MaxWorkoutHR'
-  | 'SleepDuration'
-  | 'SleepDurationInbed'
-  | 'SleepDurationAsleep'
-  | 'TotalWorkoutDuration'
-  | 'TotalMinsHRZone12'
-  | 'TotalMinsHRZone34'
-  | 'WeeklyAvgWorkoutHR'
-  | 'WeeklyExertionRate'
-  | 'DailyWorkoutDuration'
-  | 'Weight'
-  | 'SleepEfficiency'
-  | 'SleepLatency'
-  | 'SleepStageDeep'
-  | 'SleepStageLight'
-  | 'SleepStageREM'
-  | 'SleepStageWake'
-  | 'SleepDurationInbed'
-  | 'SleepDurationAsleep';
+export enum HealthMetricType {
+  RestingHR = 'RestingHR',
+  OneMinuteHRR = 'OneMinuteHRR',
+  ThreeMinuteHRR = 'ThreeMinuteHRR',
+  HRV = 'HRV',
+  Vo2Max = 'Vo2Max',
+  ActiveCalories = 'ActiveCalories',
+  BasalCalories = 'BasalCalories',
+  TotalCalories = 'TotalCalories',
+  WorkoutCalories = 'WorkoutCalories',
+  WorkoutDistance = 'WorkoutDistance',
+  WorkoutDuration = 'WorkoutDuration',
+  ExertionRate = 'ExertionRate',
+  MovementLevel = 'MovementLevel',
+  MinsHRZone1 = 'MinsHRZone1',
+  MinsHRZone2 = 'MinsHRZone2',
+  MinsHRZone3 = 'MinsHRZone3',
+  MinsHRZone4 = 'MinsHRZone4',
+  MinsHRZone12 = 'MinsHRZone12',
+  MinsHRZone23 = 'MinsHRZone23',
+  MinsHRZone34 = 'MinsHRZone34',
+  MinsHRZone45 = 'MinsHRZone45',
+  MinsHRZone5 = 'MinsHRZone5',
+  WorkoutMinsHRZone1 = 'WorkoutMinsHRZone1',
+  WorkoutMinsHRZone2 = 'WorkoutMinsHRZone2',
+  WorkoutMinsHRZone3 = 'WorkoutMinsHRZone3',
+  WorkoutMinsHRZone4 = 'WorkoutMinsHRZone4',
+  WorkoutMinsHRZone12 = 'WorkoutMinsHRZone12',
+  WorkoutMinsHRZone23 = 'WorkoutMinsHRZone23',
+  WorkoutMinsHRZone34 = 'WorkoutMinsHRZone34',
+  WorkoutMinsHRZone45 = 'WorkoutMinsHRZone45',
+  WorkoutMinsHRZone5 = 'WorkoutMinsHRZone5',
+  MindfulMinutes = 'MindfulMinutes',
+  AvgWorkoutHR = 'AvgWorkoutHR',
+  MinWorkoutHR = 'MinWorkoutHR',
+  MaxWorkoutHR = 'MaxWorkoutHR',
+  SleepDuration = 'SleepDuration',
+  SleepDurationInbed = 'SleepDurationInbed',
+  SleepDurationAsleep = 'SleepDurationAsleep',
+  TotalWorkoutDuration = 'TotalWorkoutDuration',
+  TotalMinsHRZone12 = 'TotalMinsHRZone12',
+  TotalMinsHRZone34 = 'TotalMinsHRZone34',
+  WeeklyAvgWorkoutHR = 'WeeklyAvgWorkoutHR',
+  WeeklyExertionRate = 'WeeklyExertionRate',
+  DailyWorkoutDuration = 'DailyWorkoutDuration',
+  Weight = 'Weight',
+  SleepEfficiency = 'SleepEfficiency',
+  SleepLatency = 'SleepLatency',
+  SleepStageDeep = 'SleepStageDeep',
+  SleepStageLight = 'SleepStageLight',
+  SleepStageREM = 'SleepStageREM',
+  SleepStageWake = 'SleepStageWake'
+}
 
