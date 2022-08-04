@@ -31,6 +31,9 @@ export class PointSDKWeb extends WebPlugin implements PointSDKPlugin {
   setUserToken(_options: { userToken: string }): Promise<void> {
     throw new Error('Method not implemented.');
   }
+  logout(): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
   startAllBackgroundListeners(): Promise<any> {
     throw new Error('Method not implemented.');
   }
@@ -105,13 +108,13 @@ export class PointSDKWeb extends WebPlugin implements PointSDKPlugin {
   }): Promise<HealthMetric[]> {
     throw new Error('Method not implemented.');
   }
-  getInsights(_options: { 
-    types: InsightType[]; 
-    from?: string | undefined; 
-    to?: string | undefined; 
-    offset?: number | undefined; 
+  getInsights(_options: {
+    types: InsightType[];
+    from?: string | undefined;
+    to?: string | undefined;
+    offset?: number | undefined;
   }): Promise<Insight> {
-    throw new Error('Method not implemented.')
+    throw new Error('Method not implemented.');
   }
   setUserGoal(_options: { goal: Goal }): Promise<User> {
     throw new Error('Method not implemented.');
