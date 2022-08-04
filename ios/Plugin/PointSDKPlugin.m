@@ -8,6 +8,7 @@ CAP_PLUGIN(PointSDKPlugin, "PointSDK",
            CAP_PLUGIN_METHOD(setupHealthkitIntegration, CAPPluginReturnNone);
            CAP_PLUGIN_METHOD(requestAuthorizationsIfPossible, CAPPluginReturnNone);
            CAP_PLUGIN_METHOD(setUserToken, CAPPluginReturnNone);
+           CAP_PLUGIN_METHOD(logout, CAPPluginReturnNone);
            
            //MARK: - Fitbit
            CAP_PLUGIN_METHOD(authenticateFitbit, CAPPluginReturnNone);
