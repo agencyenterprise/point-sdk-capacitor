@@ -34,7 +34,7 @@ public class PointSDKPlugin: CAPPlugin {
             do {
                 try await Point.setUserToken(
                     accessToken: call.getString("userToken")!,
-                    shouldSyncData: call.getBool("shouldSyncData", true)
+                    shouldSyncHistoricalData: call.getBool("shouldSyncData", true)
                 )
                 call.resolve()
             } catch {

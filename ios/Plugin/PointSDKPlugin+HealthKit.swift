@@ -32,15 +32,15 @@ public extension PointSDKPlugin {
         }
     }
     
-    // MARK: - Background Listeners
+    // MARK: - Listeners
     
     @objc
-    func startAllBackgroundListeners(_ call: CAPPluginCall) {
+    func startAllListeners(_ call: CAPPluginCall) {
         Task {
             guard !Task.isCancelled else { return }
             
             do {
-                try await healthKit?.startAllBackgroundListeners()
+                try await healthKit?.startAllListeners()
                 call.resolve()
             } catch {
                 call.reject(error.localizedDescription)
@@ -49,40 +49,7 @@ public extension PointSDKPlugin {
     }
     
     @objc
-    func startBackgroundListenerForType(_ call: CAPPluginCall) {
-        Task {
-            guard !Task.isCancelled else { return }
-            
-            do {
-                guard let queryType = queryTypeMapping(type: call.getString(queryTypeParam)) else {
-                    call.reject(wrongQueryTypeMsg)
-                    return
-                }
-                
-                try await healthKit?.startBackgroundListeners(for: queryType)
-                call.resolve()
-            } catch {
-                call.reject(error.localizedDescription)
-            }
-        }
-    }
-    
-    @objc
-    func disableAllBackgroundListeners(_ call: CAPPluginCall) {
-        Task {
-            guard !Task.isCancelled else { return }
-            
-            do {
-                try await healthKit?.disableAllBackgroundListeners()
-                call.resolve()
-            } catch {
-                call.reject(error.localizedDescription)
-            }
-        }
-    }
-    
-    @objc
-    func disableBackgroundListenersForType(_ call: CAPPluginCall) {
+    func startListenerForType(_ call: CAPPluginCall) {
         Task {
             guard !Task.isCancelled else { return }
             
@@ -92,7 +59,7 @@ public extension PointSDKPlugin {
                     return
                 }
                 
-                try await healthKit?.disableBackgroundListeners(for: queryType)
+                try await healthKit?.startListener(for: queryType)
                 call.resolve()
             } catch {
                 call.reject(error.localizedDescription)
@@ -100,15 +67,13 @@ public extension PointSDKPlugin {
         }
     }
     
-    // MARK: - Foreground Listeners
-    
     @objc
-    func enableAllForegroundListeners(_ call: CAPPluginCall) {
+    func stopAllListeners(_ call: CAPPluginCall) {
         Task {
             guard !Task.isCancelled else { return }
             
             do {
-                try await healthKit?.enableAllForegroundListeners()
+                try await healthKit?.stopAllListeners()
                 call.resolve()
             } catch {
                 call.reject(error.localizedDescription)
@@ -117,7 +82,7 @@ public extension PointSDKPlugin {
     }
     
     @objc
-    func enableForegroundListenerForType(_ call: CAPPluginCall) {
+    func stopListenerForType(_ call: CAPPluginCall) {
         Task {
             guard !Task.isCancelled else { return }
             
@@ -127,32 +92,11 @@ public extension PointSDKPlugin {
                     return
                 }
                 
-                try await healthKit?.listen(type: queryType)
+                try await healthKit?.stopListener(for: queryType)
                 call.resolve()
             } catch {
                 call.reject(error.localizedDescription)
             }
-        }
-    }
-    
-    @objc
-    func stopAllForegroundListeners(_ call: CAPPluginCall) {
-        healthKit?.stopAllForegroundListeners()
-        call.resolve()
-    }
-    
-    @objc
-    func stopForegroundListenerForType(_ call: CAPPluginCall) {
-        Task {
-            guard !Task.isCancelled else { return }
-            
-            guard let queryType = queryTypeMapping(type: call.getString(queryTypeParam)) else {
-                call.reject(wrongQueryTypeMsg)
-                return
-            }
-            
-            healthKit?.stopListener(type: queryType)
-            call.resolve()
         }
     }
     
@@ -185,44 +129,9 @@ public extension PointSDKPlugin {
                 
                 let result = try await healthKit?.syncHistoricalData(sampleType: queryType)
                 call.resolve([
-                    "uploadedSamplesCount": result?.uploadedSamplesCount ?? 0,
-                    "remainingSampleCount": result?.remainingSamplesCount ?? 0
-                ])
-            } catch {
-                call.reject(error.localizedDescription)
-            }
-        }
-    }
-    
-    @objc
-    func syncAllLatestData(_ call: CAPPluginCall) {
-        Task {
-            guard !Task.isCancelled else { return }
-            
-            do {
-                try await healthKit?.syncAllLatestData()
-                call.resolve()
-            } catch {
-                call.reject(error.localizedDescription)
-            }
-        }
-    }
-    
-    @objc
-    func syncLatestDataForType(_ call: CAPPluginCall) {
-        Task {
-            guard !Task.isCancelled else { return }
-            
-            do {
-                guard let queryType = queryTypeMapping(type: call.getString(queryTypeParam)) else {
-                    call.reject(wrongQueryTypeMsg)
-                    return
-                }
-                
-                let result = try await healthKit?.syncLatestData(sampleType: queryType)
-                call.resolve([
-                    "successSampleCount": result?.uploadedSamplesCount ?? 0,
-                    "remainingSampleCount": result?.remainingSamplesCount ?? 0
+                    "queryCount": result?.queryCount ?? 0,
+                    "querySamplesCount": result?.querySamplesCount ?? 0,
+                    "uploadedSamplesCount": result?.uploadedSamplesCount ?? 0
                 ])
             } catch {
                 call.reject(error.localizedDescription)
@@ -243,14 +152,13 @@ public extension PointSDKPlugin {
                 
                 let startDate = call.getDate("startDate", Calendar.current.date(byAdding: .day, value: -1, to: Date())!) // one day ago as default
                 let endDate = call.getDate("endDate", Date()) // current date as default
-                let asc = call.getBool("ascending", true)
-                let avoidDuplicates = call.getBool("avoidDuplicates", true)
+                let filterDuplicates = call.getBool("filterDuplicates", true)
                 
-                let result = try await runQuery(sampleType: queryType, startDate: startDate, endDate: endDate, isAscending: asc, avoidDuplicates: avoidDuplicates)
+                let result = try await runQuery(sampleType: queryType, startDate: startDate, endDate: endDate, filterDuplicates: filterDuplicates)
                 call.resolve([
-                    "success": result?.success ?? false,
-                    "uploadedSamplesCount": result?.uploadedSamplesCount ?? 0,
-                    "duplicatedSamplesCount": result?.duplicatedSamplesCount ?? 0
+                    "queryCount": result?.queryCount ?? 0,
+                    "querySamplesCount": result?.querySamplesCount ?? 0,
+                    "uploadedSamplesCount": result?.uploadedSamplesCount ?? 0
                 ])
             } catch {
                 call.reject(error.localizedDescription)

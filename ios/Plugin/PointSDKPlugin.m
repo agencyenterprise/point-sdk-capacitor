@@ -16,23 +16,15 @@ CAP_PLUGIN(PointSDKPlugin, "PointSDK",
            CAP_PLUGIN_METHOD(isFitbitAuthenticated, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(revokeFitbitAuthentication, CAPPluginReturnNone);
            
-           // MARK: - Background Listeners
-           CAP_PLUGIN_METHOD(startAllBackgroundListeners, CAPPluginReturnNone);
-           CAP_PLUGIN_METHOD(startBackgroundListenerForType, CAPPluginReturnNone);
-           CAP_PLUGIN_METHOD(disableAllBackgroundListeners, CAPPluginReturnNone);
-           CAP_PLUGIN_METHOD(disableBackgroundListenersForType, CAPPluginReturnNone);
-           
-           // MARK: - Foreground Listeners
-           CAP_PLUGIN_METHOD(enableAllForegroundListeners, CAPPluginReturnNone);
-           CAP_PLUGIN_METHOD(enableForegroundListenerForType, CAPPluginReturnNone);
-           CAP_PLUGIN_METHOD(stopAllForegroundListeners, CAPPluginReturnNone);
-           CAP_PLUGIN_METHOD(stopForegroundListenerForType, CAPPluginReturnNone);
+           // MARK: - Listeners
+           CAP_PLUGIN_METHOD(startAllListeners, CAPPluginReturnNone);
+           CAP_PLUGIN_METHOD(startListenerForType, CAPPluginReturnNone);
+           CAP_PLUGIN_METHOD(stopAllListeners, CAPPluginReturnNone);
+           CAP_PLUGIN_METHOD(stopListenerForType, CAPPluginReturnNone);
            
            // MARK: - Sync
            CAP_PLUGIN_METHOD(syncAllHistoricalData, CAPPluginReturnNone);
            CAP_PLUGIN_METHOD(syncHistoricalDataForType, CAPPluginReturnPromise);
-           CAP_PLUGIN_METHOD(syncAllLatestData, CAPPluginReturnNone);
-           CAP_PLUGIN_METHOD(syncLatestDataForType, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(sync, CAPPluginReturnPromise);
            
            // MARK: - API

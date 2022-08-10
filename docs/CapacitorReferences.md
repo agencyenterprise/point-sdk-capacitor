@@ -14,18 +14,12 @@ This document contains references to all available methods and types generated b
 - [`requestAuthorizationsIfPossible()`](#requestauthorizationsifpossible)
 - [`setUserToken(...)`](#setusertoken)
 - [`logout()`](#logout)
-- [`startAllBackgroundListeners()`](#startallbackgroundlisteners)
-- [`startBackgroundListenersForType(...)`](#startbackgroundlistenersfortype)
-- [`disableAllBackgroundListeners()`](#disableallbackgroundlisteners)
-- [`disableBackgroundListenersForType(...)`](#disablebackgroundlistenersfortype)
-- [`enableAllForegroundListeners()`](#enableallforegroundlisteners)
-- [`enableForegroundListenerForType(...)`](#enableforegroundlistenerfortype)
-- [`stopAllForegroundListeners()`](#stopallforegroundlisteners)
-- [`stopForegroundListenerForType(...)`](#stopforegroundlistenerfortype)
+- [`startAllListeners()`](#startalllisteners)
+- [`startListenerForType(...)`](#startlistenerfortype)
+- [`StopAllListeners()`](#stopalllisteners)
+- [`stopBackgroundListenerForType(...)`](#stopbackgroundlistenerfortype)
 - [`syncAllHistoricalData()`](#syncallhistoricaldata)
 - [`syncHistoricalDataForType(...)`](#synchistoricaldatafortype)
-- [`syncAllLatestData()`](#syncalllatestdata)
-- [`syncLatestDataForType(...)`](#synclatestdatafortype)
 - [`sync(...)`](#sync)
 - [`getUserData()`](#getuserdata)
 - [`getUserWorkouts(...)`](#getuserworkouts)
@@ -152,25 +146,25 @@ Clear the user token and the local cache. Also stops all listeners.
 
 ---
 
-### startAllBackgroundListeners()
+### startAllListeners()
 
 ```typescript
-startAllBackgroundListeners() => Promise<any>
+startAllListeners() => Promise<any>
 ```
 
-Enable background listeners to sync all types defined on SDK setup.
+Start listeners to sync all types defined on SDK setup.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
 ---
 
-### startBackgroundListenersForType(...)
+### startListenerForType(...)
 
 ```typescript
-startBackgroundListenersForType(options: { type: QueryType; }) => Promise<any>
+startListenerForType(options: { type: QueryType; }) => Promise<any>
 ```
 
-Enable background listeners to sync just a specific query type.
+Start listener to sync just a specific query type.
 
 | Param         | Type                                                       |
 | ------------- | ---------------------------------------------------------- |
@@ -180,81 +174,25 @@ Enable background listeners to sync just a specific query type.
 
 ---
 
-### disableAllBackgroundListeners()
+### StopAllListeners()
 
 ```typescript
-disableAllBackgroundListeners() => Promise<any>
+StopAllListeners() => Promise<any>
 ```
 
-Disables background listeners for all types defined on SDK setup.
+Stop listeners for all types defined on SDK setup.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
 ---
 
-### disableBackgroundListenersForType(...)
+### stopBackgroundListenerForType(...)
 
 ```typescript
-disableBackgroundListenersForType(options: { type: QueryType; }) => Promise<any>
+stopBackgroundListenerForType(options: { type: QueryType; }) => Promise<any>
 ```
 
-Disables background listeners for a specific query type.
-
-| Param         | Type                                                       |
-| ------------- | ---------------------------------------------------------- |
-| **`options`** | <code>{ type: <a href="#querytype">QueryType</a>; }</code> |
-
-**Returns:** <code>Promise&lt;any&gt;</code>
-
----
-
-### enableAllForegroundListeners()
-
-```typescript
-enableAllForegroundListeners() => Promise<any>
-```
-
-Start a foreground listeners for all types defined on SDK setup.
-
-**Returns:** <code>Promise&lt;any&gt;</code>
-
----
-
-### enableForegroundListenerForType(...)
-
-```typescript
-enableForegroundListenerForType(options: { type: QueryType; }) => Promise<any>
-```
-
-Start a foreground listener for specific query type.
-
-| Param         | Type                                                       |
-| ------------- | ---------------------------------------------------------- |
-| **`options`** | <code>{ type: <a href="#querytype">QueryType</a>; }</code> |
-
-**Returns:** <code>Promise&lt;any&gt;</code>
-
----
-
-### stopAllForegroundListeners()
-
-```typescript
-stopAllForegroundListeners() => Promise<any>
-```
-
-Stops all foreground listeners that are currently active
-
-**Returns:** <code>Promise&lt;any&gt;</code>
-
----
-
-### stopForegroundListenerForType(...)
-
-```typescript
-stopForegroundListenerForType(options: { type: QueryType; }) => Promise<any>
-```
-
-Stops foreground listener off specific query type.
+Stop listeners for a specific query type.
 
 | Param         | Type                                                       |
 | ------------- | ---------------------------------------------------------- |
@@ -292,45 +230,17 @@ Syncs the past 3 months historical data for a given sample type with the Point d
 
 ---
 
-### syncAllLatestData()
-
-```typescript
-syncAllLatestData() => Promise<any>
-```
-
-Syncs the HealthKit data for all permissioned types with `Point` database limited to 6 months.
-
-**Returns:** <code>Promise&lt;any&gt;</code>
-
----
-
-### syncLatestDataForType(...)
-
-```typescript
-syncLatestDataForType(options: { type: QueryType; }) => Promise<any>
-```
-
-Syncs the HealthKit data from the latest sample of the given type until now with Point database, limited to 3 months of data.
-
-| Param         | Type                                                       |
-| ------------- | ---------------------------------------------------------- |
-| **`options`** | <code>{ type: <a href="#querytype">QueryType</a>; }</code> |
-
-**Returns:** <code>Promise&lt;any&gt;</code>
-
----
-
 ### sync(...)
 
 ```typescript
-sync(options: { startDate?: string; endDate?: string; ascending?: boolean; avoidDuplicates?: boolean; }) => Promise<any>
+sync(options: { type: QueryType; startDate?: string; endDate?: string; filterDuplicates?: boolean; }) => Promise<any>
 ```
 
 Syncs the HealthKit data from the query results with the `Point` database.
 
-| Param         | Type                                                                                                   |
-| ------------- | ------------------------------------------------------------------------------------------------------ |
-| **`options`** | <code>{ startDate?: string; endDate?: string; ascending?: boolean; avoidDuplicates?: boolean; }</code> |
+| Param         | Type                                                                                                                         |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| **`options`** | <code>{ type: <a href="#querytype">QueryType</a>; startDate?: string; endDate?: string; filterDuplicates?: boolean; }</code> |
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 

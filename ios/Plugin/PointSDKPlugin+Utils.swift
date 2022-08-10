@@ -176,81 +176,8 @@ extension PointSDKPlugin {
         sampleType: HealthQueryType,
         startDate: Date,
         endDate: Date,
-        isAscending: Bool,
-        avoidDuplicates: Bool
-    ) async throws -> SyncResult? {
-        switch sampleType {
-        case .restingHeartRate:
-            return try await healthKit?.sync(query: .restingHeartRate(
-                startDate: startDate,
-                endDate: endDate,
-                isAscending: isAscending
-            ))
-
-        case .heartRate:
-            return try await healthKit?.sync(query: .heartRate(
-                startDate: startDate,
-                endDate: endDate,
-                isAscending: isAscending
-            ))
-
-        case .activeEnergyBurned:
-            return try await healthKit?.sync(query: .activeEnergyBurned(
-                startDate: startDate,
-                endDate: endDate,
-                isAscending: isAscending
-            ))
-
-        case .basalEnergyBurned:
-            return try await healthKit?.sync(query: .basalEnergyBurned(
-                startDate: startDate,
-                endDate: endDate,
-                isAscending: isAscending
-            ))
-
-        case .workout:
-            return try await healthKit?.sync(query: .workout(
-                startDate: startDate,
-                endDate: endDate,
-                isAscending: isAscending
-            ))
-
-        case .heartRateVariabilitySDNN:
-            return try await healthKit?.sync(query: .heartRateVariabilitySDNN(
-                startDate: startDate,
-                endDate: endDate,
-                isAscending: isAscending
-            ))
-
-        case .vo2Max:
-            return try await healthKit?.sync(query: .vo2Max(
-                startDate: startDate,
-                endDate: endDate,
-                isAscending: isAscending
-            ))
-
-        case .stepCount:
-            return try await healthKit?.sync(query: .stepCount(
-                startDate: startDate,
-                endDate: endDate
-            ))
-
-        case .mindfulSession:
-            return try await healthKit?.sync(query: .mindfulness(
-                startDate: startDate,
-                endDate: endDate,
-                isAscending: isAscending
-            ))
-
-        case .sleepAnalysis:
-            return try await healthKit?.sync(query: .sleep(
-                startDate: startDate,
-                endDate: endDate,
-                isAscending: isAscending
-            ))
-
-        default:
-            return nil
-        }
+        filterDuplicates: Bool
+    ) async throws -> BatchSyncResult? {
+        return try await healthKit?.sync(queryType: sampleType, from: startDate, to: endDate, filterDuplicates: filterDuplicates)
     }
 }

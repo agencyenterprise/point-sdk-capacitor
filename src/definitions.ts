@@ -58,44 +58,24 @@ export interface PointSDKPlugin {
   logout(): Promise<void>;
 
   /**
-   * Enable background listeners to sync all types defined on SDK setup.
+   * Start listeners to sync all types defined on SDK setup.
    */
-  startAllBackgroundListeners(): Promise<any>;
+  startAllListeners(): Promise<any>;
 
   /**
-   * Enable background listeners to sync just a specific query type.
+   * Start listener to sync just a specific query type.
    */
-  startBackgroundListenersForType(options: { type: QueryType }): Promise<any>;
+  startListenerForType(options: { type: QueryType }): Promise<any>;
 
   /**
-   * Disables background listeners for all types defined on SDK setup.
+   * Stop listeners for all types defined on SDK setup.
    */
-  disableAllBackgroundListeners(): Promise<any>;
+  StopAllListeners(): Promise<any>;
 
   /**
-   * Disables background listeners for a specific query type.
+   * Stop listeners for a specific query type.
    */
-  disableBackgroundListenersForType(options: { type: QueryType }): Promise<any>;
-
-  /**
-   * Start a foreground listeners for all types defined on SDK setup.
-   */
-  enableAllForegroundListeners(): Promise<any>;
-
-  /**
-   * Start a foreground listener for specific query type.
-   */
-  enableForegroundListenerForType(options: { type: QueryType }): Promise<any>;
-
-  /**
-   * Stops all foreground listeners that are currently active
-   */
-  stopAllForegroundListeners(): Promise<any>;
-
-  /**
-   * Stops foreground listener off specific query type.
-   */
-  stopForegroundListenerForType(options: { type: QueryType }): Promise<any>;
+  stopBackgroundListenerForType(options: { type: QueryType }): Promise<any>;
 
   /**
    * Syncs the past 3 months of historical data for permissioned types with the Point database.
@@ -108,23 +88,13 @@ export interface PointSDKPlugin {
   syncHistoricalDataForType(options: { type: QueryType }): Promise<any>;
 
   /**
-   * Syncs the HealthKit data for all permissioned types with `Point` database limited to 6 months.
-   */
-  syncAllLatestData(): Promise<any>;
-
-  /**
-   * Syncs the HealthKit data from the latest sample of the given type until now with Point database, limited to 3 months of data.
-   */
-  syncLatestDataForType(options: { type: QueryType }): Promise<any>;
-
-  /**
    * Syncs the HealthKit data from the query results with the `Point` database.
    */
   sync(options: {
+    type: QueryType;
     startDate?: string;
     endDate?: string;
-    ascending?: boolean;
-    avoidDuplicates?: boolean;
+    filterDuplicates?: boolean;
   }): Promise<any>;
 
   /**
