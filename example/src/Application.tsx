@@ -1,27 +1,16 @@
 import Nullstack from "nullstack";
 import "./Application.scss";
-import { App } from "@capacitor/app";
 import { PointSDK, PointEnvironment, QueryType, Goal, InsightType } from "../../dist/esm";
 
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb24iOiJQb2ludCIsIm9yZ0lkIjo0Miwic3ViIjoicG9pbnR8NjJhYjNjNzJkYzc0ODZhM2VkZTFkMTdjIiwiaWF0IjoxNjU3MTE1NDI5LCJleHAiOjE2NTcyMDE4Mjl9.L3HVj4U4NCu9nJ-gzmXjTGANyp_yCcNxLqRk0U_pQNQ";
-
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb24iOiJQb2ludCIsIm9yZ0lkIjo0NCwic3ViIjoicG9pbnR8NjJlZDU1MTY4ZDcwN2EzYTUwM2Y3ZTA3IiwiaWF0IjoxNjYwMTU5NjEwLCJleHAiOjE2NjAyNDYwMTB9.OBn9nGHsrCcv5pVwGvhzudVVU0nhwcL09gRB7hQ7Gmc";
 class Application extends Nullstack {
   async hydrate() {
     // Setup the SDK as soon as possible, before background queries
     this.setupSDK();
 
     // Apple recommends setting up the background queries as soon as possible, first thing on app launch
-    await this.startBackgroundListeners();
-
-    // enable/disable foreground listeners on app state change
-    App.addListener("appStateChange", ({ isActive }) => {
-      if (isActive) {
-        this.enableAllForegroundListeners();
-      } else {
-        this.stopAllForegroundListeners();
-      }
-    });
+    await this.startListeners();
   }
 
   prepare({ page }) {
@@ -79,16 +68,8 @@ class Application extends Nullstack {
     await PointSDK.requestAuthorizationsIfPossible();
   }
 
-  async startBackgroundListeners() {
-    await PointSDK.startAllBackgroundListeners();
-  }
-
-  async enableAllForegroundListeners() {
-    await PointSDK.enableAllForegroundListeners();
-  }
-
-  async stopAllForegroundListeners() {
-    await PointSDK.stopAllForegroundListeners();
+  async startListeners() {
+    await PointSDK.startAllListeners();
   }
 
   async setUserToken() {
@@ -121,7 +102,7 @@ class Application extends Nullstack {
   }
 
   async getInsights() {
-    const result = await PointSDK.getInsights({ types: [InsightType.UsualWorkoutTime]});
+    const result = await PointSDK.getInsights({ types: [InsightType.UsualWorkoutTime] });
     Application.logAndAlert(result);
   }
 

@@ -34,42 +34,23 @@ export class PointSDKWeb extends WebPlugin implements PointSDKPlugin {
   logout(): Promise<void> {
     throw new Error('Method not implemented.');
   }
-  startAllBackgroundListeners(): Promise<any> {
+
+  startAllListeners(): Promise<any> {
     throw new Error('Method not implemented.');
   }
-  startBackgroundListenersForType(_options: { type: QueryType }): Promise<any> {
+  startListenerForType(_options: { type: QueryType }): Promise<any> {
     throw new Error('Method not implemented.');
   }
-  disableAllBackgroundListeners(): Promise<any> {
+  StopAllListeners(): Promise<any> {
     throw new Error('Method not implemented.');
   }
-  disableBackgroundListenersForType(_options: {
-    type: QueryType;
-  }): Promise<any> {
-    throw new Error('Method not implemented.');
-  }
-  enableAllForegroundListeners(): Promise<any> {
-    throw new Error('Method not implemented.');
-  }
-  enableForegroundListenerForType(_options: { type: QueryType }): Promise<any> {
-    throw new Error('Method not implemented.');
-  }
-  stopAllForegroundListeners(): Promise<any> {
-    throw new Error('Method not implemented.');
-  }
-  stopForegroundListenerForType(_options: { type: QueryType }): Promise<any> {
+  stopListenerForType(_options: { type: QueryType }): Promise<any> {
     throw new Error('Method not implemented.');
   }
   syncAllHistoricalData(): Promise<any> {
     throw new Error('Method not implemented.');
   }
   syncHistoricalDataForType(_options: { type: QueryType }): Promise<any> {
-    throw new Error('Method not implemented.');
-  }
-  syncAllLatestData(): Promise<any> {
-    throw new Error('Method not implemented.');
-  }
-  syncLatestDataForType(_options: { type: QueryType }): Promise<any> {
     throw new Error('Method not implemented.');
   }
 
