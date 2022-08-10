@@ -70,7 +70,7 @@ export interface PointSDKPlugin {
   /**
    * Stop listeners for all types defined on SDK setup.
    */
-  StopAllListeners(): Promise<any>;
+  stopAllListeners(): Promise<any>;
 
   /**
    * Stop listeners for a specific query type.
