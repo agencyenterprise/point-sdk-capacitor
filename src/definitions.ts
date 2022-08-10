@@ -75,7 +75,7 @@ export interface PointSDKPlugin {
   /**
    * Stop listeners for a specific query type.
    */
-  stopBackgroundListenerForType(options: { type: QueryType }): Promise<any>;
+  stopListenerForType(options: { type: QueryType }): Promise<any>;
 
   /**
    * Syncs the past 3 months of historical data for permissioned types with the Point database.

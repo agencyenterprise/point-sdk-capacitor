@@ -17,7 +17,7 @@ This document contains references to all available methods and types generated b
 - [`startAllListeners()`](#startalllisteners)
 - [`startListenerForType(...)`](#startlistenerfortype)
 - [`StopAllListeners()`](#stopalllisteners)
-- [`stopBackgroundListenerForType(...)`](#stopbackgroundlistenerfortype)
+- [`stopListenerForType(...)`](#stoplistenerfortype)
 - [`syncAllHistoricalData()`](#syncallhistoricaldata)
 - [`syncHistoricalDataForType(...)`](#synchistoricaldatafortype)
 - [`sync(...)`](#sync)
@@ -186,10 +186,10 @@ Stop listeners for all types defined on SDK setup.
 
 ---
 
-### stopBackgroundListenerForType(...)
+### stopListenerForType(...)
 
 ```typescript
-stopBackgroundListenerForType(options: { type: QueryType; }) => Promise<any>
+stopListenerForType(options: { type: QueryType; }) => Promise<any>
 ```
 
 Stop listeners for a specific query type.

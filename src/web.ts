@@ -44,7 +44,7 @@ export class PointSDKWeb extends WebPlugin implements PointSDKPlugin {
   StopAllListeners(): Promise<any> {
     throw new Error('Method not implemented.');
   }
-  stopBackgroundListenerForType(_options: { type: QueryType }): Promise<any> {
+  stopListenerForType(_options: { type: QueryType }): Promise<any> {
     throw new Error('Method not implemented.');
   }
   syncAllHistoricalData(): Promise<any> {
