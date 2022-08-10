@@ -174,7 +174,7 @@ Start listener to sync just a specific query type.
 
 ---
 
-### StopAllListeners()
+### stopAllListeners()
 
 ```typescript
 StopAllListeners() => Promise<any>
