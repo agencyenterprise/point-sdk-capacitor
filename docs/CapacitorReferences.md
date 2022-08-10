@@ -16,7 +16,7 @@ This document contains references to all available methods and types generated b
 - [`logout()`](#logout)
 - [`startAllListeners()`](#startalllisteners)
 - [`startListenerForType(...)`](#startlistenerfortype)
-- [`StopAllListeners()`](#stopalllisteners)
+- [`stopAllListeners()`](#stopalllisteners)
 - [`stopListenerForType(...)`](#stoplistenerfortype)
 - [`syncAllHistoricalData()`](#syncallhistoricaldata)
 - [`syncHistoricalDataForType(...)`](#synchistoricaldatafortype)
