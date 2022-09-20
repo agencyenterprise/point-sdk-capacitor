@@ -6,32 +6,32 @@ import PointSDK
 public extension PointSDKPlugin {
     
     @objc
-    func setupFitbitIntegration(_ call: CAPPluginCall) {
-        if let clientId = call.getString("fitbitClientId") {
-            fitbitManager = Point.setupFitbitIntegration(fitbitClientId: clientId)
+    func setupOuraIntegration(_ call: CAPPluginCall) {
+        if let clientId = call.getString("ouraClientId") {
+            ouraManager = Point.setupOuraIntegration(ouraClientId: clientId)
             call.resolve()
         } else {
-            call.reject("setupFitbitIntegration error: Must provide fitbit client id.")
+            call.reject("setupOuraIntegration error: Must provide oura client id.")
         }
     }
     
     @objc
-    func authenticateFitbit(_ call: CAPPluginCall) {
+    func authenticateOura(_ call: CAPPluginCall) {
         Task {
             guard !Task.isCancelled else { return }
             
             do {
                 if let callbackScheme = call.getString("callbackURLScheme") {
                     
-                    var scopes = FitbitScopes.allCases
-                    if let scopesParam = call.getArray("fitbitScopes") {
-                        scopes = scopesParam.compactMap { fitbitScopesMapping(type: $0 as? String) }
+                    var scopes = OuraScopes.allCases
+                    if let scopesParam = call.getArray("ouraScopes") {
+                        scopes = scopesParam.compactMap { ouraScopesMapping(type: $0 as? String) }
                     }
                     
-                    try await fitbitManager?.authenticate(scopes: scopes, callbackURLScheme: callbackScheme)
+                    try await ouraManager?.authenticate(scopes: scopes, callbackURLScheme: callbackScheme)
                     call.resolve()
                 } else {
-                    call.reject("authenticateFitbit error: Must provide a callbackURLScheme.")
+                    call.reject("authenticateOura error: Must provide a callbackURLScheme.")
                 }
             } catch {
                 call.reject(error.localizedDescription)
@@ -40,12 +40,12 @@ public extension PointSDKPlugin {
     }
     
     @objc
-    func revokeFitbitAuthentication(_ call: CAPPluginCall) {
+    func revokeOuraAuthentication(_ call: CAPPluginCall) {
         Task {
             guard !Task.isCancelled else { return }
             
             do {
-                try await fitbitManager?.revoke()
+                try await ouraManager?.revoke()
                 call.resolve()
             } catch {
                 call.reject(error.localizedDescription)
@@ -54,12 +54,12 @@ public extension PointSDKPlugin {
     }
     
     @objc
-    func isFitbitAuthenticated(_ call: CAPPluginCall) {
+    func isOuraAuthenticated(_ call: CAPPluginCall) {
         Task {
             guard !Task.isCancelled else { return }
             
             do {
-                let result = try await fitbitManager?.getUserAuthenticationStatus()?.active ?? false
+                let result = try await ouraManager?.getUserAuthenticationStatus()?.active ?? false
                 call.resolve([
                     "result" : result
                 ])

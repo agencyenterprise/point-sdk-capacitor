@@ -19,7 +19,7 @@
   "webDir": "www",
   "bundledWebRuntime": false,
   "server": {
-    "url": "http://192.168.15.39:3000",
+    "url": "http://<yourIp>:3000",
     "cleartext": true
   }
 }

@@ -15,6 +15,12 @@ CAP_PLUGIN(PointSDKPlugin, "PointSDK",
            CAP_PLUGIN_METHOD(setupFitbitIntegration, CAPPluginReturnNone);
            CAP_PLUGIN_METHOD(isFitbitAuthenticated, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(revokeFitbitAuthentication, CAPPluginReturnNone);
+
+           //MARK: - Oura
+           CAP_PLUGIN_METHOD(authenticateOura, CAPPluginReturnNone);
+           CAP_PLUGIN_METHOD(setupOuraIntegration, CAPPluginReturnNone);
+           CAP_PLUGIN_METHOD(isOuraAuthenticated, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(revokeOuraAuthentication, CAPPluginReturnNone);
            
            // MARK: - Listeners
            CAP_PLUGIN_METHOD(startAllListeners, CAPPluginReturnNone);
