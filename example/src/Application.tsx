@@ -36,7 +36,13 @@ class Application extends Nullstack {
         <br></br>
         <button onclick={this.authenticateFitbit}>Authenticate Fitbit</button>
         <br></br>
+        <button onclick={this.authenticateOura}>Authenticate Oura</button>
+        <br></br>
         <button onclick={this.getInsights}>Get Insights</button>
+        <br></br>
+        <button onclick={this.getFitbitStatus}>Get Fitbit Status</button>
+        <br></br>
+        <button onclick={this.getOuraStatus}>Get Oura Status</button>
         <br></br>
       </main>
     );
@@ -44,7 +50,7 @@ class Application extends Nullstack {
 
   setupSDK() {
     PointSDK.setup({
-      clientId: "clientID",
+      clientId: "8LBpmn8YYvWZ0MX-EyBx51O39Pd9u0csvVl5",
       clientSecret: "clientSecret",
       environment: PointEnvironment.Development,
       verbose: true,
@@ -62,6 +68,7 @@ class Application extends Nullstack {
     });
 
     PointSDK.setupFitbitIntegration({ fitbitClientId: "23895P" });
+    PointSDK.setupOuraIntegration({ ouraClientId: "5LSPZR2EKG2GQ76J" });
   }
 
   async requestPermissions() {
@@ -113,6 +120,20 @@ class Application extends Nullstack {
 
   async authenticateFitbit() {
     await PointSDK.authenticateFitbit({ callbackURLScheme: "exampleapp" });
+  }
+
+  async authenticateOura() {
+    await PointSDK.authenticateOura({ callbackURLScheme: "exampleapp" });
+  }
+
+  async getFitbitStatus() {
+    const result = await PointSDK.isFitbitAuthenticated();
+    Application.logAndAlert(result);
+  }
+
+  async getOuraStatus() {
+    const result = await PointSDK.isOuraAuthenticated();
+    Application.logAndAlert(result);
   }
 
   static logAndAlert(content) {

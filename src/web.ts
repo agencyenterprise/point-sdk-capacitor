@@ -2,6 +2,7 @@ import { WebPlugin } from '@capacitor/core';
 
 import type {
   FitbitScopes,
+  OuraScopes,
   Goal,
   HealthMetric,
   HealthMetricType,
@@ -127,6 +128,24 @@ export class PointSDKWeb extends WebPlugin implements PointSDKPlugin {
     throw new Error('Method not implemented.');
   }
   revokeFitbitAuthentication(): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
+  isFitbitAuthenticated(): Promise<boolean> {
+    throw new Error('Method not implemented.');
+  }
+  setupOuraIntegration(_options: { ouraClientId: string }): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
+  authenticateOura(_options: {
+    callbackURLScheme: string;
+    ouraScopes: OuraScopes[];
+  }): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
+  revokeOuraAuthentication(): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
+  isOuraAuthenticated(): Promise<boolean> {
     throw new Error('Method not implemented.');
   }
 }

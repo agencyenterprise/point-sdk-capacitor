@@ -11,6 +11,7 @@ public class PointSDKPlugin: CAPPlugin {
     
     var healthKit: HealthKitManager?
     var fitbitManager: FitbitIntegrationManager?
+    var ouraManager: OuraIntegrationManager?
     var healthService: HealthDataService { Point.healthDataService }
     
     @objc

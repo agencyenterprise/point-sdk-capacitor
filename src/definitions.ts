@@ -25,6 +25,13 @@ export interface PointSDKPlugin {
   setupFitbitIntegration(options: { fitbitClientId: string }): Promise<void>;
 
   /**
+   * Sets up Oura integration.
+   * Calling this will instantiate ``OuraIntegrationManager`` within the SDK and it will be available for you to use.
+   * Your Oura Client ID is provided by Oura when you create your Oura app integration.
+   */
+  setupOuraIntegration(options: { ouraClientId: string }): Promise<void>;
+
+  /**
    * Call this function to let the user authenticate his `Fitbit` account and integrate it with their `Point` account.
    * When you call this function your app will display a browser with the Fitbit authentication web page, if the user successfully authenticates, the browser will be dismissed and the control will be handled back to your app.
    */
@@ -34,9 +41,33 @@ export interface PointSDKPlugin {
   }): Promise<void>;
 
   /**
+   * Call this function to let the user authenticate his `Oura` account and integrate it with their `Point` account.
+   * When you call this function your app will display a browser with the Oura authentication web page, if the user successfully authenticates, the browser will be dismissed and the control will be handled back to your app.
+   */
+   authenticateOura(options: {
+    callbackURLScheme: string;
+    ouraScopes?: OuraScopes[];
+  }): Promise<void>;
+
+  /**
    * Revokes the user's Fitbit authentication. Effectively, this will cause Point to stop collecting Fitbit data from this user.
    */
   revokeFitbitAuthentication(): Promise<void>;
+
+  /**
+   * Revokes the user's Oura authentication. Effectively, this will cause Point to stop collecting Oura data from this user.
+   */
+  revokeOuraAuthentication(): Promise<void>;
+
+  /**
+   * Call this function to know if your user has already authenticated their Fitbit account.
+   */
+  isFitbitAuthenticated(): Promise<boolean>;
+
+  /**
+   * Call this function to know if your user has already authenticated their Oura account.
+   */
+  isOuraAuthenticated(): Promise<boolean>;
 
   /**
    * Request user permissions for all ``QueryType`` defined at SDK setup.
@@ -171,7 +202,7 @@ export interface PointSDKPlugin {
   }): Promise<Insight>;
 }
 
-type GoalProgressKey = 'overral' | 'endurance' | 'recovery' | 'strength';
+type GoalProgressKey = 'overall' | 'endurance' | 'recovery' | 'strength';
 
 type GoalProgressValue = {
   value: number;
@@ -183,7 +214,6 @@ export interface User {
   email: string;
   birthday: string;
   firstName: string;
-  isSubscriber: boolean;
   goal: string;
   goalProgress: Record<GoalProgressKey, GoalProgressValue>;
   specificGoal: string;
@@ -279,13 +309,16 @@ export enum QueryType {
 export enum FitbitScopes {
   Activity = 'activity',
   Heartrate = 'heartrate',
-  Location = 'location',
-  Nutrition = 'nutrition',
   Profile = 'profile',
-  Settings = 'settings',
   Sleep = 'sleep',
-  Social = 'social',
   Weight = 'weight',
+}
+export enum OuraScopes {
+  Daily = 'daily',
+  Heartrate = 'heartrate',
+  Personal = 'personal',
+  Session = 'session',
+  Workout = 'workout'
 }
 
 export enum Goal {
