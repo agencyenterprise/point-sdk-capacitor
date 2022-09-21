@@ -55,7 +55,7 @@ export interface PointSDKPlugin {
   revokeFitbitAuthentication(): Promise<void>;
 
   /**
-   * Revokes the user's Oura authentication. Effectively, this will cause Point to stop collecting Fitbit data from this user.
+   * Revokes the user's Oura authentication. Effectively, this will cause Point to stop collecting Oura data from this user.
    */
   revokeOuraAuthentication(): Promise<void>;
 
