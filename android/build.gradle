@@ -45,13 +45,18 @@ android {
 repositories {
     google()
     mavenCentral()
+    maven { url 'https://jitpack.io' }
 }
 
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':capacitor-android')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.github.agencyenterprise:point-android:1.0.0'
     implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+
+
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
