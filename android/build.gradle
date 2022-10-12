@@ -55,7 +55,7 @@ dependencies {
     implementation project(':capacitor-android')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.github.agencyenterprise:point-android:1.0.0'
+    implementation 'com.github.agencyenterprise:point-android:1.0.1'
     implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
 
 
