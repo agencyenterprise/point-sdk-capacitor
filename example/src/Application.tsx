@@ -3,7 +3,7 @@ import "./Application.scss";
 import { PointSDK, PointEnvironment, QueryType, Goal, InsightType } from "../../dist/esm";
 
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb24iOiJQb2ludCIsIm9yZ0lkIjo0NCwic3ViIjoicG9pbnR8NjJlZDU1MTY4ZDcwN2EzYTUwM2Y3ZTA3IiwiaWF0IjoxNjYwMTU5NjEwLCJleHAiOjE2NjAyNDYwMTB9.OBn9nGHsrCcv5pVwGvhzudVVU0nhwcL09gRB7hQ7Gmc";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb24iOiJQb2ludCBPcmciLCJvcmdJZCI6NDQsInN1YiI6InBvaW50fDYzM2VmYjY1NTUxMzY3NzA2MmUwOTM0ZiIsImlhdCI6MTY2NTU5Mjc0NCwiZXhwIjoxNjY1Njc5MTQ0fQ.HJDTKeVL_0mH5AOu-nWIYWRSh0UeVSCO5d7EnANRxgQ";
 class Application extends Nullstack {
   async hydrate() {
     // Setup the SDK as soon as possible, before background queries
