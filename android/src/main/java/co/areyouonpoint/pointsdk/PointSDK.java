@@ -1,4 +1,4 @@
-package co.areyouonpoint.sdk.capacitor;
+package co.areyouonpoint.pointsdk;
 
 import android.util.Log;
 

@@ -6,38 +6,40 @@ This document contains references to all available methods and types generated b
 
 <docgen-index>
 
-* [`setup(...)`](#setup)
-* [`setupHealthkitIntegration(...)`](#setuphealthkitintegration)
-* [`setupFitbitIntegration(...)`](#setupfitbitintegration)
-* [`setupOuraIntegration(...)`](#setupouraintegration)
-* [`authenticateFitbit(...)`](#authenticatefitbit)
-* [`authenticateOura(...)`](#authenticateoura)
-* [`revokeFitbitAuthentication()`](#revokefitbitauthentication)
-* [`revokeOuraAuthentication()`](#revokeouraauthentication)
-* [`requestAuthorizationsIfPossible()`](#requestauthorizationsifpossible)
-* [`setUserToken(...)`](#setusertoken)
-* [`logout()`](#logout)
-* [`startAllListeners()`](#startalllisteners)
-* [`startListenerForType(...)`](#startlistenerfortype)
-* [`stopAllListeners()`](#stopalllisteners)
-* [`stopListenerForType(...)`](#stoplistenerfortype)
-* [`syncAllHistoricalData()`](#syncallhistoricaldata)
-* [`syncHistoricalDataForType(...)`](#synchistoricaldatafortype)
-* [`sync(...)`](#sync)
-* [`getUserData()`](#getuserdata)
-* [`getUserWorkouts(...)`](#getuserworkouts)
-* [`getUserWorkoutById(...)`](#getuserworkoutbyid)
-* [`getWorkoutRecommendations(...)`](#getworkoutrecommendations)
-* [`getDailyHistory(...)`](#getdailyhistory)
-* [`getHealthMetrics(...)`](#gethealthmetrics)
-* [`setUserGoal(...)`](#setusergoal)
-* [`setUserSpecificGoal(...)`](#setuserspecificgoal)
-* [`rateWorkout(...)`](#rateworkout)
-* [`saveWorkoutRecommendation(...)`](#saveworkoutrecommendation)
-* [`getInsights(...)`](#getinsights)
-* [Interfaces](#interfaces)
-* [Type Aliases](#type-aliases)
-* [Enums](#enums)
+- [`setup(...)`](#setup)
+- [`setupHealthkitIntegration(...)`](#setuphealthkitintegration)
+- [`setupFitbitIntegration(...)`](#setupfitbitintegration)
+- [`setupOuraIntegration(...)`](#setupouraintegration)
+- [`authenticateFitbit(...)`](#authenticatefitbit)
+- [`authenticateOura(...)`](#authenticateoura)
+- [`revokeFitbitAuthentication()`](#revokefitbitauthentication)
+- [`revokeOuraAuthentication()`](#revokeouraauthentication)
+- [`isFitbitAuthenticated()`](#isfitbitauthenticated)
+- [`isOuraAuthenticated()`](#isouraauthenticated)
+- [`requestAuthorizationsIfPossible()`](#requestauthorizationsifpossible)
+- [`setUserToken(...)`](#setusertoken)
+- [`logout()`](#logout)
+- [`startAllListeners()`](#startalllisteners)
+- [`startListenerForType(...)`](#startlistenerfortype)
+- [`stopAllListeners()`](#stopalllisteners)
+- [`stopListenerForType(...)`](#stoplistenerfortype)
+- [`syncAllHistoricalData()`](#syncallhistoricaldata)
+- [`syncHistoricalDataForType(...)`](#synchistoricaldatafortype)
+- [`sync(...)`](#sync)
+- [`getUserData()`](#getuserdata)
+- [`getUserWorkouts(...)`](#getuserworkouts)
+- [`getUserWorkoutById(...)`](#getuserworkoutbyid)
+- [`getWorkoutRecommendations(...)`](#getworkoutrecommendations)
+- [`getDailyHistory(...)`](#getdailyhistory)
+- [`getHealthMetrics(...)`](#gethealthmetrics)
+- [`setUserGoal(...)`](#setusergoal)
+- [`setUserSpecificGoal(...)`](#setuserspecificgoal)
+- [`rateWorkout(...)`](#rateworkout)
+- [`saveWorkoutRecommendation(...)`](#saveworkoutrecommendation)
+- [`getInsights(...)`](#getinsights)
+- [Interfaces](#interfaces)
+- [Type Aliases](#type-aliases)
+- [Enums](#enums)
 
 </docgen-index>
 
@@ -56,8 +58,7 @@ Before any feature can be used, you must initialize the SDK providing your crede
 | ------------- | ----------------------------------------------------------------------------------------------- |
 | **`options`** | <code>{ clientId: string; clientSecret: string; environment: string; verbose: boolean; }</code> |
 
---------------------
-
+---
 
 ### setupHealthkitIntegration(...)
 
@@ -72,8 +73,7 @@ Before Apple's Healthkit features can be used, you must initialize HealthKit pro
 | ------------- | ------------------------------------------ |
 | **`options`** | <code>{ queryTypes?: QueryType[]; }</code> |
 
---------------------
-
+---
 
 ### setupFitbitIntegration(...)
 
@@ -82,15 +82,14 @@ setupFitbitIntegration(options: { fitbitClientId: string; }) => Promise<void>
 ```
 
 Sets up Fitbit integration.
-Calling this will instantiate ``FitbitIntegrationManager`` within the SDK and it will be available for you to use.
+Calling this will instantiate `FitbitIntegrationManager` within the SDK and it will be available for you to use.
 Your Fitbit Client ID is provided by Fitbit when you create your Fitbit app integration.
 
 | Param         | Type                                     |
 | ------------- | ---------------------------------------- |
 | **`options`** | <code>{ fitbitClientId: string; }</code> |
 
---------------------
-
+---
 
 ### setupOuraIntegration(...)
 
@@ -99,15 +98,14 @@ setupOuraIntegration(options: { ouraClientId: string; }) => Promise<void>
 ```
 
 Sets up Oura integration.
-Calling this will instantiate ``OuraIntegrationManager`` within the SDK and it will be available for you to use.
+Calling this will instantiate `OuraIntegrationManager` within the SDK and it will be available for you to use.
 Your Oura Client ID is provided by Oura when you create your Oura app integration.
 
 | Param         | Type                                   |
 | ------------- | -------------------------------------- |
 | **`options`** | <code>{ ouraClientId: string; }</code> |
 
---------------------
-
+---
 
 ### authenticateFitbit(...)
 
@@ -122,8 +120,7 @@ When you call this function your app will display a browser with the Fitbit auth
 | ------------- | -------------------------------------------------------------------------- |
 | **`options`** | <code>{ callbackURLScheme: string; fitbitScopes?: FitbitScopes[]; }</code> |
 
---------------------
-
+---
 
 ### authenticateOura(...)
 
@@ -138,8 +135,7 @@ When you call this function your app will display a browser with the Oura authen
 | ------------- | ---------------------------------------------------------------------- |
 | **`options`** | <code>{ callbackURLScheme: string; ouraScopes?: OuraScopes[]; }</code> |
 
---------------------
-
+---
 
 ### revokeFitbitAuthentication()
 
@@ -149,8 +145,7 @@ revokeFitbitAuthentication() => Promise<void>
 
 Revokes the user's Fitbit authentication. Effectively, this will cause Point to stop collecting Fitbit data from this user.
 
---------------------
-
+---
 
 ### revokeOuraAuthentication()
 
@@ -158,10 +153,33 @@ Revokes the user's Fitbit authentication. Effectively, this will cause Point to 
 revokeOuraAuthentication() => Promise<void>
 ```
 
-Revokes the user's Oura authentication. Effectively, this will cause Point to stop collecting Fitbit data from this user.
+Revokes the user's Oura authentication. Effectively, this will cause Point to stop collecting Oura data from this user.
 
---------------------
+---
 
+### isFitbitAuthenticated()
+
+```typescript
+isFitbitAuthenticated() => Promise<boolean>
+```
+
+Call this function to know if your user has already authenticated their Fitbit account.
+
+**Returns:** <code>Promise&lt;boolean&gt;</code>
+
+---
+
+### isOuraAuthenticated()
+
+```typescript
+isOuraAuthenticated() => Promise<boolean>
+```
+
+Call this function to know if your user has already authenticated their Oura account.
+
+**Returns:** <code>Promise&lt;boolean&gt;</code>
+
+---
 
 ### requestAuthorizationsIfPossible()
 
@@ -186,8 +204,7 @@ Set the user access token. It is recommended to do it as soon as possible, right
 | ------------- | ------------------------------------------------------------- |
 | **`options`** | <code>{ userToken: string; shouldSyncData?: boolean; }</code> |
 
---------------------
-
+---
 
 ### logout()
 
@@ -197,8 +214,7 @@ logout() => Promise<void>
 
 Clear the user token and the local cache. Also stops all listeners.
 
---------------------
-
+---
 
 ### startAllListeners()
 
@@ -210,8 +226,7 @@ Start listeners to sync all types defined on SDK setup.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
---------------------
-
+---
 
 ### startListenerForType(...)
 
@@ -227,8 +242,7 @@ Start listener to sync just a specific query type.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
---------------------
-
+---
 
 ### stopAllListeners()
 
@@ -240,8 +254,7 @@ Stop listeners for all types defined on SDK setup.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
---------------------
-
+---
 
 ### stopListenerForType(...)
 
@@ -257,8 +270,7 @@ Stop listeners for a specific query type.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
---------------------
-
+---
 
 ### syncAllHistoricalData()
 
@@ -270,8 +282,7 @@ Syncs the past 3 months of historical data for permissioned types with the Point
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
---------------------
-
+---
 
 ### syncHistoricalDataForType(...)
 
@@ -287,8 +298,7 @@ Syncs the past 3 months historical data for a given sample type with the Point d
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
---------------------
-
+---
 
 ### sync(...)
 
@@ -304,8 +314,7 @@ Syncs the HealthKit data from the query results with the `Point` database.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
---------------------
-
+---
 
 ### getUserData()
 
@@ -317,8 +326,7 @@ Retrieves information about the <a href="#user">User</a>, such as email, first n
 
 **Returns:** <code>Promise&lt;<a href="#user">User</a>&gt;</code>
 
---------------------
-
+---
 
 ### getUserWorkouts(...)
 
@@ -334,8 +342,7 @@ Retrieves a list of the <a href="#user">User</a>'s last 16 Workouts, in descendi
 
 **Returns:** <code>Promise&lt;Workout[]&gt;</code>
 
---------------------
-
+---
 
 ### getUserWorkoutById(...)
 
@@ -351,8 +358,7 @@ Retrieves a single <a href="#workout">Workout</a> for the given id.
 
 **Returns:** <code>Promise&lt;<a href="#workout">Workout</a>&gt;</code>
 
---------------------
-
+---
 
 ### getWorkoutRecommendations(...)
 
@@ -370,8 +376,7 @@ We recommend using `saveWorkoutRecommendation(options: { id: number })` to let y
 
 **Returns:** <code>Promise&lt;WorkoutRecommendation[]&gt;</code>
 
---------------------
-
+---
 
 ### getDailyHistory(...)
 
@@ -387,8 +392,7 @@ Retrieves a list of the <a href="#user">User</a>'s last 16 days worth of DailyHi
 
 **Returns:** <code>Promise&lt;[{ date: <a href="#date">Date</a>; metrics: HealthMetric[]; }]&gt;</code>
 
---------------------
-
+---
 
 ### getHealthMetrics(...)
 
@@ -404,8 +408,7 @@ You can get a set of user health metrics, which are a summary of the collected s
 
 **Returns:** <code>Promise&lt;HealthMetric[]&gt;</code>
 
---------------------
-
+---
 
 ### setUserGoal(...)
 
@@ -422,8 +425,7 @@ Sets the user <a href="#goal">Goal</a>. This is more limited set of options. If 
 
 **Returns:** <code>Promise&lt;<a href="#user">User</a>&gt;</code>
 
---------------------
-
+---
 
 ### setUserSpecificGoal(...)
 
@@ -439,8 +441,7 @@ Sets the user <a href="#specificgoal">SpecificGoal</a>. This provides a wider ar
 
 **Returns:** <code>Promise&lt;<a href="#user">User</a>&gt;</code>
 
---------------------
-
+---
 
 ### rateWorkout(...)
 
@@ -456,8 +457,7 @@ You can allow users to rate their past workouts. A workout rating is divided in 
 
 **Returns:** <code>Promise&lt;<a href="#workout">Workout</a>&gt;</code>
 
---------------------
-
+---
 
 ### saveWorkoutRecommendation(...)
 
@@ -475,8 +475,7 @@ When a recommendation is saved, Point is able to check if this workout recommend
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
---------------------
-
+---
 
 ### getInsights(...)
 
@@ -490,11 +489,9 @@ getInsights(options: { types: InsightType[]; from?: string; to?: string; offset?
 
 **Returns:** <code>Promise&lt;<a href="#insight">Insight</a>&gt;</code>
 
---------------------
-
+---
 
 ### Interfaces
-
 
 #### User
 
@@ -515,39 +512,31 @@ getInsights(options: { types: InsightType[]; from?: string; to?: string; offset?
 
 <code>'overall' | 'endurance' | 'recovery' | 'strength'</code>
 
-
 #### GoalProgressValue
 
 <code>{ value: number; variance: number; }</code>
-
 
 #### Workout
 
 <code>{ id: number; calories: number; distance: number; duration: number; start: string; end: string; activityName: string; activityId: number; ratings: <a href="#workoutratings">WorkoutRatings</a>; }</code>
 
-
 #### WorkoutRatings
 
 <code>{ difficulty: number; energy: number; instructor: number; }</code>
-
 
 #### WorkoutRecommendation
 
 <code>{ id: number; date: string; activityId: number; activityName: string; workoutId: number; completedAt: string; createdAt: string; savedAt: string; }</code>
 
-
 #### HealthMetric
 
 <code>{ type: string; date: string; value: number; variance: number; workoutId: number; }</code>
-
 
 #### Insight
 
 <code>{ id: string; type: <a href="#insighttype">InsightType</a>; additionalFields: string; createdAt: string; }</code>
 
-
 ### Enums
-
 
 #### QueryType
 
@@ -566,7 +555,6 @@ getInsights(options: { types: InsightType[]; from?: string; to?: string; offset?
 | **`Birthday`**                 | <code>'birthday'</code>                 |
 | **`BodyMass`**                 | <code>'bodyMass'</code>                 |
 
-
 #### FitbitScopes
 
 | Members         | Value                    |
@@ -577,7 +565,6 @@ getInsights(options: { types: InsightType[]; from?: string; to?: string; offset?
 | **`Sleep`**     | <code>'sleep'</code>     |
 | **`Weight`**    | <code>'weight'</code>    |
 
-
 #### OuraScopes
 
 | Members         | Value                    |
@@ -587,7 +574,6 @@ getInsights(options: { types: InsightType[]; from?: string; to?: string; offset?
 | **`Personal`**  | <code>'personal'</code>  |
 | **`Session`**   | <code>'session'</code>   |
 | **`Workout`**   | <code>'workout'</code>   |
-
 
 #### HealthMetricType
 
@@ -645,14 +631,12 @@ getInsights(options: { types: InsightType[]; from?: string; to?: string; offset?
 | **`SleepStageREM`**        | <code>'SleepStageREM'</code>        |
 | **`SleepStageWake`**       | <code>'SleepStageWake'</code>       |
 
-
 #### Goal
 
 | Members                   | Value                              |
 | ------------------------- | ---------------------------------- |
 | **`WeightLoss`**          | <code>'weightLoss'</code>          |
 | **`AthleticPerformance`** | <code>'athleticPerformance'</code> |
-
 
 #### SpecificGoal
 
@@ -663,7 +647,6 @@ getInsights(options: { types: InsightType[]; from?: string; to?: string; offset?
 | **`PrepareForEvent`** | <code>'prepareForEvent'</code> |
 | **`AccomplishMore`**  | <code>'accomplishMore'</code>  |
 | **`MaintainHealth`**  | <code>'maintainHealth'</code>  |
-
 
 #### InsightType
 

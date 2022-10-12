@@ -1,4 +1,4 @@
-package co.areyouonpoint.sdk.capacitor;
+package co.areyouonpoint.pointsdk;
 
 import com.getcapacitor.JSObject;
 import com.getcapacitor.Plugin;
