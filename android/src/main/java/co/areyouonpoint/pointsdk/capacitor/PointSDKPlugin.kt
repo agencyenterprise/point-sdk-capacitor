@@ -13,7 +13,11 @@ import com.getcapacitor.annotation.CapacitorPlugin
 @CapacitorPlugin(name = "PointSDK")
 class PointSDKPlugin : Plugin() {
     private var pointClient: PointClient? = null
+    private var pointSDKFitbit: PointSDKFitbit? = null
 
+    /**
+     * Point Client
+     */
     @PluginMethod
     fun setup(call: PluginCall) {
         val verbose = call.getBoolean("verbose") ?: false
@@ -47,6 +51,30 @@ class PointSDKPlugin : Plugin() {
         } catch (ex: PointException) {
             call.reject(ex.message)
         }
+    }
+
+    /**
+     * FITBIT
+     */
+    @PluginMethod
+    fun setupFitbitIntegration(call: PluginCall) {
+        pointSDKFitbit = PointSDKFitbit(context, pointClient)
+        pointSDKFitbit?.setupFitbitIntegration(call)
+    }
+
+    @PluginMethod
+    fun authenticateFitbit(call: PluginCall) {
+        pointSDKFitbit?.authenticateFitbit(call)
+    }
+
+    @PluginMethod
+    fun revokeFitbitAuthentication(call: PluginCall) {
+        pointSDKFitbit?.revokeFitbitAuthentication(call)
+    }
+
+    @PluginMethod
+    fun isFitbitAuthenticated(call: PluginCall) {
+        pointSDKFitbit?.isFitbitAuthenticated(call)
     }
 
     private fun environmentsMapping(env: String?): PointEnvironment {
