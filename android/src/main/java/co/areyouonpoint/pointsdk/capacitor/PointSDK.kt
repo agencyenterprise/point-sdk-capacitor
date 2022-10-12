@@ -11,8 +11,9 @@ import com.getcapacitor.PluginMethod
 import com.getcapacitor.annotation.CapacitorPlugin
 
 @CapacitorPlugin(name = "PointSDK")
-class PointSDKPlugin : Plugin() {
+class PointSDK : Plugin() {
     private var pointClient: PointClient? = null
+    private var pointSDKOura: PointSDKOura? = null
     private var pointSDKFitbit: PointSDKFitbit? = null
 
     /**
@@ -75,6 +76,30 @@ class PointSDKPlugin : Plugin() {
     @PluginMethod
     fun isFitbitAuthenticated(call: PluginCall) {
         pointSDKFitbit?.isFitbitAuthenticated(call)
+    }
+
+    /**
+     * OURA
+     */
+    @PluginMethod
+    fun setupOuraIntegration(call: PluginCall) {
+        pointSDKOura = PointSDKOura(context, pointClient)
+        pointSDKOura?.setupOuraIntegration(call)
+    }
+
+    @PluginMethod
+    fun authenticateOura(call: PluginCall) {
+        pointSDKOura?.authenticateOura(call)
+    }
+
+    @PluginMethod
+    fun revokeOuraAuthentication(call: PluginCall) {
+        pointSDKOura?.revokeOuraAuthentication(call)
+    }
+
+    @PluginMethod
+    fun isOuraAuthenticated(call: PluginCall) {
+        pointSDKOura?.isOuraAuthenticated(call)
     }
 
     private fun environmentsMapping(env: String?): PointEnvironment {
