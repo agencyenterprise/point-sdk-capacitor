@@ -1,6 +1,7 @@
 package co.areyouonpoint.pointsdk.capacitor
 
 import co.areyouonpoint.pointsdk.domain.PointRepository
+import co.areyouonpoint.pointsdk.domain.model.GoalAnswers
 import co.areyouonpoint.pointsdk.domain.model.HealthMetricType
 import com.getcapacitor.JSArray
 import com.getcapacitor.JSObject
@@ -93,6 +94,20 @@ internal class PointSDKRepository(
                     })
                 }
                 call.resolve(response)
+            } catch (ex: Exception) {
+                call.reject(ex.message)
+            }
+        }
+    }
+
+    fun setUserGoal(call: PluginCall) {
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                val goal = call.getString("goal")!!
+                val result = pointRepository.setUserGoal(GoalAnswers.safeValueOf(goal)!!)
+                call.resolve(JSObject().apply {
+                    put("result", result)
+                })
             } catch (ex: Exception) {
                 call.reject(ex.message)
             }
