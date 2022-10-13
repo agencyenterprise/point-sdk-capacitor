@@ -87,16 +87,3 @@ fun HealthMetric.toResponse() =
         putOpt("variance", variance)
         putOpt("workoutId", workoutId)
     }
-
-/*
-func metricMapping(metric: HealthMetric?) -> [String : Any] {
-    guard let metric = metric else { return [:] }
-
-    return [
-        "type": metric.type.rawValue,
-    "date": metric.date,
-    "value": metric.value,
-    "variance": metric.variance as Any,
-    "workoutId": metric.workoutId as Any
-    ]
-}*/
