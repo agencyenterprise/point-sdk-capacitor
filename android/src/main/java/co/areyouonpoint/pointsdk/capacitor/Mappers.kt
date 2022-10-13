@@ -87,3 +87,13 @@ fun WorkoutRecommendation.toResponse() =
         putOpt("createdAt", createdAt ?: JSONObject.NULL)
         putOpt("savedAt", savedAt ?: JSONObject.NULL)
     }
+
+fun HealthMetric.toResponse() =
+    JSObject().apply {
+        putSafe("type", type.rawValue)
+        putSafe("date", date)
+        putSafe("value", value)
+        putOpt("variance", variance ?: JSONObject.NULL)
+        putOpt("workoutId", workoutId ?: JSONObject.NULL)
+
+    }

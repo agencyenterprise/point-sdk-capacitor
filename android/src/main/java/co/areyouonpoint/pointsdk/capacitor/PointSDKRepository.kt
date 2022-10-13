@@ -1,6 +1,7 @@
 package co.areyouonpoint.pointsdk.capacitor
 
 import co.areyouonpoint.pointsdk.domain.PointRepository
+import co.areyouonpoint.pointsdk.domain.model.HealthMetricType
 import com.getcapacitor.JSArray
 import com.getcapacitor.JSObject
 import com.getcapacitor.PluginCall
@@ -64,6 +65,31 @@ internal class PointSDKRepository(
                 val response = JSObject().apply {
                     put("recommendations", JSArray().apply {
                         workoutRecommendations.map { put(it.toResponse()) }
+                    })
+                }
+                call.resolve(response)
+            } catch (ex: Exception) {
+                call.reject(ex.message)
+            }
+        }
+    }
+
+    fun getHealthMetrics(call: PluginCall) {
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                val date = call.getString("date")?.fromIsoStringToDate()
+                val workoutId = call.getInt("workoutId")
+                val filters = call.getArray("filter").toList<String>()
+
+                var healthMetrics = HealthMetricType.values().toList()
+                if (filters.isNotEmpty()) {
+                    healthMetrics = filters.mapNotNull { HealthMetricType.safeValueOf(it) }
+                }
+
+                val metrics = pointRepository.getHealthMetrics(healthMetrics, workoutId, date)
+                val response = JSObject().apply {
+                    put("healthMetrics", JSArray().apply {
+                        metrics.map { put(it.toResponse()) }
                     })
                 }
                 call.resolve(response)
