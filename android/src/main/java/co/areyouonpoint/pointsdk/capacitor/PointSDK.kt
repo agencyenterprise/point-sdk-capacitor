@@ -4,7 +4,6 @@ import co.areyouonpoint.pointsdk.PointClient
 import co.areyouonpoint.pointsdk.core.logger.LogLevel
 import co.areyouonpoint.pointsdk.domain.PointEnvironment
 import co.areyouonpoint.pointsdk.domain.exceptions.PointException
-import com.getcapacitor.JSObject
 import com.getcapacitor.Plugin
 import com.getcapacitor.PluginCall
 import com.getcapacitor.PluginMethod
@@ -15,6 +14,7 @@ class PointSDK : Plugin() {
     private var pointClient: PointClient? = null
     private var pointSDKOura: PointSDKOura? = null
     private var pointSDKFitbit: PointSDKFitbit? = null
+    private var pointSDKRepository: PointSDKRepository? = null
 
     /**
      * Point Client
@@ -29,7 +29,9 @@ class PointSDK : Plugin() {
             clientSecret = call.getString("clientSecret")!!,
             apiEnvironment = environmentsMapping(call.getString("environment")),
             logLevel = if (verbose) LogLevel.DEBUG else LogLevel.NONE
-        )
+        ).also {
+            pointSDKRepository = PointSDKRepository(it.repository)
+        }
 
         call.resolve()
     }
@@ -100,6 +102,14 @@ class PointSDK : Plugin() {
     @PluginMethod
     fun isOuraAuthenticated(call: PluginCall) {
         pointSDKOura?.isOuraAuthenticated(call)
+    }
+
+    /**
+     * REPOSITORY/PUBLIC API
+     */
+    @PluginMethod
+    fun getUserData(call: PluginCall) {
+        pointSDKRepository?.getUserData(call)
     }
 
     private fun environmentsMapping(env: String?): PointEnvironment {
