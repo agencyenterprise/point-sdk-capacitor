@@ -13,7 +13,7 @@ fun User.toResponse() =
         putOpt("goal", goal?.rawValue ?: JSONObject.NULL)
         putOpt("goalProgress", goalProgress.toResponse())
         putOpt("specificGoal", specificGoal?.rawValue ?: JSONObject.NULL)
-        putOpt("lastWorkout", lastWorkout?.toResponse() ?: JSONObject.NULL)
+        putOpt("lastWorkout", lastWorkout?.toResponse() ?: JSObject())
     }
 
 
