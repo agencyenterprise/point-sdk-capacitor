@@ -55,4 +55,23 @@ internal class PointSDKRepository(
             }
         }
     }
+
+    fun getWorkoutRecommendations(call: PluginCall) {
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                val date = call.getString("date")!!.fromIsoStringToDate()
+                val workoutRecommendations = pointRepository.getWorkoutRecommendations(date)
+                val response = JSObject().apply {
+                    put("recommendations", JSArray().apply {
+                        workoutRecommendations.map { put(it.toResponse()) }
+                    })
+                }
+                call.resolve(response)
+            } catch (ex: Exception) {
+                call.reject(ex.message)
+            }
+        }
+    }
 }
+
+

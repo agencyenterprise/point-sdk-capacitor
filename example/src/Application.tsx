@@ -3,7 +3,7 @@ import "./Application.scss";
 import { PointSDK, PointEnvironment, QueryType, Goal, InsightType, FitbitScopes } from "../../dist/esm";
 
 const token =
-  "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwiaXNzIjoiaHR0cHM6Ly9wb2ludC1hcHAtZGV2LnVzLmF1dGgwLmNvbS8ifQ..S72rosj-3mhANzYI.petHgOJAMYlBw9uks_05Knn9mrv8gQECOYV2jzTWDcLSW999pWrfR_YgbiUb68BLs6P3jXS7uDUNbgbArmjN3VL7RDUxJJR-YLQLr-Ux_ptk7KfB13xlB4yr_-6eShlPkCOMkzUjdAeOD-sEP4xJ1dkV9DSydXgx_gFoswV94PzIBFbpiWht5mTObuE3NqVdQjmAyej7ytI2LwznbXFFf5vpdJeutC1VNlT-veQJSOLNUYSo06B2krqIaGPAchXG5QkJamwYrWXw3g3kY_xztxY9lnbZGPtOPbCsmBqZsLh_XewbFa2ARfWAkkursFtnQW6GVIbcLcFoITx3mJoxpd0ggqG4949VyylREt0qP9cL0QF0Xigu0fmpa9FpQAonvt_UA8_UqKD7wSh9iMSZ1dlXJkxl_nQhQTaqr6KLvjku9oA9_SOEclZTlsJgZ4y-b5GtkQ.CiRQb2CWg4Ztk1jsV-fI4w";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb24iOiJQb2ludCBPcmciLCJvcmdJZCI6NDQsInN1YiI6InBvaW50fDYyOThkYjZjZGM0ZGVhMDA2OGQ4NDUyYyIsImlhdCI6MTY2NTY5OTcyOCwiZXhwIjoxNjY1Nzg2MTI4fQ.YttVK7ttQYUhGfpjR7xFSavFZirY5oJF5sW43pfxQoc";
 class Application extends Nullstack {
   async hydrate() {
     // Setup the SDK as soon as possible, before background queries
@@ -31,6 +31,8 @@ class Application extends Nullstack {
         <button onclick={this.getUserWorkouts}>Get user workouts</button>
         <br></br>
         <button onclick={this.getWorkoutById}>Get workout by id</button>
+        <br></br>
+        <button onclick={this.getWorkoutRecommendations}>Get workout recommendations</button>
         <br></br>
         <button onclick={this.getUserDailyHistory}>Get daily history</button>
         <br></br>
