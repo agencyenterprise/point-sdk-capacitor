@@ -97,3 +97,11 @@ fun HealthMetric.toResponse() =
         putOpt("workoutId", workoutId ?: JSONObject.NULL)
 
     }
+
+fun Insight.toResponse() =
+    JSObject().apply {
+        putSafe("id", id)
+        putSafe("type", type.rawValue)
+        putSafe("additionalFields", additionalFields)
+        putSafe("createdAt", createdAt)
+    }

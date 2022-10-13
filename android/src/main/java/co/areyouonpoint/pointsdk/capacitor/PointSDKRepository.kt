@@ -3,6 +3,7 @@ package co.areyouonpoint.pointsdk.capacitor
 import co.areyouonpoint.pointsdk.domain.PointRepository
 import co.areyouonpoint.pointsdk.domain.model.GoalAnswers
 import co.areyouonpoint.pointsdk.domain.model.HealthMetricType
+import co.areyouonpoint.pointsdk.domain.model.InsightType
 import co.areyouonpoint.pointsdk.domain.model.SpecificGoalAnswers
 import com.getcapacitor.JSArray
 import com.getcapacitor.JSObject
@@ -123,6 +124,33 @@ internal class PointSDKRepository(
                 call.resolve(JSObject().apply {
                     put("result", result)
                 })
+            } catch (ex: Exception) {
+                call.reject(ex.message)
+            }
+        }
+    }
+
+    fun getInsights(call: PluginCall) {
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                val startDate = call.getString("startDate")?.fromIsoStringToDate()
+                val endDate = call.getString("endDate")?.fromIsoStringToDate()
+                val offset = call.getInt("offset")
+
+                val typesString = call.getArray("types").toList<String>()
+
+                val types = typesString.mapNotNull { InsightType.safeValueOf(it) }
+                if (types.isEmpty()) {
+                    call.reject("No Insight Type provided")
+                }
+
+                val insights = pointRepository.getInsights(types, startDate, endDate, offset)
+                val response = JSObject().apply {
+                    put("insights", JSArray().apply {
+                        insights.map { put(it.toResponse()) }
+                    })
+                }
+                call.resolve(response)
             } catch (ex: Exception) {
                 call.reject(ex.message)
             }
