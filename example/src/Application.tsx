@@ -8,6 +8,7 @@ import {
   InsightType,
   FitbitScopes,
   HealthMetricType,
+  SpecificGoal,
 } from "../../dist/esm";
 
 const token =
@@ -35,6 +36,8 @@ class Application extends Nullstack {
         <button onclick={this.getUserData}>Get user data</button>
         <br></br>
         <button onclick={this.setUserGoal}>Set user goal Athletic Performance</button>
+        <br></br>
+        <button onclick={this.setUserSpecificGoal}>Set user specific goal BuildLeanMuscle</button>
         <br></br>
         <button onclick={this.getUserWorkouts}>Get user workouts</button>
         <br></br>
@@ -134,6 +137,11 @@ class Application extends Nullstack {
 
   async setUserGoal() {
     const result = await PointSDK.setUserGoal({ goal: Goal.AthleticPerformance });
+    Application.logAndAlert(result);
+  }
+
+  async setUserSpecificGoal() {
+    const result = await PointSDK.setUserSpecificGoal({ specificGoal: SpecificGoal.BuildLeanMuscle });
     Application.logAndAlert(result);
   }
 

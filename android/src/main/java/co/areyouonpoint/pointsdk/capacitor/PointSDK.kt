@@ -137,6 +137,11 @@ class PointSDK : Plugin() {
         pointSDKRepository?.setUserGoal(call)
     }
 
+    @PluginMethod
+    fun setUserSpecificGoal(call: PluginCall) {
+        pointSDKRepository?.setUserSpecificGoal(call)
+    }
+
     private fun environmentsMapping(env: String?): PointEnvironment {
         return when(env) {
             "development" -> PointEnvironment.DEVELOPMENT
