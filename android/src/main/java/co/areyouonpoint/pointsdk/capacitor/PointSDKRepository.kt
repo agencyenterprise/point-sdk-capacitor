@@ -43,4 +43,16 @@ internal class PointSDKRepository(
             }
         }
     }
+
+    fun getUserWorkoutById(call: PluginCall) {
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                val workoutId = call.getInt("workoutId")!!
+                val workout = pointRepository.getWorkout(workoutId)
+                call.resolve(workout.toResponse())
+            } catch (ex: Exception) {
+                call.reject(ex.message)
+            }
+        }
+    }
 }
