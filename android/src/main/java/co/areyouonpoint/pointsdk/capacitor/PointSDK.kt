@@ -133,6 +133,11 @@ class PointSDK : Plugin() {
     }
 
     @PluginMethod
+    fun getDailyHistory(call: PluginCall) {
+        pointSDKRepository?.getDailyHistory(call)
+    }
+
+    @PluginMethod
     fun setUserGoal(call: PluginCall) {
         pointSDKRepository?.setUserGoal(call)
     }
