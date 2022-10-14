@@ -113,6 +113,23 @@ internal class PointSDKRepository(
             }
         }
     }
+
+    fun getDailyHistory(call: PluginCall) {
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                val offset = call.getInt("offset") ?: 0
+                val dailyHistory = pointRepository.getDailyHistory(offset)
+                val response = JSObject().apply {
+                    putSafe("dailyHistory", JSArray().apply {
+                        dailyHistory.map {
+                            put(it.toResponse())
+                        }
+                    })
+                }
+                call.resolve(response)
+            } catch (ex: Exception) {
+                call.reject(ex.message)
+            }
+        }
+    }
 }
-
-
