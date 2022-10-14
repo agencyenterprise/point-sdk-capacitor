@@ -128,6 +128,11 @@ class PointSDK : Plugin() {
     }
 
     @PluginMethod
+    fun getHealthMetrics(call: PluginCall) {
+        pointSDKRepository?.getHealthMetrics(call)
+    }
+
+    @PluginMethod
     fun getDailyHistory(call: PluginCall) {
         pointSDKRepository?.getDailyHistory(call)
     }

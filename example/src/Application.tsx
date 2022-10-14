@@ -1,6 +1,14 @@
 import Nullstack from "nullstack";
 import "./Application.scss";
-import { PointSDK, PointEnvironment, QueryType, Goal, InsightType, FitbitScopes } from "../../dist/esm";
+import {
+  PointSDK,
+  PointEnvironment,
+  QueryType,
+  Goal,
+  InsightType,
+  FitbitScopes,
+  HealthMetricType,
+} from "../../dist/esm";
 
 const token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb24iOiJQb2ludCBPcmciLCJvcmdJZCI6NDQsInN1YiI6InBvaW50fDYyOThkYjZjZGM0ZGVhMDA2OGQ4NDUyYyIsImlhdCI6MTY2NTY5OTcyOCwiZXhwIjoxNjY1Nzg2MTI4fQ.YttVK7ttQYUhGfpjR7xFSavFZirY5oJF5sW43pfxQoc";
@@ -113,7 +121,9 @@ class Application extends Nullstack {
   }
 
   async getUserHealthMetrics() {
-    const result = await PointSDK.getHealthMetrics({});
+    const result = await PointSDK.getHealthMetrics({
+      filter: [HealthMetricType.ActiveCalories, HealthMetricType.BasalCalories, HealthMetricType.Vo2Max],
+    });
     Application.logAndAlert(result);
   }
 

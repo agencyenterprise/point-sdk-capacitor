@@ -89,14 +89,6 @@ fun WorkoutRecommendation.toResponse() =
         putOpt("savedAt", savedAt ?: JSONObject.NULL)
     }
 
-fun DailyHistory.toResponse() =
-    JSObject().apply {
-        putSafe("date", date)
-        putSafe("metrics", JSONArray().apply {
-            metrics.map { put(it.toResponse()) }
-        })
-    }
-
 fun HealthMetric.toResponse() =
     JSObject().apply {
         putSafe("type", type.rawValue)
@@ -104,4 +96,13 @@ fun HealthMetric.toResponse() =
         putSafe("value", value)
         putOpt("variance", variance ?: JSONObject.NULL)
         putOpt("workoutId", workoutId ?: JSONObject.NULL)
+
+    }
+
+fun DailyHistory.toResponse() =
+    JSObject().apply {
+        putSafe("date", date)
+        putSafe("metrics", JSONArray().apply {
+            metrics.map { put(it.toResponse()) }
+        })
     }
