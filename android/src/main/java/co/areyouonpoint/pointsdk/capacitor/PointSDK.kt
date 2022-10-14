@@ -137,6 +137,11 @@ class PointSDK : Plugin() {
         pointSDKRepository?.getDailyHistory(call)
     }
 
+    @PluginMethod
+    fun setUserGoal(call: PluginCall) {
+        pointSDKRepository?.setUserGoal(call)
+    }
+
     private fun environmentsMapping(env: String?): PointEnvironment {
         return when(env) {
             "development" -> PointEnvironment.DEVELOPMENT
