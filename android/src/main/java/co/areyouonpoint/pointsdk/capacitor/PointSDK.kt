@@ -118,6 +118,46 @@ class PointSDK : Plugin() {
     }
 
     @PluginMethod
+    fun getUserWorkoutById(call: PluginCall) {
+        pointSDKRepository?.getUserWorkoutById(call)
+    }
+
+    @PluginMethod
+    fun getWorkoutRecommendations(call: PluginCall) {
+        pointSDKRepository?.getWorkoutRecommendations(call)
+    }
+
+    @PluginMethod
+    fun getHealthMetrics(call: PluginCall) {
+        pointSDKRepository?.getHealthMetrics(call)
+    }
+
+    @PluginMethod
+    fun getDailyHistory(call: PluginCall) {
+        pointSDKRepository?.getDailyHistory(call)
+    }
+
+    @PluginMethod
+    fun setUserGoal(call: PluginCall) {
+        pointSDKRepository?.setUserGoal(call)
+    }
+
+    @PluginMethod
+    fun setUserSpecificGoal(call: PluginCall) {
+        pointSDKRepository?.setUserSpecificGoal(call)
+    }
+
+    @PluginMethod
+    fun getInsights(call: PluginCall) {
+        pointSDKRepository?.getInsights(call)
+    }
+
+    @PluginMethod
+    fun saveWorkoutRecommendation(call: PluginCall) {
+        pointSDKRepository?.saveWorkoutRecommendation(call)
+    }
+
+    @PluginMethod
     fun rateWorkout(call: PluginCall) {
         pointSDKRepository?.rateWorkout(call)
     }
