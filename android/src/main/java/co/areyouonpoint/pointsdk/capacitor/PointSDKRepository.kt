@@ -25,6 +25,25 @@ internal class PointSDKRepository(
         }
     }
 
+    fun getUserWorkouts(call: PluginCall) {
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                val offset = call.getInt("offset") ?: 0
+                val workouts = pointRepository.getUserWorkouts(offset)
+                val response = JSObject().apply {
+                    put("workouts", JSArray().apply {
+                        workouts.map {
+                            put(it.toResponse())
+                        }
+                    })
+                }
+                call.resolve(response)
+            } catch (ex: Exception) {
+                call.reject(ex.message)
+            }
+        }
+    }
+
     fun getDailyHistory(call: PluginCall) {
         GlobalScope.launch(Dispatchers.IO) {
             try {

@@ -113,6 +113,11 @@ class PointSDK : Plugin() {
     }
 
     @PluginMethod
+    fun getUserWorkouts(call: PluginCall) {
+        pointSDKRepository?.getUserWorkouts(call)
+    }
+
+    @PluginMethod
     fun getDailyHistory(call: PluginCall) {
         pointSDKRepository?.getDailyHistory(call)
     }

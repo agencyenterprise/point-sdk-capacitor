@@ -44,7 +44,7 @@ export interface PointSDKPlugin {
    * Call this function to let the user authenticate his `Oura` account and integrate it with their `Point` account.
    * When you call this function your app will display a browser with the Oura authentication web page, if the user successfully authenticates, the browser will be dismissed and the control will be handled back to your app.
    */
-   authenticateOura(options: {
+  authenticateOura(options: {
     callbackURLScheme: string;
     ouraScopes?: OuraScopes[];
   }): Promise<void>;
@@ -312,13 +312,14 @@ export enum FitbitScopes {
   Profile = 'profile',
   Sleep = 'sleep',
   Weight = 'weight',
+  CardioFitness = 'cardio_fitness',
 }
 export enum OuraScopes {
   Daily = 'daily',
   Heartrate = 'heartrate',
   Personal = 'personal',
   Session = 'session',
-  Workout = 'workout'
+  Workout = 'workout',
 }
 
 export enum Goal {
