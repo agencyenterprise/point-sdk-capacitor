@@ -99,6 +99,14 @@ fun HealthMetric.toResponse() =
 
     }
 
+fun Insight.toResponse() =
+    JSObject().apply {
+        putSafe("id", id)
+        putSafe("type", type.rawValue)
+        putSafe("additionalFields", additionalFields)
+        putSafe("createdAt", createdAt)
+    }
+
 fun DailyHistory.toResponse() =
     JSObject().apply {
         putSafe("date", date)
