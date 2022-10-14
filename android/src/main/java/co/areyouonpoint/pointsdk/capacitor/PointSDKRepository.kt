@@ -175,4 +175,18 @@ internal class PointSDKRepository(
             }
         }
     }
+
+    fun saveWorkoutRecommendation(call: PluginCall) {
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                val workoutRecommendationId = call.getInt("id")!!
+                val result = pointRepository.saveWorkoutRecommendation(workoutRecommendationId)
+                call.resolve(JSObject().apply {
+                    put("result", result)
+                })
+            } catch (ex: Exception) {
+                call.reject(ex.message)
+            }
+        }
+    }
 }

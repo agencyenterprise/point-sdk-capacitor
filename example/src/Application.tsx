@@ -39,6 +39,8 @@ class Application extends Nullstack {
         <br></br>
         <button onclick={this.setUserSpecificGoal}>Set user specific goal BuildLeanMuscle</button>
         <br></br>
+        <button onclick={this.saveWorkoutRecommendation}>Save workout recommendation</button>
+        <br></br>
         <button onclick={this.getUserWorkouts}>Get user workouts</button>
         <br></br>
         <button onclick={this.getWorkoutById}>Get workout by id</button>
@@ -142,6 +144,12 @@ class Application extends Nullstack {
 
   async setUserSpecificGoal() {
     const result = await PointSDK.setUserSpecificGoal({ specificGoal: SpecificGoal.BuildLeanMuscle });
+    Application.logAndAlert(result);
+  }
+
+  async saveWorkoutRecommendation() {
+    const recommendationId = 4236;
+    const result = await PointSDK.saveWorkoutRecommendation({ id: recommendationId });
     Application.logAndAlert(result);
   }
 
