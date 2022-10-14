@@ -84,6 +84,6 @@ fun HealthMetric.toResponse() =
         putSafe("type", type.rawValue)
         putSafe("date", date)
         putSafe("value", value)
-        putOpt("variance", variance)
-        putOpt("workoutId", workoutId)
+        putOpt("variance", variance ?: JSONObject.NULL)
+        putOpt("workoutId", workoutId ?: JSONObject.NULL)
     }
