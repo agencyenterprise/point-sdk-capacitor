@@ -2,6 +2,7 @@ package co.areyouonpoint.pointsdk.capacitor
 
 import co.areyouonpoint.pointsdk.domain.model.*
 import com.getcapacitor.JSObject
+import org.json.JSONArray
 import org.json.JSONObject
 
 fun User.toResponse() =
@@ -68,4 +69,21 @@ fun Recovery.toResponse() =
     JSObject().apply {
         putSafe("value", value)
         putOpt("variance", variance)
+    }
+
+fun DailyHistory.toResponse() =
+    JSObject().apply {
+        putSafe("date", date)
+        putSafe("metrics", JSONArray().apply {
+            metrics.map { put(it.toResponse()) }
+        })
+    }
+
+fun HealthMetric.toResponse() =
+    JSObject().apply {
+        putSafe("type", type.rawValue)
+        putSafe("date", date)
+        putSafe("value", value)
+        putOpt("variance", variance ?: JSONObject.NULL)
+        putOpt("workoutId", workoutId ?: JSONObject.NULL)
     }
