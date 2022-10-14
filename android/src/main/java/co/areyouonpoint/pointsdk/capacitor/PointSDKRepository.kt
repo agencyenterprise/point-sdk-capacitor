@@ -98,8 +98,6 @@ internal class PointSDKRepository(
             }
         }
     }
-}
-
 
     fun getDailyHistory(call: PluginCall) {
         GlobalScope.launch(Dispatchers.IO) {
