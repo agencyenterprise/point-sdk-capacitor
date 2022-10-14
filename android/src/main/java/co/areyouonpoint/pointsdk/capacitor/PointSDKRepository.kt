@@ -3,6 +3,7 @@ package co.areyouonpoint.pointsdk.capacitor
 import co.areyouonpoint.pointsdk.domain.PointRepository
 import co.areyouonpoint.pointsdk.domain.model.GoalAnswers
 import co.areyouonpoint.pointsdk.domain.model.HealthMetricType
+import co.areyouonpoint.pointsdk.domain.model.SpecificGoalAnswers
 import com.getcapacitor.JSArray
 import com.getcapacitor.JSObject
 import com.getcapacitor.PluginCall
@@ -100,6 +101,25 @@ internal class PointSDKRepository(
         }
     }
 
+    fun getDailyHistory(call: PluginCall) {
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                val offset = call.getInt("offset") ?: 0
+                val dailyHistory = pointRepository.getDailyHistory(offset)
+                val response = JSObject().apply {
+                    putSafe("dailyHistory", JSArray().apply {
+                        dailyHistory.map {
+                            put(it.toResponse())
+                        }
+                    })
+                }
+                call.resolve(response)
+            } catch (ex: Exception) {
+                call.reject(ex.message)
+            }
+        }
+    }
+
     fun setUserGoal(call: PluginCall) {
         GlobalScope.launch(Dispatchers.IO) {
             try {
@@ -114,19 +134,14 @@ internal class PointSDKRepository(
         }
     }
 
-    fun getDailyHistory(call: PluginCall) {
+    fun setUserSpecificGoal(call: PluginCall) {
         GlobalScope.launch(Dispatchers.IO) {
             try {
-                val offset = call.getInt("offset") ?: 0
-                val dailyHistory = pointRepository.getDailyHistory(offset)
-                val response = JSObject().apply {
-                    putSafe("dailyHistory", JSArray().apply {
-                        dailyHistory.map {
-                            put(it.toResponse())
-                        }
-                    })
-                }
-                call.resolve(response)
+                val goal = call.getString("specificGoal")!!
+                val result = pointRepository.setUserSpecificGoal(SpecificGoalAnswers.safeValueOf(goal)!!)
+                call.resolve(JSObject().apply {
+                    put("result", result)
+                })
             } catch (ex: Exception) {
                 call.reject(ex.message)
             }
