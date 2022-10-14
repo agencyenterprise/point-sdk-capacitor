@@ -22,11 +22,14 @@ apply plugin: 'kotlin-android'
 android {
     compileSdkVersion 32
     buildToolsVersion '33.0.0'
+
     defaultConfig {
+        versionCode 1
+        versionName "1.2.1"
+
         minSdkVersion 26
         targetSdkVersion 32
-        versionCode 1
-        versionName "1.0"
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -47,7 +50,6 @@ android {
 repositories {
     google()
     mavenCentral()
-    maven { url 'https://jitpack.io' }
 }
 
 
@@ -55,7 +57,7 @@ dependencies {
     implementation project(':capacitor-android')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.github.agencyenterprise:point-android:1.0.1'
+    implementation 'co.areyouonpoint.pointsdk:pointsdk:1.2.1'
     implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
 
 
