@@ -2,6 +2,7 @@ package co.areyouonpoint.pointsdk.capacitor
 
 import co.areyouonpoint.pointsdk.domain.model.*
 import com.getcapacitor.JSObject
+import org.json.JSONArray
 import org.json.JSONObject
 import java.time.ZonedDateTime
 import java.util.*
@@ -104,4 +105,12 @@ fun Insight.toResponse() =
         putSafe("type", type.rawValue)
         putSafe("additionalFields", additionalFields)
         putSafe("createdAt", createdAt)
+    }
+
+fun DailyHistory.toResponse() =
+    JSObject().apply {
+        putSafe("date", date)
+        putSafe("metrics", JSONArray().apply {
+            metrics.map { put(it.toResponse()) }
+        })
     }
