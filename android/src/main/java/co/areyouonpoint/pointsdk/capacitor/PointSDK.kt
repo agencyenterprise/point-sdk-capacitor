@@ -157,6 +157,11 @@ class PointSDK : Plugin() {
         pointSDKRepository?.saveWorkoutRecommendation(call)
     }
 
+    @PluginMethod
+    fun rateWorkout(call: PluginCall) {
+        pointSDKRepository?.rateWorkout(call)
+    }
+
     private fun environmentsMapping(env: String?): PointEnvironment {
         return when(env) {
             "development" -> PointEnvironment.DEVELOPMENT
