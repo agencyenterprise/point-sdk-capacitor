@@ -30,6 +30,8 @@ class Application extends Nullstack {
         <br></br>
         <button onclick={this.getUserWorkouts}>Get user workouts</button>
         <br></br>
+        <button onclick={this.rateWorkout}>Rate Workout</button>
+        <br></br>
         <button onclick={this.getUserDailyHistory}>Get daily history</button>
         <br></br>
         <button onclick={this.getUserHealthMetrics}>Get health metrics</button>
@@ -90,6 +92,11 @@ class Application extends Nullstack {
 
   async getUserWorkouts() {
     const result = await PointSDK.getUserWorkouts({ offset: 0 });
+    Application.logAndAlert(result);
+  }
+
+  async rateWorkout() {
+    const result = await PointSDK.rateWorkout({ id: 12133, ratings: { difficulty: 1, energy: 1, instructor: 1 } });
     Application.logAndAlert(result);
   }
 

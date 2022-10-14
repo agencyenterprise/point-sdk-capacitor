@@ -126,7 +126,11 @@ public extension PointSDKPlugin {
         Task {
             do {
                 let workout = try await healthService.getWorkout(id: call.getInt("id")!)
-                let ratings = WorkoutRatings(difficulty: call.getInt("difficulty"), energy: call.getInt("energy"), instructor: call.getInt("instructor"))
+                let ratings = WorkoutRatings(
+                    difficulty: call.getObject("ratings")?["difficulty"] as? Int,
+                    energy: call.getObject("ratings")?["energy"] as? Int,
+                    instructor: call.getObject("ratings")?["instructor"] as? Int
+                )
                 let newWorkout = try await healthService.rate(workout: workout, ratings: ratings)
                 call.resolve(workoutMapping(workout: newWorkout))
             } catch {
