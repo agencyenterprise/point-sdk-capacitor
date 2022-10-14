@@ -1,9 +1,18 @@
 import Nullstack from "nullstack";
 import "./Application.scss";
-import { PointSDK, PointEnvironment, QueryType, Goal, InsightType } from "../../dist/esm";
+import {
+  PointSDK,
+  PointEnvironment,
+  QueryType,
+  Goal,
+  InsightType,
+  FitbitScopes,
+  HealthMetricType,
+  SpecificGoal,
+} from "../../dist/esm";
 
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb24iOiJQb2ludCIsIm9yZ0lkIjo0NCwic3ViIjoicG9pbnR8NjJlZDU1MTY4ZDcwN2EzYTUwM2Y3ZTA3IiwiaWF0IjoxNjYwMTU5NjEwLCJleHAiOjE2NjAyNDYwMTB9.OBn9nGHsrCcv5pVwGvhzudVVU0nhwcL09gRB7hQ7Gmc";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb24iOiJQb2ludCBPcmciLCJvcmdJZCI6NDQsInN1YiI6InBvaW50fDYyOThkYjZjZGM0ZGVhMDA2OGQ4NDUyYyIsImlhdCI6MTY2NTY5OTcyOCwiZXhwIjoxNjY1Nzg2MTI4fQ.YttVK7ttQYUhGfpjR7xFSavFZirY5oJF5sW43pfxQoc";
 class Application extends Nullstack {
   async hydrate() {
     // Setup the SDK as soon as possible, before background queries
@@ -28,7 +37,17 @@ class Application extends Nullstack {
         <br></br>
         <button onclick={this.setUserGoal}>Set user goal Athletic Performance</button>
         <br></br>
+        <button onclick={this.setUserSpecificGoal}>Set user specific goal BuildLeanMuscle</button>
+        <br></br>
+        <button onclick={this.saveWorkoutRecommendation}>Save workout recommendation</button>
+        <br></br>
         <button onclick={this.getUserWorkouts}>Get user workouts</button>
+        <br></br>
+        <button onclick={this.rateWorkout}>Rate Workout</button>
+        <br></br>
+        <button onclick={this.getWorkoutById}>Get workout by id</button>
+        <br></br>
+        <button onclick={this.getWorkoutRecommendations}>Get workout recommendations</button>
         <br></br>
         <button onclick={this.getUserDailyHistory}>Get daily history</button>
         <br></br>
@@ -93,6 +112,16 @@ class Application extends Nullstack {
     Application.logAndAlert(result);
   }
 
+  async rateWorkout() {
+    const result = await PointSDK.rateWorkout({ id: 12133, ratings: { difficulty: 1, energy: 1, instructor: 1 } });
+    Application.logAndAlert(result);
+  }
+
+  async getWorkoutById() {
+    const result = await PointSDK.getUserWorkoutById({ workoutId: 8363 });
+    Application.logAndAlert(result);
+  }
+
   async getWorkoutRecommendations() {
     const result = await PointSDK.getWorkoutRecommendations({ date: new Date().toISOString() });
     Application.logAndAlert(result);
@@ -104,7 +133,9 @@ class Application extends Nullstack {
   }
 
   async getUserHealthMetrics() {
-    const result = await PointSDK.getHealthMetrics({});
+    const result = await PointSDK.getHealthMetrics({
+      filter: [HealthMetricType.ActiveCalories, HealthMetricType.BasalCalories, HealthMetricType.Vo2Max],
+    });
     Application.logAndAlert(result);
   }
 
@@ -118,8 +149,22 @@ class Application extends Nullstack {
     Application.logAndAlert(result);
   }
 
+  async setUserSpecificGoal() {
+    const result = await PointSDK.setUserSpecificGoal({ specificGoal: SpecificGoal.BuildLeanMuscle });
+    Application.logAndAlert(result);
+  }
+
+  async saveWorkoutRecommendation() {
+    const recommendationId = 4236;
+    const result = await PointSDK.saveWorkoutRecommendation({ id: recommendationId });
+    Application.logAndAlert(result);
+  }
+
   async authenticateFitbit() {
-    await PointSDK.authenticateFitbit({ callbackURLScheme: "exampleapp" });
+    await PointSDK.authenticateFitbit({
+      callbackURLScheme: "exampleapp",
+      fitbitScopes: [FitbitScopes.Activity, FitbitScopes.Profile],
+    });
   }
 
   async authenticateOura() {

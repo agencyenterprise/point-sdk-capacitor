@@ -11,6 +11,7 @@
 		0F46921728455580009F431E /* PointSDKPlugin+HealthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F46921628455580009F431E /* PointSDKPlugin+HealthService.swift */; };
 		0F56B2E3283D3A0900C454AA /* PointSDKPlugin+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F56B2E2283D3A0900C454AA /* PointSDKPlugin+Utils.swift */; };
 		0FAF4E082874B0C1005C9954 /* PointSDKPlugin+Fitbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAF4E072874B0C1005C9954 /* PointSDKPlugin+Fitbit.swift */; };
+		0FB9A6F228F75B8500EDE7EA /* PointSDKPlugin+Oura.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB9A6F128F75B8400EDE7EA /* PointSDKPlugin+Oura.swift */; };
 		2F98D68224C9AAE500613A4C /* PointSDKPlugin+HealthKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F98D68124C9AAE400613A4C /* PointSDKPlugin+HealthKit.swift */; };
 		50ADFF99201F53D600D50D53 /* PointSDKPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ADFF8B201F53D600D50D53 /* PointSDKPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50ADFFA42020D75100D50D53 /* Capacitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50ADFFA52020D75100D50D53 /* Capacitor.framework */; };
@@ -22,6 +23,7 @@
 		0F46921628455580009F431E /* PointSDKPlugin+HealthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PointSDKPlugin+HealthService.swift"; sourceTree = "<group>"; };
 		0F56B2E2283D3A0900C454AA /* PointSDKPlugin+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PointSDKPlugin+Utils.swift"; sourceTree = "<group>"; };
 		0FAF4E072874B0C1005C9954 /* PointSDKPlugin+Fitbit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PointSDKPlugin+Fitbit.swift"; sourceTree = "<group>"; };
+		0FB9A6F128F75B8400EDE7EA /* PointSDKPlugin+Oura.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PointSDKPlugin+Oura.swift"; sourceTree = "<group>"; };
 		2F98D68124C9AAE400613A4C /* PointSDKPlugin+HealthKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PointSDKPlugin+HealthKit.swift"; sourceTree = "<group>"; };
 		50ADFF88201F53D600D50D53 /* PointSDK_Capacitor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PointSDK_Capacitor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50ADFF8B201F53D600D50D53 /* PointSDKPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PointSDKPlugin.h; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 			children = (
 				50E1A94720377CB70090CE1A /* PointSDKPlugin.swift */,
 				0F56B2E2283D3A0900C454AA /* PointSDKPlugin+Utils.swift */,
+				0FB9A6F128F75B8400EDE7EA /* PointSDKPlugin+Oura.swift */,
 				0FAF4E072874B0C1005C9954 /* PointSDKPlugin+Fitbit.swift */,
 				2F98D68124C9AAE400613A4C /* PointSDKPlugin+HealthKit.swift */,
 				0F46921628455580009F431E /* PointSDKPlugin+HealthService.swift */,
@@ -217,6 +220,7 @@
 				2F98D68224C9AAE500613A4C /* PointSDKPlugin+HealthKit.swift in Sources */,
 				50ADFFA82020EE4F00D50D53 /* PointSDKPlugin.m in Sources */,
 				0FAF4E082874B0C1005C9954 /* PointSDKPlugin+Fitbit.swift in Sources */,
+				0FB9A6F228F75B8500EDE7EA /* PointSDKPlugin+Oura.swift in Sources */,
 				0F56B2E3283D3A0900C454AA /* PointSDKPlugin+Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

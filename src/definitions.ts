@@ -44,7 +44,7 @@ export interface PointSDKPlugin {
    * Call this function to let the user authenticate his `Oura` account and integrate it with their `Point` account.
    * When you call this function your app will display a browser with the Oura authentication web page, if the user successfully authenticates, the browser will be dismissed and the control will be handled back to your app.
    */
-   authenticateOura(options: {
+  authenticateOura(options: {
     callbackURLScheme: string;
     ouraScopes?: OuraScopes[];
   }): Promise<void>;
@@ -312,13 +312,14 @@ export enum FitbitScopes {
   Profile = 'profile',
   Sleep = 'sleep',
   Weight = 'weight',
+  CardioFitness = 'cardio_fitness',
 }
 export enum OuraScopes {
   Daily = 'daily',
   Heartrate = 'heartrate',
   Personal = 'personal',
   Session = 'session',
-  Workout = 'workout'
+  Workout = 'workout',
 }
 
 export enum Goal {
@@ -355,24 +356,11 @@ export enum HealthMetricType {
   WorkoutDuration = 'WorkoutDuration',
   ExertionRate = 'ExertionRate',
   MovementLevel = 'MovementLevel',
-  MinsHRZone1 = 'MinsHRZone1',
-  MinsHRZone2 = 'MinsHRZone2',
-  MinsHRZone3 = 'MinsHRZone3',
-  MinsHRZone4 = 'MinsHRZone4',
   MinsHRZone12 = 'MinsHRZone12',
   MinsHRZone23 = 'MinsHRZone23',
   MinsHRZone34 = 'MinsHRZone34',
   MinsHRZone45 = 'MinsHRZone45',
   MinsHRZone5 = 'MinsHRZone5',
-  WorkoutMinsHRZone1 = 'WorkoutMinsHRZone1',
-  WorkoutMinsHRZone2 = 'WorkoutMinsHRZone2',
-  WorkoutMinsHRZone3 = 'WorkoutMinsHRZone3',
-  WorkoutMinsHRZone4 = 'WorkoutMinsHRZone4',
-  WorkoutMinsHRZone12 = 'WorkoutMinsHRZone12',
-  WorkoutMinsHRZone23 = 'WorkoutMinsHRZone23',
-  WorkoutMinsHRZone34 = 'WorkoutMinsHRZone34',
-  WorkoutMinsHRZone45 = 'WorkoutMinsHRZone45',
-  WorkoutMinsHRZone5 = 'WorkoutMinsHRZone5',
   MindfulMinutes = 'MindfulMinutes',
   AvgWorkoutHR = 'AvgWorkoutHR',
   MinWorkoutHR = 'MinWorkoutHR',
@@ -380,6 +368,7 @@ export enum HealthMetricType {
   SleepDuration = 'SleepDuration',
   SleepDurationInbed = 'SleepDurationInbed',
   SleepDurationAsleep = 'SleepDurationAsleep',
+  SleepDurationAwake = 'SleepDurationAwake',
   TotalWorkoutDuration = 'TotalWorkoutDuration',
   TotalMinsHRZone12 = 'TotalMinsHRZone12',
   TotalMinsHRZone34 = 'TotalMinsHRZone34',
@@ -392,5 +381,5 @@ export enum HealthMetricType {
   SleepStageDeep = 'SleepStageDeep',
   SleepStageLight = 'SleepStageLight',
   SleepStageREM = 'SleepStageREM',
-  SleepStageWake = 'SleepStageWake',
+  SleepStageAwake = 'SleepStageAwake',
 }

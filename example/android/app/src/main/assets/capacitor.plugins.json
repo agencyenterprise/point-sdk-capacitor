@@ -5,6 +5,6 @@
 	},
 	{
 		"pkg": "point-sdk-capacitor",
-		"classpath": "co.areyouonpoint.sdk.capacitor.PointSDKPlugin"
+		"classpath": "co.areyouonpoint.pointsdk.capacitor.PointSDK"
 	}
 ]
