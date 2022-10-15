@@ -8,10 +8,13 @@ public extension PointSDKPlugin {
     @objc
     func setupHealthkitIntegration(_ call: CAPPluginCall) {
         var queryTypes = HealthQueryType.allCases
+        var infoTypes = HealthInfoType.allCases
         if let queryTypesParam = call.getArray("queryTypes") {
             queryTypes = queryTypesParam.compactMap { queryTypeMapping(type: $0 as? String) }
+            infoTypes = queryTypesParam.compactMap { infoTypeMapping(type: $0 as? String) }
         }
-        healthKit = Point.setupHealthkitIntegration(queryTypes: Set(queryTypes))
+        
+        healthKit = Point.setupHealthkitIntegration(queryTypes: Set(queryTypes), userInformationTypes: Set(infoTypes))
         
         call.resolve()
     }

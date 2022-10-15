@@ -165,6 +165,12 @@ extension PointSDKPlugin {
         return HealthQueryType.init(rawValue: queryType)
     }
     
+    func infoTypeMapping(type: String?) -> HealthInfoType? {
+        guard let infoType = type else { return nil }
+        
+        return HealthInfoType.init(rawValue: infoType)
+    }
+    
     func fitbitScopesMapping(type: String?) -> FitbitScopes? {
         guard let scope = type else { return nil }
         
