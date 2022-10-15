@@ -12,7 +12,8 @@ import {
 } from "../../dist/esm";
 
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb24iOiJQb2ludCBPcmciLCJvcmdJZCI6NDQsInN1YiI6InBvaW50fDYyOThkYjZjZGM0ZGVhMDA2OGQ4NDUyYyIsImlhdCI6MTY2NTY5OTcyOCwiZXhwIjoxNjY1Nzg2MTI4fQ.YttVK7ttQYUhGfpjR7xFSavFZirY5oJF5sW43pfxQoc";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb24iOiJQb2ludCBPcmciLCJvcmdJZCI6NDQsInN1YiI6InBvaW50fDYyOThkYjZjZGM0ZGVhMDA2OGQ4NDUyYyIsImlhdCI6MTY2NTc5MTA5OCwiZXhwIjoxNjY1ODc3NDk4fQ.l4Li1HelCjURwMKZZrawwZFwrM93qC8hspuc2eu2nTs";
+
 class Application extends Nullstack {
   async hydrate() {
     // Setup the SDK as soon as possible, before background queries
@@ -133,9 +134,7 @@ class Application extends Nullstack {
   }
 
   async getUserHealthMetrics() {
-    const result = await PointSDK.getHealthMetrics({
-      filter: [HealthMetricType.ActiveCalories, HealthMetricType.BasalCalories, HealthMetricType.Vo2Max],
-    });
+    const result = await PointSDK.getHealthMetrics({});
     Application.logAndAlert(result);
   }
 

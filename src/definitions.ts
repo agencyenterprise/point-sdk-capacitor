@@ -302,8 +302,17 @@ export enum QueryType {
   StepCount = 'stepCount',
   MindfulSession = 'mindfulSession',
   SleepAnalysis = 'sleepAnalysis',
-  Birthday = 'birthday',
+  Birthday = 'dateOfBirth',
   BodyMass = 'bodyMass',
+  LeanBodyMass = 'leanBodyMass',
+  BodyMassIndex = 'bodyMassIndex',
+  BodyTemperature = 'bodyTemperature',
+  BodyFatPercentage = 'bodyFatPercentage',
+  OxygenSaturation = 'oxygenSaturation',
+  RespiratoryRate = 'respiratoryRate',
+  BloodGlucose = 'bloodGlucose',
+  BloodPressure = 'bloodPressure',
+  BiologicalSex = 'biologicalSex',
 }
 
 export enum FitbitScopes {
