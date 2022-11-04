@@ -18,6 +18,7 @@ export interface PointSDKPlugin {
   }): Promise<void>;
 
   /**
+   * @deprecated since version 1.3.0. It's not necessary to set up each integration manually anymore, this in now done automatically when setting up the SDK.
    * Sets up Fitbit integration.
    * Calling this will instantiate ``FitbitIntegrationManager`` within the SDK and it will be available for you to use.
    * Your Fitbit Client ID is provided by Fitbit when you create your Fitbit app integration.
@@ -25,6 +26,7 @@ export interface PointSDKPlugin {
   setupFitbitIntegration(options: { fitbitClientId: string }): Promise<void>;
 
   /**
+   * @deprecated since version 1.3.0. It's not necessary to set up each integration manually anymore, this in now done automatically when setting up the SDK.
    * Sets up Oura integration.
    * Calling this will instantiate ``OuraIntegrationManager`` within the SDK and it will be available for you to use.
    * Your Oura Client ID is provided by Oura when you create your Oura app integration.
@@ -289,6 +291,7 @@ export enum InsightType {
   WeekHrZonesLowMinutesBurnCarb = 'week_hr_zones_low_minutes_burn_carb',
   WeekHrZonesHighMinutesBurnCarb = 'week_hr_zones_high_minutes_burn_carb',
   WeekHrZone5HighMinutes = 'week_hr_zone5_high_minutes',
+  ActivityLevel = 'activity_level'
 }
 
 export enum QueryType {
@@ -322,6 +325,8 @@ export enum FitbitScopes {
   Sleep = 'sleep',
   Weight = 'weight',
   CardioFitness = 'cardio_fitness',
+  RespiratoryRate = 'respiratory_rate',
+  OxygenSaturation = 'oxygen_saturation'
 }
 export enum OuraScopes {
   Daily = 'daily',
@@ -391,4 +396,6 @@ export enum HealthMetricType {
   SleepStageLight = 'SleepStageLight',
   SleepStageREM = 'SleepStageREM',
   SleepStageAwake = 'SleepStageAwake',
+  MaxHR = 'MaxHR',
+  SleepRestlessness = 'SleepRestlessness'
 }
