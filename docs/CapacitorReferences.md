@@ -6,40 +6,40 @@ This document contains references to all available methods and types generated b
 
 <docgen-index>
 
-- [`setup(...)`](#setup)
-- [`setupHealthkitIntegration(...)`](#setuphealthkitintegration)
-- [`setupFitbitIntegration(...)`](#setupfitbitintegration)
-- [`setupOuraIntegration(...)`](#setupouraintegration)
-- [`authenticateFitbit(...)`](#authenticatefitbit)
-- [`authenticateOura(...)`](#authenticateoura)
-- [`revokeFitbitAuthentication()`](#revokefitbitauthentication)
-- [`revokeOuraAuthentication()`](#revokeouraauthentication)
-- [`isFitbitAuthenticated()`](#isfitbitauthenticated)
-- [`isOuraAuthenticated()`](#isouraauthenticated)
-- [`requestAuthorizationsIfPossible()`](#requestauthorizationsifpossible)
-- [`setUserToken(...)`](#setusertoken)
-- [`logout()`](#logout)
-- [`startAllListeners()`](#startalllisteners)
-- [`startListenerForType(...)`](#startlistenerfortype)
-- [`stopAllListeners()`](#stopalllisteners)
-- [`stopListenerForType(...)`](#stoplistenerfortype)
-- [`syncAllHistoricalData()`](#syncallhistoricaldata)
-- [`syncHistoricalDataForType(...)`](#synchistoricaldatafortype)
-- [`sync(...)`](#sync)
-- [`getUserData()`](#getuserdata)
-- [`getUserWorkouts(...)`](#getuserworkouts)
-- [`getUserWorkoutById(...)`](#getuserworkoutbyid)
-- [`getWorkoutRecommendations(...)`](#getworkoutrecommendations)
-- [`getDailyHistory(...)`](#getdailyhistory)
-- [`getHealthMetrics(...)`](#gethealthmetrics)
-- [`setUserGoal(...)`](#setusergoal)
-- [`setUserSpecificGoal(...)`](#setuserspecificgoal)
-- [`rateWorkout(...)`](#rateworkout)
-- [`saveWorkoutRecommendation(...)`](#saveworkoutrecommendation)
-- [`getInsights(...)`](#getinsights)
-- [Interfaces](#interfaces)
-- [Type Aliases](#type-aliases)
-- [Enums](#enums)
+* [`setup(...)`](#setup)
+* [`setupHealthkitIntegration(...)`](#setuphealthkitintegration)
+* [`setupFitbitIntegration(...)`](#setupfitbitintegration)
+* [`setupOuraIntegration(...)`](#setupouraintegration)
+* [`authenticateFitbit(...)`](#authenticatefitbit)
+* [`authenticateOura(...)`](#authenticateoura)
+* [`revokeFitbitAuthentication()`](#revokefitbitauthentication)
+* [`revokeOuraAuthentication()`](#revokeouraauthentication)
+* [`isFitbitAuthenticated()`](#isfitbitauthenticated)
+* [`isOuraAuthenticated()`](#isouraauthenticated)
+* [`requestAuthorizationsIfPossible()`](#requestauthorizationsifpossible)
+* [`setUserToken(...)`](#setusertoken)
+* [`logout()`](#logout)
+* [`startAllListeners()`](#startalllisteners)
+* [`startListenerForType(...)`](#startlistenerfortype)
+* [`stopAllListeners()`](#stopalllisteners)
+* [`stopListenerForType(...)`](#stoplistenerfortype)
+* [`syncAllHistoricalData()`](#syncallhistoricaldata)
+* [`syncHistoricalDataForType(...)`](#synchistoricaldatafortype)
+* [`sync(...)`](#sync)
+* [`getUserData()`](#getuserdata)
+* [`getUserWorkouts(...)`](#getuserworkouts)
+* [`getUserWorkoutById(...)`](#getuserworkoutbyid)
+* [`getWorkoutRecommendations(...)`](#getworkoutrecommendations)
+* [`getDailyHistory(...)`](#getdailyhistory)
+* [`getHealthMetrics(...)`](#gethealthmetrics)
+* [`setUserGoal(...)`](#setusergoal)
+* [`setUserSpecificGoal(...)`](#setuserspecificgoal)
+* [`rateWorkout(...)`](#rateworkout)
+* [`saveWorkoutRecommendation(...)`](#saveworkoutrecommendation)
+* [`getInsights(...)`](#getinsights)
+* [Interfaces](#interfaces)
+* [Type Aliases](#type-aliases)
+* [Enums](#enums)
 
 </docgen-index>
 
@@ -81,15 +81,12 @@ Before Apple's Healthkit features can be used, you must initialize HealthKit pro
 setupFitbitIntegration(options: { fitbitClientId: string; }) => Promise<void>
 ```
 
-Sets up Fitbit integration.
-Calling this will instantiate `FitbitIntegrationManager` within the SDK and it will be available for you to use.
-Your Fitbit Client ID is provided by Fitbit when you create your Fitbit app integration.
-
 | Param         | Type                                     |
 | ------------- | ---------------------------------------- |
 | **`options`** | <code>{ fitbitClientId: string; }</code> |
 
----
+--------------------
+
 
 ### setupOuraIntegration(...)
 
@@ -97,15 +94,12 @@ Your Fitbit Client ID is provided by Fitbit when you create your Fitbit app inte
 setupOuraIntegration(options: { ouraClientId: string; }) => Promise<void>
 ```
 
-Sets up Oura integration.
-Calling this will instantiate `OuraIntegrationManager` within the SDK and it will be available for you to use.
-Your Oura Client ID is provided by Oura when you create your Oura app integration.
-
 | Param         | Type                                   |
 | ------------- | -------------------------------------- |
 | **`options`** | <code>{ ouraClientId: string; }</code> |
 
----
+--------------------
+
 
 ### authenticateFitbit(...)
 
@@ -187,10 +181,11 @@ Call this function to know if your user has already authenticated their Oura acc
 requestAuthorizationsIfPossible() => Promise<void>
 ```
 
-Request user permissions for all <a href="#querytype">`QueryType`</a> defined at SDK setup.
+Request user permissions for all <a href="#querytype">``QueryType``</a> defined at SDK setup.
 It is recommended to do it before setting the user token or attempting to evoke other SDK methods.
 
----
+--------------------
+
 
 ### setUserToken(...)
 
@@ -552,18 +547,32 @@ getInsights(options: { types: InsightType[]; from?: string; to?: string; offset?
 | **`StepCount`**                | <code>'stepCount'</code>                |
 | **`MindfulSession`**           | <code>'mindfulSession'</code>           |
 | **`SleepAnalysis`**            | <code>'sleepAnalysis'</code>            |
-| **`Birthday`**                 | <code>'birthday'</code>                 |
+| **`Birthday`**                 | <code>'dateOfBirth'</code>              |
 | **`BodyMass`**                 | <code>'bodyMass'</code>                 |
+| **`LeanBodyMass`**             | <code>'leanBodyMass'</code>             |
+| **`BodyMassIndex`**            | <code>'bodyMassIndex'</code>            |
+| **`BodyTemperature`**          | <code>'bodyTemperature'</code>          |
+| **`BodyFatPercentage`**        | <code>'bodyFatPercentage'</code>        |
+| **`OxygenSaturation`**         | <code>'oxygenSaturation'</code>         |
+| **`RespiratoryRate`**          | <code>'respiratoryRate'</code>          |
+| **`BloodGlucose`**             | <code>'bloodGlucose'</code>             |
+| **`BloodPressure`**            | <code>'bloodPressure'</code>            |
+| **`BiologicalSex`**            | <code>'biologicalSex'</code>            |
+
 
 #### FitbitScopes
 
-| Members         | Value                    |
-| --------------- | ------------------------ |
-| **`Activity`**  | <code>'activity'</code>  |
-| **`Heartrate`** | <code>'heartrate'</code> |
-| **`Profile`**   | <code>'profile'</code>   |
-| **`Sleep`**     | <code>'sleep'</code>     |
-| **`Weight`**    | <code>'weight'</code>    |
+| Members                | Value                            |
+| ---------------------- | -------------------------------- |
+| **`Activity`**         | <code>'activity'</code>          |
+| **`Heartrate`**        | <code>'heartrate'</code>         |
+| **`Profile`**          | <code>'profile'</code>           |
+| **`Sleep`**            | <code>'sleep'</code>             |
+| **`Weight`**           | <code>'weight'</code>            |
+| **`CardioFitness`**    | <code>'cardio_fitness'</code>    |
+| **`RespiratoryRate`**  | <code>'respiratory_rate'</code>  |
+| **`OxygenSaturation`** | <code>'oxygen_saturation'</code> |
+
 
 #### OuraScopes
 
@@ -592,31 +601,19 @@ getInsights(options: { types: InsightType[]; from?: string; to?: string; offset?
 | **`WorkoutDuration`**      | <code>'WorkoutDuration'</code>      |
 | **`ExertionRate`**         | <code>'ExertionRate'</code>         |
 | **`MovementLevel`**        | <code>'MovementLevel'</code>        |
-| **`MinsHRZone1`**          | <code>'MinsHRZone1'</code>          |
-| **`MinsHRZone2`**          | <code>'MinsHRZone2'</code>          |
-| **`MinsHRZone3`**          | <code>'MinsHRZone3'</code>          |
-| **`MinsHRZone4`**          | <code>'MinsHRZone4'</code>          |
 | **`MinsHRZone12`**         | <code>'MinsHRZone12'</code>         |
 | **`MinsHRZone23`**         | <code>'MinsHRZone23'</code>         |
 | **`MinsHRZone34`**         | <code>'MinsHRZone34'</code>         |
 | **`MinsHRZone45`**         | <code>'MinsHRZone45'</code>         |
 | **`MinsHRZone5`**          | <code>'MinsHRZone5'</code>          |
-| **`WorkoutMinsHRZone1`**   | <code>'WorkoutMinsHRZone1'</code>   |
-| **`WorkoutMinsHRZone2`**   | <code>'WorkoutMinsHRZone2'</code>   |
-| **`WorkoutMinsHRZone3`**   | <code>'WorkoutMinsHRZone3'</code>   |
-| **`WorkoutMinsHRZone4`**   | <code>'WorkoutMinsHRZone4'</code>   |
-| **`WorkoutMinsHRZone12`**  | <code>'WorkoutMinsHRZone12'</code>  |
-| **`WorkoutMinsHRZone23`**  | <code>'WorkoutMinsHRZone23'</code>  |
-| **`WorkoutMinsHRZone34`**  | <code>'WorkoutMinsHRZone34'</code>  |
-| **`WorkoutMinsHRZone45`**  | <code>'WorkoutMinsHRZone45'</code>  |
-| **`WorkoutMinsHRZone5`**   | <code>'WorkoutMinsHRZone5'</code>   |
 | **`MindfulMinutes`**       | <code>'MindfulMinutes'</code>       |
 | **`AvgWorkoutHR`**         | <code>'AvgWorkoutHR'</code>         |
 | **`MinWorkoutHR`**         | <code>'MinWorkoutHR'</code>         |
 | **`MaxWorkoutHR`**         | <code>'MaxWorkoutHR'</code>         |
 | **`SleepDuration`**        | <code>'SleepDuration'</code>        |
-| **`SleepDurationInbed`**   | <code>'SleepDurationInbed'</code>   |
+| **`SleepDurationInbed`**   | <code>'SleepDurationAwake'</code>   |
 | **`SleepDurationAsleep`**  | <code>'SleepDurationAsleep'</code>  |
+| **`SleepDurationAwake`**   | <code>'SleepDurationAwake'</code>   |
 | **`TotalWorkoutDuration`** | <code>'TotalWorkoutDuration'</code> |
 | **`TotalMinsHRZone12`**    | <code>'TotalMinsHRZone12'</code>    |
 | **`TotalMinsHRZone34`**    | <code>'TotalMinsHRZone34'</code>    |
@@ -629,7 +626,10 @@ getInsights(options: { types: InsightType[]; from?: string; to?: string; offset?
 | **`SleepStageDeep`**       | <code>'SleepStageDeep'</code>       |
 | **`SleepStageLight`**      | <code>'SleepStageLight'</code>      |
 | **`SleepStageREM`**        | <code>'SleepStageREM'</code>        |
-| **`SleepStageWake`**       | <code>'SleepStageWake'</code>       |
+| **`SleepStageAwake`**      | <code>'SleepStageAwake'</code>      |
+| **`MaxHR`**                | <code>'MaxHR'</code>                |
+| **`SleepRestlessness`**    | <code>'SleepRestlessness'</code>    |
+
 
 #### Goal
 
@@ -676,5 +676,6 @@ getInsights(options: { types: InsightType[]; from?: string; to?: string; offset?
 | **`WeekHrZonesLowMinutesBurnCarb`**             | <code>'week_hr_zones_low_minutes_burn_carb'</code>             |
 | **`WeekHrZonesHighMinutesBurnCarb`**            | <code>'week_hr_zones_high_minutes_burn_carb'</code>            |
 | **`WeekHrZone5HighMinutes`**                    | <code>'week_hr_zone5_high_minutes'</code>                      |
+| **`ActivityLevel`**                             | <code>'activity_level'</code>                                  |
 
 </docgen-api>
