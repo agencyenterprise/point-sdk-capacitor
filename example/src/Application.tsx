@@ -76,16 +76,7 @@ class Application extends Nullstack {
       verbose: true,
     });
 
-    PointSDK.setupHealthkitIntegration({
-      queryTypes: [
-        //only use this param if you want to enable the SDK for specific types, removing this will enable all types
-        QueryType.HeartRate,
-        QueryType.StepCount,
-        QueryType.Workout,
-        QueryType.ActiveEnergyBurned,
-        QueryType.BasalEnergyBurned,
-      ],
-    });
+    PointSDK.setupHealthkitIntegration({});
 
     PointSDK.setupFitbitIntegration({ fitbitClientId: "23895P" });
     PointSDK.setupOuraIntegration({ ouraClientId: "5LSPZR2EKG2GQ76J" });
@@ -139,7 +130,7 @@ class Application extends Nullstack {
   }
 
   async getInsights() {
-    const result = await PointSDK.getInsights({ types: [InsightType.UsualWorkoutTime] });
+    const result = await PointSDK.getInsights({ types: [InsightType.ActivityLevel] });
     Application.logAndAlert(result);
   }
 
