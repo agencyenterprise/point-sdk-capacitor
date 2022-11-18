@@ -326,7 +326,8 @@ export enum FitbitScopes {
   Weight = 'weight',
   CardioFitness = 'cardio_fitness',
   RespiratoryRate = 'respiratory_rate',
-  OxygenSaturation = 'oxygen_saturation'
+  OxygenSaturation = 'oxygen_saturation',
+  Temperature = 'temperature'
 }
 export enum OuraScopes {
   Daily = 'daily',
