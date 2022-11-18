@@ -153,7 +153,7 @@ class Application extends Nullstack {
   async authenticateFitbit() {
     await PointSDK.authenticateFitbit({
       callbackURLScheme: "exampleapp",
-      fitbitScopes: [FitbitScopes.Activity, FitbitScopes.Profile],
+      fitbitScopes: [FitbitScopes.Activity, FitbitScopes.Profile, FitbitScopes.CardioFitness, FitbitScopes.OxygenSaturation, FitbitScopes.RespiratoryRate, FitbitScopes.Temperature],
     });
   }
 

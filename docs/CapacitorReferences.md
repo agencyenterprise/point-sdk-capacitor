@@ -572,6 +572,7 @@ getInsights(options: { types: InsightType[]; from?: string; to?: string; offset?
 | **`CardioFitness`**    | <code>'cardio_fitness'</code>    |
 | **`RespiratoryRate`**  | <code>'respiratory_rate'</code>  |
 | **`OxygenSaturation`** | <code>'oxygen_saturation'</code> |
+| **`Temperature`**      | <code>'temperature'</code>       |
 
 
 #### OuraScopes
