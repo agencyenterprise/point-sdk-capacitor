@@ -291,6 +291,10 @@ export enum InsightType {
   WeekHrZonesLowMinutesBurnCarb = 'week_hr_zones_low_minutes_burn_carb',
   WeekHrZonesHighMinutesBurnCarb = 'week_hr_zones_high_minutes_burn_carb',
   WeekHrZone5HighMinutes = 'week_hr_zone5_high_minutes',
+  AvgWorkoutDuration = "avg_workout_duration",
+  WorkoutIntensityTooHigh = "workout_intensity_too_high",
+  DayIntensityTooHigh = "day_intensity_too_high",
+  FirstWorkoutInAWhileIntensityTooHigh = "first_workout_in_a_while_intensity_too_high",
   ActivityLevel = 'activity_level',
 }
 
