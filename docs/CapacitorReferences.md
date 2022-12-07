@@ -58,7 +58,8 @@ Before any feature can be used, you must initialize the SDK providing your crede
 | ------------- | ----------------------------------------------------------------------------------------------- |
 | **`options`** | <code>{ clientId: string; clientSecret: string; environment: string; verbose: boolean; }</code> |
 
----
+--------------------
+
 
 ### setupHealthkitIntegration(...)
 
@@ -73,7 +74,8 @@ Before Apple's Healthkit features can be used, you must initialize HealthKit pro
 | ------------- | ------------------------------------------ |
 | **`options`** | <code>{ queryTypes?: QueryType[]; }</code> |
 
----
+--------------------
+
 
 ### setupFitbitIntegration(...)
 
@@ -114,7 +116,8 @@ When you call this function your app will display a browser with the Fitbit auth
 | ------------- | -------------------------------------------------------------------------- |
 | **`options`** | <code>{ callbackURLScheme: string; fitbitScopes?: FitbitScopes[]; }</code> |
 
----
+--------------------
+
 
 ### authenticateOura(...)
 
@@ -129,7 +132,8 @@ When you call this function your app will display a browser with the Oura authen
 | ------------- | ---------------------------------------------------------------------- |
 | **`options`** | <code>{ callbackURLScheme: string; ouraScopes?: OuraScopes[]; }</code> |
 
----
+--------------------
+
 
 ### revokeFitbitAuthentication()
 
@@ -139,7 +143,8 @@ revokeFitbitAuthentication() => Promise<void>
 
 Revokes the user's Fitbit authentication. Effectively, this will cause Point to stop collecting Fitbit data from this user.
 
----
+--------------------
+
 
 ### revokeOuraAuthentication()
 
@@ -149,7 +154,8 @@ revokeOuraAuthentication() => Promise<void>
 
 Revokes the user's Oura authentication. Effectively, this will cause Point to stop collecting Oura data from this user.
 
----
+--------------------
+
 
 ### isFitbitAuthenticated()
 
@@ -161,7 +167,8 @@ Call this function to know if your user has already authenticated their Fitbit a
 
 **Returns:** <code>Promise&lt;boolean&gt;</code>
 
----
+--------------------
+
 
 ### isOuraAuthenticated()
 
@@ -173,7 +180,8 @@ Call this function to know if your user has already authenticated their Oura acc
 
 **Returns:** <code>Promise&lt;boolean&gt;</code>
 
----
+--------------------
+
 
 ### requestAuthorizationsIfPossible()
 
@@ -199,7 +207,8 @@ Set the user access token. It is recommended to do it as soon as possible, right
 | ------------- | ------------------------------------------------------------- |
 | **`options`** | <code>{ userToken: string; shouldSyncData?: boolean; }</code> |
 
----
+--------------------
+
 
 ### logout()
 
@@ -209,7 +218,8 @@ logout() => Promise<void>
 
 Clear the user token and the local cache. Also stops all listeners.
 
----
+--------------------
+
 
 ### startAllListeners()
 
@@ -221,7 +231,8 @@ Start listeners to sync all types defined on SDK setup.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### startListenerForType(...)
 
@@ -237,7 +248,8 @@ Start listener to sync just a specific query type.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### stopAllListeners()
 
@@ -249,7 +261,8 @@ Stop listeners for all types defined on SDK setup.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### stopListenerForType(...)
 
@@ -265,7 +278,8 @@ Stop listeners for a specific query type.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### syncAllHistoricalData()
 
@@ -277,7 +291,8 @@ Syncs the past 3 months of historical data for permissioned types with the Point
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### syncHistoricalDataForType(...)
 
@@ -293,7 +308,8 @@ Syncs the past 3 months historical data for a given sample type with the Point d
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### sync(...)
 
@@ -309,7 +325,8 @@ Syncs the HealthKit data from the query results with the `Point` database.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### getUserData()
 
@@ -321,7 +338,8 @@ Retrieves information about the <a href="#user">User</a>, such as email, first n
 
 **Returns:** <code>Promise&lt;<a href="#user">User</a>&gt;</code>
 
----
+--------------------
+
 
 ### getUserWorkouts(...)
 
@@ -337,7 +355,8 @@ Retrieves a list of the <a href="#user">User</a>'s last 16 Workouts, in descendi
 
 **Returns:** <code>Promise&lt;Workout[]&gt;</code>
 
----
+--------------------
+
 
 ### getUserWorkoutById(...)
 
@@ -353,7 +372,8 @@ Retrieves a single <a href="#workout">Workout</a> for the given id.
 
 **Returns:** <code>Promise&lt;<a href="#workout">Workout</a>&gt;</code>
 
----
+--------------------
+
 
 ### getWorkoutRecommendations(...)
 
@@ -371,7 +391,8 @@ We recommend using `saveWorkoutRecommendation(options: { id: number })` to let y
 
 **Returns:** <code>Promise&lt;WorkoutRecommendation[]&gt;</code>
 
----
+--------------------
+
 
 ### getDailyHistory(...)
 
@@ -387,7 +408,8 @@ Retrieves a list of the <a href="#user">User</a>'s last 16 days worth of DailyHi
 
 **Returns:** <code>Promise&lt;[{ date: <a href="#date">Date</a>; metrics: HealthMetric[]; }]&gt;</code>
 
----
+--------------------
+
 
 ### getHealthMetrics(...)
 
@@ -403,7 +425,8 @@ You can get a set of user health metrics, which are a summary of the collected s
 
 **Returns:** <code>Promise&lt;HealthMetric[]&gt;</code>
 
----
+--------------------
+
 
 ### setUserGoal(...)
 
@@ -420,7 +443,8 @@ Sets the user <a href="#goal">Goal</a>. This is more limited set of options. If 
 
 **Returns:** <code>Promise&lt;<a href="#user">User</a>&gt;</code>
 
----
+--------------------
+
 
 ### setUserSpecificGoal(...)
 
@@ -436,7 +460,8 @@ Sets the user <a href="#specificgoal">SpecificGoal</a>. This provides a wider ar
 
 **Returns:** <code>Promise&lt;<a href="#user">User</a>&gt;</code>
 
----
+--------------------
+
 
 ### rateWorkout(...)
 
@@ -452,7 +477,8 @@ You can allow users to rate their past workouts. A workout rating is divided in 
 
 **Returns:** <code>Promise&lt;<a href="#workout">Workout</a>&gt;</code>
 
----
+--------------------
+
 
 ### saveWorkoutRecommendation(...)
 
@@ -470,7 +496,8 @@ When a recommendation is saved, Point is able to check if this workout recommend
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### getInsights(...)
 
@@ -484,9 +511,11 @@ getInsights(options: { types: InsightType[]; from?: string; to?: string; offset?
 
 **Returns:** <code>Promise&lt;<a href="#insight">Insight</a>&gt;</code>
 
----
+--------------------
+
 
 ### Interfaces
+
 
 #### User
 
@@ -585,6 +614,7 @@ getInsights(options: { types: InsightType[]; from?: string; to?: string; offset?
 | **`Session`**   | <code>'session'</code>   |
 | **`Workout`**   | <code>'workout'</code>   |
 
+
 #### HealthMetricType
 
 | Members                    | Value                               |
@@ -639,6 +669,7 @@ getInsights(options: { types: InsightType[]; from?: string; to?: string; offset?
 | **`WeightLoss`**          | <code>'weightLoss'</code>          |
 | **`AthleticPerformance`** | <code>'athleticPerformance'</code> |
 
+
 #### SpecificGoal
 
 | Members               | Value                          |
@@ -648,6 +679,7 @@ getInsights(options: { types: InsightType[]; from?: string; to?: string; offset?
 | **`PrepareForEvent`** | <code>'prepareForEvent'</code> |
 | **`AccomplishMore`**  | <code>'accomplishMore'</code>  |
 | **`MaintainHealth`**  | <code>'maintainHealth'</code>  |
+
 
 #### InsightType
 
@@ -677,6 +709,10 @@ getInsights(options: { types: InsightType[]; from?: string; to?: string; offset?
 | **`WeekHrZonesLowMinutesBurnCarb`**             | <code>'week_hr_zones_low_minutes_burn_carb'</code>             |
 | **`WeekHrZonesHighMinutesBurnCarb`**            | <code>'week_hr_zones_high_minutes_burn_carb'</code>            |
 | **`WeekHrZone5HighMinutes`**                    | <code>'week_hr_zone5_high_minutes'</code>                      |
+| **`AvgWorkoutDuration`**                        | <code>"avg_workout_duration"</code>                            |
+| **`WorkoutIntensityTooHigh`**                   | <code>"workout_intensity_too_high"</code>                      |
+| **`DayIntensityTooHigh`**                       | <code>"day_intensity_too_high"</code>                          |
+| **`FirstWorkoutInAWhileIntensityTooHigh`**      | <code>"first_workout_in_a_while_intensity_too_high"</code>     |
 | **`ActivityLevel`**                             | <code>'activity_level'</code>                                  |
 
 </docgen-api>
