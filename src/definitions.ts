@@ -86,6 +86,15 @@ export interface PointSDKPlugin {
   }): Promise<void>;
 
   /**
+ * Set the user access token. It is recommended to do it as soon as possible, right after having requested user permissions.
+ */
+  setRefreshToken(options: {
+    refreshToken: string;
+    userId: string;
+    shouldSyncData?: boolean;
+  }): Promise<void>;
+
+  /**
    * Clear the user token and the local cache. Also stops all listeners.
    */
   logout(): Promise<void>;

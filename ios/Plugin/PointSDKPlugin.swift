@@ -33,8 +33,26 @@ public class PointSDKPlugin: CAPPlugin {
             guard !Task.isCancelled else { return }
             
             do {
-                try await Point.setUserToken(
+                try await Point.setAccessToken(
                     accessToken: call.getString("userToken")!,
+                    shouldSyncHistoricalData: call.getBool("shouldSyncData", true)
+                )
+                call.resolve()
+            } catch {
+                call.reject(error.localizedDescription)
+            }
+        }
+    }
+
+    @objc
+    public func setRefreshToken(_ call: CAPPluginCall) {
+        Task {
+            guard !Task.isCancelled else { return }
+            
+            do {
+                try await Point.setRefreshToken(
+                    refreshToken: call.getString("refreshToken")!,
+                    userId: call.getString("userId")!,
                     shouldSyncHistoricalData: call.getBool("shouldSyncData", true)
                 )
                 call.resolve()

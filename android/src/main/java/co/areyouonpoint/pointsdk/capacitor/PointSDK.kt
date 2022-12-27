@@ -8,6 +8,9 @@ import com.getcapacitor.Plugin
 import com.getcapacitor.PluginCall
 import com.getcapacitor.PluginMethod
 import com.getcapacitor.annotation.CapacitorPlugin
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 @CapacitorPlugin(name = "PointSDK")
 class PointSDK : Plugin() {
@@ -43,6 +46,18 @@ class PointSDK : Plugin() {
             call.resolve()
         } catch (ex: PointException) {
             call.reject(ex.message)
+        }
+    }
+
+    @PluginMethod
+    fun setRefreshToken(call: PluginCall) {
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                pointClient?.setRefreshToken(call.getString("refreshToken")!!, call.getString("userId")!!)
+                call.resolve()
+            } catch (ex: PointException) {
+                call.reject(ex.message)
+            }
         }
     }
 
