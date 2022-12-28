@@ -50,6 +50,16 @@ class PointSDK : Plugin() {
     }
 
     @PluginMethod
+    fun setAccessToken(call: PluginCall) {
+        try {
+            pointClient?.setAccessToken(call.getString("accessToken")!!)
+            call.resolve()
+        } catch (ex: PointException) {
+            call.reject(ex.message)
+        }
+    }
+
+    @PluginMethod
     fun setRefreshToken(call: PluginCall) {
         GlobalScope.launch(Dispatchers.IO) {
             try {
