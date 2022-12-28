@@ -78,6 +78,7 @@ export interface PointSDKPlugin {
   requestAuthorizationsIfPossible(): Promise<void>;
 
   /**
+   * @deprecated since 1.4.0. Renamed to setAccessToken
    * Set the user access token. It is recommended to do it as soon as possible, right after having requested user permissions.
    */
   setUserToken(options: {
@@ -86,8 +87,28 @@ export interface PointSDKPlugin {
   }): Promise<void>;
 
   /**
- * Set the user access token. It is recommended to do it as soon as possible, right after having requested user permissions.
- */
+  * Set the user access token to access the `Point API` and optionally runs a sync to get the user past data and upload to `Point` database if its the first usage during the session.
+  * 
+  * Use this login method if you want to manually manage the user access token and provide a new one when the current expires. You will need to call this function on login and every time your token expires.
+  * 
+  * To handle this automatically, use ``setRefreshToken`` instead.
+  * 
+  * When you call this function (and if you enabled HealthKit integration), the SDK will start collecting 4 months worth of data for all types defined in the HealthKit integration setup (Latest Data Sync). After this initial process is completed, we will start collecting older data up until one year ago (Historical Data Sync).
+  */
+  setAccessToken(options: {
+    accessToken: string;
+    shouldSyncData?: boolean;
+  }): Promise<void>;
+
+  /**
+  * Set the user refresh token to access the `Point API` and optionally runs a sync to get the user past data and upload to `Point` database if its the first usage during the session.
+  * 
+  * By using this method of login will allow the Point SDK to automatically handle the user access token and refresh it when needed. You only need to call this function once, as the token will be persisted between sessions. Calling ``logout()`` will erase the refresh token.
+  * 
+  * Do not call ``setAccessToken`` if a refresh token is set.
+  * 
+  * When you call this function (and if you enabled HealthKit integration), the SDK will start collecting 4 months worth of data for all types defined in the HealthKit integration setup (Latest Data Sync). After this initial process is completed, we will start collecting older data up until one year ago (Historical Data Sync).
+  */
   setRefreshToken(options: {
     refreshToken: string;
     userId: string;
