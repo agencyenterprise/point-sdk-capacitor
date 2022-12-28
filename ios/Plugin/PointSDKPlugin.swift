@@ -50,9 +50,10 @@ public class PointSDKPlugin: CAPPlugin {
             guard !Task.isCancelled else { return }
             
             do {
+                let userId = call.getString("userId")!.replacingOccurrences(of: "|", with: "%7C", options: .literal, range: nil)
                 try await Point.setRefreshToken(
                     refreshToken: call.getString("refreshToken")!,
-                    userId: call.getString("userId")!,
+                    userId: userId,
                     shouldSyncHistoricalData: call.getBool("shouldSyncData", true)
                 )
                 call.resolve()

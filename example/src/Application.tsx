@@ -11,13 +11,16 @@ import {
   SpecificGoal,
 } from "../../dist/esm";
 
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb24iOiJQb2ludCBPcmciLCJvcmdJZCI6NDQsInN1YiI6InBvaW50fDYyOThkYjZjZGM0ZGVhMDA2OGQ4NDUyYyIsImlhdCI6MTY2NTc5MTA5OCwiZXhwIjoxNjY1ODc3NDk4fQ.l4Li1HelCjURwMKZZrawwZFwrM93qC8hspuc2eu2nTs";
+var token = ""
+var userId = ""
 
 class Application extends Nullstack {
-  async hydrate() {
+  async hydrate({ settings }) {
     // Setup the SDK as soon as possible, before background queries
     this.setupSDK();
+
+    token = settings.refreshToken;
+    userId = settings.userId;
 
     // Apple recommends setting up the background queries as soon as possible, first thing on app launch
     await this.startListeners();
@@ -91,7 +94,11 @@ class Application extends Nullstack {
   }
 
   async setUserToken() {
-    await PointSDK.setUserToken({ userToken: token });
+    await PointSDK.setRefreshToken({
+      refreshToken: token,
+      userId: userId,
+      shouldSyncData: false
+    })
   }
 
   async getUserData() {
