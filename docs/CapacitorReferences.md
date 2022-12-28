@@ -18,6 +18,7 @@ This document contains references to all available methods and types generated b
 * [`isOuraAuthenticated()`](#isouraauthenticated)
 * [`requestAuthorizationsIfPossible()`](#requestauthorizationsifpossible)
 * [`setUserToken(...)`](#setusertoken)
+* [`setAccessToken(...)`](#setaccesstoken)
 * [`setRefreshToken(...)`](#setrefreshtoken)
 * [`logout()`](#logout)
 * [`startAllListeners()`](#startalllisteners)
@@ -202,11 +203,30 @@ It is recommended to do it before setting the user token or attempting to evoke 
 setUserToken(options: { userToken: string; shouldSyncData?: boolean; }) => Promise<void>
 ```
 
-Set the user access token. It is recommended to do it as soon as possible, right after having requested user permissions.
-
 | Param         | Type                                                          |
 | ------------- | ------------------------------------------------------------- |
 | **`options`** | <code>{ userToken: string; shouldSyncData?: boolean; }</code> |
+
+--------------------
+
+
+### setAccessToken(...)
+
+```typescript
+setAccessToken(options: { accessToken: string; shouldSyncData?: boolean; }) => Promise<void>
+```
+
+Set the user access token to access the `Point API` and optionally runs a sync to get the user past data and upload to `Point` database if its the first usage during the session.
+
+Use this login method if you want to manually manage the user access token and provide a new one when the current expires. You will need to call this function on login and every time your token expires.
+
+To handle this automatically, use ``setRefreshToken`` instead.
+
+When you call this function (and if you enabled HealthKit integration), the SDK will start collecting 4 months worth of data for all types defined in the HealthKit integration setup (Latest Data Sync). After this initial process is completed, we will start collecting older data up until one year ago (Historical Data Sync).
+
+| Param         | Type                                                            |
+| ------------- | --------------------------------------------------------------- |
+| **`options`** | <code>{ accessToken: string; shouldSyncData?: boolean; }</code> |
 
 --------------------
 
@@ -217,7 +237,13 @@ Set the user access token. It is recommended to do it as soon as possible, right
 setRefreshToken(options: { refreshToken: string; userId: string; shouldSyncData?: boolean; }) => Promise<void>
 ```
 
-Set the user access token. It is recommended to do it as soon as possible, right after having requested user permissions.
+Set the user refresh token to access the `Point API` and optionally runs a sync to get the user past data and upload to `Point` database if its the first usage during the session.
+
+By using this method of login will allow the Point SDK to automatically handle the user access token and refresh it when needed. You only need to call this function once, as the token will be persisted between sessions. Calling ``logout()`` will erase the refresh token.
+
+Do not call ``setAccessToken`` if a refresh token is set.
+
+When you call this function (and if you enabled HealthKit integration), the SDK will start collecting 4 months worth of data for all types defined in the HealthKit integration setup (Latest Data Sync). After this initial process is completed, we will start collecting older data up until one year ago (Historical Data Sync).
 
 | Param         | Type                                                                             |
 | ------------- | -------------------------------------------------------------------------------- |
@@ -545,67 +571,6 @@ getInsights(options: { types: InsightType[]; from?: string; to?: string; offset?
 | **`goalProgress`** | <code><a href="#record">Record</a>&lt;<a href="#goalprogresskey">GoalProgressKey</a>, <a href="#goalprogressvalue">GoalProgressValue</a>&gt;</code> |
 | **`specificGoal`** | <code>string</code>                                                                                                                                 |
 | **`lastWorkout`**  | <code><a href="#workout">Workout</a></code>                                                                                                         |
-
-
-#### Date
-
-Enables basic storage and retrieval of dates and times.
-
-| Method                 | Signature                                                                                                    | Description                                                                                                                             |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
-| **toString**           | () =&gt; string                                                                                              | Returns a string representation of a date. The format of the string depends on the locale.                                              |
-| **toDateString**       | () =&gt; string                                                                                              | Returns a date as a string value.                                                                                                       |
-| **toTimeString**       | () =&gt; string                                                                                              | Returns a time as a string value.                                                                                                       |
-| **toLocaleString**     | () =&gt; string                                                                                              | Returns a value as a string value appropriate to the host environment's current locale.                                                 |
-| **toLocaleDateString** | () =&gt; string                                                                                              | Returns a date as a string value appropriate to the host environment's current locale.                                                  |
-| **toLocaleTimeString** | () =&gt; string                                                                                              | Returns a time as a string value appropriate to the host environment's current locale.                                                  |
-| **valueOf**            | () =&gt; number                                                                                              | Returns the stored time value in milliseconds since midnight, January 1, 1970 UTC.                                                      |
-| **getTime**            | () =&gt; number                                                                                              | Gets the time value in milliseconds.                                                                                                    |
-| **getFullYear**        | () =&gt; number                                                                                              | Gets the year, using local time.                                                                                                        |
-| **getUTCFullYear**     | () =&gt; number                                                                                              | Gets the year using Universal Coordinated Time (UTC).                                                                                   |
-| **getMonth**           | () =&gt; number                                                                                              | Gets the month, using local time.                                                                                                       |
-| **getUTCMonth**        | () =&gt; number                                                                                              | Gets the month of a <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                             |
-| **getDate**            | () =&gt; number                                                                                              | Gets the day-of-the-month, using local time.                                                                                            |
-| **getUTCDate**         | () =&gt; number                                                                                              | Gets the day-of-the-month, using Universal Coordinated Time (UTC).                                                                      |
-| **getDay**             | () =&gt; number                                                                                              | Gets the day of the week, using local time.                                                                                             |
-| **getUTCDay**          | () =&gt; number                                                                                              | Gets the day of the week using Universal Coordinated Time (UTC).                                                                        |
-| **getHours**           | () =&gt; number                                                                                              | Gets the hours in a date, using local time.                                                                                             |
-| **getUTCHours**        | () =&gt; number                                                                                              | Gets the hours value in a <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                       |
-| **getMinutes**         | () =&gt; number                                                                                              | Gets the minutes of a <a href="#date">Date</a> object, using local time.                                                                |
-| **getUTCMinutes**      | () =&gt; number                                                                                              | Gets the minutes of a <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                           |
-| **getSeconds**         | () =&gt; number                                                                                              | Gets the seconds of a <a href="#date">Date</a> object, using local time.                                                                |
-| **getUTCSeconds**      | () =&gt; number                                                                                              | Gets the seconds of a <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                           |
-| **getMilliseconds**    | () =&gt; number                                                                                              | Gets the milliseconds of a <a href="#date">Date</a>, using local time.                                                                  |
-| **getUTCMilliseconds** | () =&gt; number                                                                                              | Gets the milliseconds of a <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                      |
-| **getTimezoneOffset**  | () =&gt; number                                                                                              | Gets the difference in minutes between the time on the local computer and Universal Coordinated Time (UTC).                             |
-| **setTime**            | (time: number) =&gt; number                                                                                  | Sets the date and time value in the <a href="#date">Date</a> object.                                                                    |
-| **setMilliseconds**    | (ms: number) =&gt; number                                                                                    | Sets the milliseconds value in the <a href="#date">Date</a> object using local time.                                                    |
-| **setUTCMilliseconds** | (ms: number) =&gt; number                                                                                    | Sets the milliseconds value in the <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                              |
-| **setSeconds**         | (sec: number, ms?: number \| undefined) =&gt; number                                                         | Sets the seconds value in the <a href="#date">Date</a> object using local time.                                                         |
-| **setUTCSeconds**      | (sec: number, ms?: number \| undefined) =&gt; number                                                         | Sets the seconds value in the <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                   |
-| **setMinutes**         | (min: number, sec?: number \| undefined, ms?: number \| undefined) =&gt; number                              | Sets the minutes value in the <a href="#date">Date</a> object using local time.                                                         |
-| **setUTCMinutes**      | (min: number, sec?: number \| undefined, ms?: number \| undefined) =&gt; number                              | Sets the minutes value in the <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                   |
-| **setHours**           | (hours: number, min?: number \| undefined, sec?: number \| undefined, ms?: number \| undefined) =&gt; number | Sets the hour value in the <a href="#date">Date</a> object using local time.                                                            |
-| **setUTCHours**        | (hours: number, min?: number \| undefined, sec?: number \| undefined, ms?: number \| undefined) =&gt; number | Sets the hours value in the <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                     |
-| **setDate**            | (date: number) =&gt; number                                                                                  | Sets the numeric day-of-the-month value of the <a href="#date">Date</a> object using local time.                                        |
-| **setUTCDate**         | (date: number) =&gt; number                                                                                  | Sets the numeric day of the month in the <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                        |
-| **setMonth**           | (month: number, date?: number \| undefined) =&gt; number                                                     | Sets the month value in the <a href="#date">Date</a> object using local time.                                                           |
-| **setUTCMonth**        | (month: number, date?: number \| undefined) =&gt; number                                                     | Sets the month value in the <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                     |
-| **setFullYear**        | (year: number, month?: number \| undefined, date?: number \| undefined) =&gt; number                         | Sets the year of the <a href="#date">Date</a> object using local time.                                                                  |
-| **setUTCFullYear**     | (year: number, month?: number \| undefined, date?: number \| undefined) =&gt; number                         | Sets the year value in the <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                      |
-| **toUTCString**        | () =&gt; string                                                                                              | Returns a date converted to a string using Universal Coordinated Time (UTC).                                                            |
-| **toISOString**        | () =&gt; string                                                                                              | Returns a date as a string value in ISO format.                                                                                         |
-| **toJSON**             | (key?: any) =&gt; string                                                                                     | Used by the JSON.stringify method to enable the transformation of an object's data for JavaScript Object Notation (JSON) serialization. |
-
-
-### Type Aliases
-
-
-#### Record
-
-Construct a type with a set of properties K of type T
-
-<code>{ [P in K]: T; }</code>
 
 
 #### GoalProgressKey
