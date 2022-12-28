@@ -8,7 +8,7 @@ public extension PointSDKPlugin {
     @objc
     func setupOuraIntegration(_ call: CAPPluginCall) {
         if let clientId = call.getString("ouraClientId") {
-            ouraManager = Point.setupOuraIntegration(ouraClientId: clientId)
+            Point.setupOuraIntegration(ouraClientId: clientId)
             call.resolve()
         } else {
             call.reject("setupOuraIntegration error: Must provide oura client id.")
@@ -28,7 +28,7 @@ public extension PointSDKPlugin {
                         scopes = scopesParam.compactMap { ouraScopesMapping(type: $0 as? String) }
                     }
                     
-                    try await ouraManager?.authenticate(scopes: scopes, callbackURLScheme: callbackScheme)
+                    try await Point.ouraManager?.authenticate(scopes: scopes, callbackURLScheme: callbackScheme)
                     call.resolve()
                 } else {
                     call.reject("authenticateOura error: Must provide a callbackURLScheme.")
@@ -45,7 +45,7 @@ public extension PointSDKPlugin {
             guard !Task.isCancelled else { return }
             
             do {
-                try await ouraManager?.revoke()
+                try await Point.ouraManager?.revoke()
                 call.resolve()
             } catch {
                 call.reject(error.localizedDescription)
@@ -59,7 +59,7 @@ public extension PointSDKPlugin {
             guard !Task.isCancelled else { return }
             
             do {
-                let result = try await ouraManager?.getUserAuthenticationStatus()?.active ?? false
+                let result = try await Point.ouraManager?.getUserAuthenticationStatus()?.active ?? false
                 call.resolve([
                     "result" : result
                 ])

@@ -8,7 +8,7 @@ public extension PointSDKPlugin {
     @objc
     func setupFitbitIntegration(_ call: CAPPluginCall) {
         if let clientId = call.getString("fitbitClientId") {
-            fitbitManager = Point.setupFitbitIntegration(fitbitClientId: clientId)
+            Point.setupFitbitIntegration(fitbitClientId: clientId)
             call.resolve()
         } else {
             call.reject("setupFitbitIntegration error: Must provide fitbit client id.")
@@ -28,7 +28,7 @@ public extension PointSDKPlugin {
                         scopes = scopesParam.compactMap { fitbitScopesMapping(type: $0 as? String) }
                     }
                     
-                    try await fitbitManager?.authenticate(scopes: scopes, callbackURLScheme: callbackScheme)
+                    try await Point.fitbitManager?.authenticate(scopes: scopes, callbackURLScheme: callbackScheme)
                     call.resolve()
                 } else {
                     call.reject("authenticateFitbit error: Must provide a callbackURLScheme.")
@@ -45,7 +45,7 @@ public extension PointSDKPlugin {
             guard !Task.isCancelled else { return }
             
             do {
-                try await fitbitManager?.revoke()
+                try await Point.fitbitManager?.revoke()
                 call.resolve()
             } catch {
                 call.reject(error.localizedDescription)
@@ -59,7 +59,7 @@ public extension PointSDKPlugin {
             guard !Task.isCancelled else { return }
             
             do {
-                let result = try await fitbitManager?.getUserAuthenticationStatus()?.active ?? false
+                let result = try await Point.fitbitManager?.getUserAuthenticationStatus()?.active ?? false
                 call.resolve([
                     "result" : result
                 ])
