@@ -57,7 +57,7 @@ dependencies {
     implementation project(':capacitor-android')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'co.areyouonpoint.pointsdk:pointsdk:1.4.0'
+    implementation 'co.areyouonpoint.pointsdk:pointsdk:1.4.1'
     implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
 
 
