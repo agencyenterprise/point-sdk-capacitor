@@ -10,8 +10,6 @@ import PointSDK
 public class PointSDKPlugin: CAPPlugin {
     
     var healthKit: HealthKitManager?
-    var fitbitManager: FitbitIntegrationManager?
-    var ouraManager: OuraIntegrationManager?
     var healthService: HealthDataService { Point.healthDataService }
     
     @objc
@@ -33,8 +31,44 @@ public class PointSDKPlugin: CAPPlugin {
             guard !Task.isCancelled else { return }
             
             do {
-                try await Point.setUserToken(
+                try await Point.setAccessToken(
                     accessToken: call.getString("userToken")!,
+                    shouldSyncHistoricalData: call.getBool("shouldSyncData", true)
+                )
+                call.resolve()
+            } catch {
+                call.reject(error.localizedDescription)
+            }
+        }
+    }
+
+    @objc
+    public func setAccessToken(_ call: CAPPluginCall) {
+        Task {
+            guard !Task.isCancelled else { return }
+            
+            do {
+                try await Point.setAccessToken(
+                    accessToken: call.getString("accessToken")!,
+                    shouldSyncHistoricalData: call.getBool("shouldSyncData", true)
+                )
+                call.resolve()
+            } catch {
+                call.reject(error.localizedDescription)
+            }
+        }
+    }
+
+    @objc
+    public func setRefreshToken(_ call: CAPPluginCall) {
+        Task {
+            guard !Task.isCancelled else { return }
+            
+            do {
+                let userId = call.getString("userId")!.replacingOccurrences(of: "|", with: "%7C", options: .literal, range: nil)
+                try await Point.setRefreshToken(
+                    refreshToken: call.getString("refreshToken")!,
+                    userId: userId,
                     shouldSyncHistoricalData: call.getBool("shouldSyncData", true)
                 )
                 call.resolve()

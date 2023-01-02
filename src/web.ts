@@ -32,6 +32,12 @@ export class PointSDKWeb extends WebPlugin implements PointSDKPlugin {
   setUserToken(_options: { userToken: string }): Promise<void> {
     throw new Error('Method not implemented.');
   }
+  setRefreshToken(_options: {
+    refreshToken: string;
+    userId: string;
+  }): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
   logout(): Promise<void> {
     throw new Error('Method not implemented.');
   }

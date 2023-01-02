@@ -25,6 +25,12 @@
 }
 ```
 
+### Add the following lines to your `.env` file and include the refresh token and userId of your user account
+```json
+NULLSTACK_SETTINGS_REFRESH_TOKEN=<your token>
+NULLSTACK_SETTINGS_USER_ID=<your user id>
+```
+
 ### Update the iOS app:
 
 `npx cap sync ios`

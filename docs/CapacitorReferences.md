@@ -18,6 +18,8 @@ This document contains references to all available methods and types generated b
 * [`isOuraAuthenticated()`](#isouraauthenticated)
 * [`requestAuthorizationsIfPossible()`](#requestauthorizationsifpossible)
 * [`setUserToken(...)`](#setusertoken)
+* [`setAccessToken(...)`](#setaccesstoken)
+* [`setRefreshToken(...)`](#setrefreshtoken)
 * [`logout()`](#logout)
 * [`startAllListeners()`](#startalllisteners)
 * [`startListenerForType(...)`](#startlistenerfortype)
@@ -201,11 +203,51 @@ It is recommended to do it before setting the user token or attempting to evoke 
 setUserToken(options: { userToken: string; shouldSyncData?: boolean; }) => Promise<void>
 ```
 
-Set the user access token. It is recommended to do it as soon as possible, right after having requested user permissions.
-
 | Param         | Type                                                          |
 | ------------- | ------------------------------------------------------------- |
 | **`options`** | <code>{ userToken: string; shouldSyncData?: boolean; }</code> |
+
+--------------------
+
+
+### setAccessToken(...)
+
+```typescript
+setAccessToken(options: { accessToken: string; shouldSyncData?: boolean; }) => Promise<void>
+```
+
+Set the user access token to access the `Point API` and optionally runs a sync to get the user past data and upload to `Point` database if its the first usage during the session.
+
+Use this login method if you want to manually manage the user access token and provide a new one when the current expires. You will need to call this function on login and every time your token expires.
+
+To handle this automatically, use ``setRefreshToken`` instead.
+
+When you call this function (and if you enabled HealthKit integration), the SDK will start collecting 4 months worth of data for all types defined in the HealthKit integration setup (Latest Data Sync). After this initial process is completed, we will start collecting older data up until one year ago (Historical Data Sync).
+
+| Param         | Type                                                            |
+| ------------- | --------------------------------------------------------------- |
+| **`options`** | <code>{ accessToken: string; shouldSyncData?: boolean; }</code> |
+
+--------------------
+
+
+### setRefreshToken(...)
+
+```typescript
+setRefreshToken(options: { refreshToken: string; userId: string; shouldSyncData?: boolean; }) => Promise<void>
+```
+
+Set the user refresh token to access the `Point API` and optionally runs a sync to get the user past data and upload to `Point` database if its the first usage during the session.
+
+By using this method of login will allow the Point SDK to automatically handle the user access token and refresh it when needed. You only need to call this function once, as the token will be persisted between sessions. Calling ``logout()`` will erase the refresh token.
+
+Do not call ``setAccessToken`` if a refresh token is set.
+
+When you call this function (and if you enabled HealthKit integration), the SDK will start collecting 4 months worth of data for all types defined in the HealthKit integration setup (Latest Data Sync). After this initial process is completed, we will start collecting older data up until one year ago (Historical Data Sync).
+
+| Param         | Type                                                                             |
+| ------------- | -------------------------------------------------------------------------------- |
+| **`options`** | <code>{ refreshToken: string; userId: string; shouldSyncData?: boolean; }</code> |
 
 --------------------
 
@@ -530,37 +572,44 @@ getInsights(options: { types: InsightType[]; from?: string; to?: string; offset?
 | **`specificGoal`** | <code>string</code>                                                                                                                                 |
 | **`lastWorkout`**  | <code><a href="#workout">Workout</a></code>                                                                                                         |
 
-### Type Aliases
 
 #### GoalProgressKey
 
 <code>'overall' | 'endurance' | 'recovery' | 'strength'</code>
 
+
 #### GoalProgressValue
 
 <code>{ value: number; variance: number; }</code>
+
 
 #### Workout
 
 <code>{ id: number; calories: number; distance: number; duration: number; start: string; end: string; activityName: string; activityId: number; ratings: <a href="#workoutratings">WorkoutRatings</a>; }</code>
 
+
 #### WorkoutRatings
 
 <code>{ difficulty: number; energy: number; instructor: number; }</code>
+
 
 #### WorkoutRecommendation
 
 <code>{ id: number; date: string; activityId: number; activityName: string; workoutId: number; completedAt: string; createdAt: string; savedAt: string; }</code>
 
+
 #### HealthMetric
 
 <code>{ type: string; date: string; value: number; variance: number; workoutId: number; }</code>
+
 
 #### Insight
 
 <code>{ id: string; type: <a href="#insighttype">InsightType</a>; additionalFields: string; createdAt: string; }</code>
 
+
 ### Enums
+
 
 #### QueryType
 
