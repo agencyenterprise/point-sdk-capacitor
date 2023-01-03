@@ -80,9 +80,6 @@ class Application extends Nullstack {
     });
 
     PointSDK.setupHealthkitIntegration({});
-
-    PointSDK.setupFitbitIntegration({ fitbitClientId: "23895P" });
-    PointSDK.setupOuraIntegration({ ouraClientId: "5LSPZR2EKG2GQ76J" });
   }
 
   async requestPermissions() {
